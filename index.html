@@ -19,12 +19,7 @@
             padding: 1em;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-        }
-        .header-content {
-            display: flex;
-            align-items: center;
-            flex: 1;
+            position: relative;
         }
         header img {
             margin-right: 1em;
@@ -33,8 +28,9 @@
         }
         header h1 {
             margin: 0;
-            flex: 1;
-            text-align: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         nav {
             background-color: #E6E6E6;
@@ -86,10 +82,8 @@
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <img src="Images/IMG_2420.JPG" alt="Hirsa Kia">
-            <h1>Hirsa Kia</h1>
-        </div>
+        <img src="Images/IMG_2420.JPG" alt="Hirsa Kia">
+        <h1>Hirsa Kia</h1>
     </header>
     <nav>
         <a href="#about">About</a>
