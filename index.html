@@ -19,12 +19,13 @@
             padding: 1em;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             position: relative;
         }
         .header-img {
             display: flex;
             align-items: center;
-            margin-left: 30px; /* Adjust this value to move the image further to the right */
+            margin-left: 5em; /* Adjust this value to move the image further to the right */
         }
         header img {
             width: 150px;
@@ -93,7 +94,9 @@
 </head>
 <body>
     <header>
-        <img src="Images/IMG_2420.JPG" alt="Hirsa Kia">
+        <div class="header-img">
+            <img src="Images/IMG_2420.JPG" alt="Hirsa Kia">
+        </div>
         <h1>Hirsa Kia</h1>
     </header>
     <nav>
@@ -127,5 +130,8 @@
             </ul>
         </section>
     </div>
+    <footer>
+        <p>&copy; 2024 Hirsa Kia. All rights reserved.</p>
+    </footer>
 </body>
 </html>
