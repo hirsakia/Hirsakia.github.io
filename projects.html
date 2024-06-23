@@ -94,7 +94,7 @@
 </head>
 <body>
     <header>
-        <h1>Hirsa Kia</h1>
+        <h1>Projects</h1>
     </header>
     <nav>
         <a href="index.html#about">About</a>
@@ -103,14 +103,15 @@
     </nav>
     <div class="container">
         <section id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="projects">
-                <h3>Project 1: </h3>
-                <p>Details about Project 1</p>
-                <h3>Project 2: </h3>
-                <p>Details about Project 2</p>
-                <!-- Add more projects as needed -->
-            </div>
+            <h2>Adsorption modeling using FNN and BO for hyperparameter tuning</h2>                
+                <p>We used a relatively simple FNN (2 layered) with Huber loss objective function to model adsorption process of
+                tetracycline removal by multi-walled carbon nanotube functionalized with aspartic acid and poly-pyrrole. Then instead of trial and error,
+                I implemented Bayesian Optimization as the hyperparameter tuning scheme.As decision variables, I chose 
+                First Layer Neuron Count, Second Layer Neuron Count, Huber Constant, Learning Rate, First Layer Activation function, 
+                    First Layer Activation function, Batch size, Dropout, The exponential decay rate for the 1st moment estimates and 
+                    exponential decay rate for the exponentially weighted infinity norm (last two were hyperparameters of the optimizer NADAM). The results
+                were published in <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876107023000731">Link</a>.</p>
+
         </section>
     </div>
 </body>
