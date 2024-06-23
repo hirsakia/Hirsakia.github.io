@@ -104,13 +104,26 @@
     </nav>
     <div class="container">
         <section id="projects" class="section">
+            <!-- <h2>Nonlinear modelling of macroeconomy using SINDyC</h2>                
+                <p>We used SINDyC, one of the variations of SINDy algorithm, to create an explainable nonlinear model out of macroeconomical data. 
+                The data used was obtained from Federal Reserve Economic Data (FRED), which spanned from 1965 to 2022. We used unemployment 
+                    rate, inflation rate and GDP as states and interest rate as the control variable. We used Phase Plane Analysis to study the properties 
+                    of the model. The model was consistent with qualitative properties of macroeconomy and showed some additional surprising 
+                    properties. 
+                    The results are under submission. </p>-->
+            <h2>Autotuning of MRC circuits</h2>                
+                <p>The resonance between a transmitter and receiver is critical in efficient power transfer or data communication. We created an
+                adaptive controller that basically solves a convex optimization problem with a zeroth-order oracle simply and efficiently. 
+                We approximate gradient based on the queries from zeroth-order oracle and drive the system into resonance. The results are under 
+                submission. </p>
+            
             <h2>Adsorption modeling using FNN and BO for hyperparameter tuning</h2>                
-                <p>We used a relatively simple FNN (2 layered) with Huber loss objective function to model adsorption process of
-                tetracycline removal by multi-walled carbon nanotube functionalized with aspartic acid and poly-pyrrole. Then instead of trial and error,
-                I implemented Bayesian Optimization as the hyperparameter tuning scheme.As decision variables, I chose 
+                <p>I used a relatively simple FNN (2 layered) with Huber loss objective function to model adsorption process of
+                tetracycline removal by multi-walled carbon nanotube functionalized with aspartic acid and poly-pyrrole. Then, instead of trial and error,
+                I implemented Bayesian Optimization with RMSE cost function as the hyperparameter tuning scheme. For decision variables, I chose 
                 First Layer Neuron Count, Second Layer Neuron Count, Huber Constant, Learning Rate, First Layer Activation function, 
-                    First Layer Activation function, Batch size, Dropout, The exponential decay rate for the 1st moment estimates and 
-                    exponential decay rate for the exponentially weighted infinity norm (last two were hyperparameters of the optimizer NADAM). The results
+                First Layer Activation function, Batch size, Dropout, The exponential decay rate for the 1st moment estimates and 
+                exponential decay rate for the exponentially weighted infinity norm (last two were hyperparameters of the optimizer NADAM). The results
                 were published in <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876107023000731">Link</a>.</p>
 
         </section>
