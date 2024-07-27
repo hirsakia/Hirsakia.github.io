@@ -14,12 +14,12 @@
             padding: 0;
             background-color: #1F1F1F;
             color: #E6E6E6;
-            line-height: 1.6; /* Set the line-height for the body */
+            line-height: 1.6;
         }
         header {
             background-color: #E6E6E6;
             color: #1F1F1F;
-            padding: 2em 1em; /* Increased padding to make the header bar wider */
+            padding: 2em 1em;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -28,7 +28,7 @@
         .header-img {
             display: flex;
             align-items: center;
-            margin-left: 5em; /* Adjust this value to move the image further to the right */
+            margin-left: 5em;
         }
         header img {
             width: 150px;
@@ -51,11 +51,11 @@
             padding: 1em;
             text-decoration: none;
             display: inline-block;
-            transition: background-color 0.3s ease, border-radius 0.3s ease; /* Added transition for smooth effect */
+            transition: background-color 0.3s ease, border-radius 0.3s ease;
         }
         nav a:hover {
             background-color: #D6596C;
-            border-radius: 15px; /* Smooth rectangle corners */
+            border-radius: 15px;
         }
         .container {
             max-width: 1200px;
@@ -80,7 +80,7 @@
             margin: 0.5em 0;
         }
         .contact-info a {
-            color: #D6596C; /* Change this color to your desired hyperlink color */
+            color: #D6596C;
             text-decoration: none;
         }
         .contact-info a:hover {
@@ -123,7 +123,7 @@
             </ul>
 
             <h2>Transforming the original formulation</h2>
-            <p>Optimization force can be written as:</p>
+            <p>As it was mentioned in <a href="#ref1">[1]</a> Optimization force can be written as:</p>
             \[ M_w=\Phi^\top D \Phi=\sum_{i=1}^n d_i e_i^\top e_i \]
 
             <p>Assume some of the states are aligned, creating clusters with the same direction. We call each cluster \(S_i\), say each state that belongs to this set \(S_i\) has the direction \(e_i\) and define \(S=\cup_{i=1}^{m} S_i\) (Note that for \(i\neq j\), we have \(S_i\cap S_j=\emptyset\)). Since we assumed standard unit vectors for directions, we know that \(e_i^\top e_i\) is a matrix with an entry 1 on its \((i,i)\) element and 0 everywhere else. We can rewrite this as:</p>
@@ -214,11 +214,16 @@
             \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P_{lj} e_j = \sum_{i=1}^n \gamma \frac{d_i e_i^\top}{d_i} \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_j = \gamma \sum_{i=1}^n e_i^\top \sum_{j=1}^n P_{ij} e_j = \gamma E^\top P E \]
 
             <p>It can be easily proved that \(E\) is an orthogonal matrix (each row \(e_i\) is orthonormal to the rest). Eigenvalue problem can be written as:</p>
-            \[ \gamma E^\top P Ev = \lambda v \quad \Rightarrow \quad max_{v, st. \|v\|=1}\gamma \|E^\top P Ev\| = \lambda \|v\| = \lambda \]
+            \[ \gamma E^\top P Ev = \lambda v \quad \Rightarrow \quad \max_{v, \text{ s.t. } \|v\|=1}\gamma \|E^\top P Ev\| = \lambda \|v\| = \lambda \]
 
             <p>We can use it to write:</p>
-            \[ max_{v, st. \|v\|=1}\gamma \|E^\top P Ev\| \leq max_{v, st. \|v\|=1}\|E^\top (P Ev)\| \leq max_{v, st. \|v\|=1}\|P Ev\| \leq max_{v, st. \|v\|=1}\|Ev\| max_{v, st. \|v\|=1}\leq \|E\| \|v\| \leq \|v\| = 1 \]
+            \[ \max_{v, \text{ s.t. } \|v\|=1}\gamma \|E^\top P Ev\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|E^\top (P Ev)\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|P Ev\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|Ev\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|E\| \|v\| \leq \|v\| = 1 \]
 
+        </section>
+
+        <section id="references" class="section">
+            <h2>References</h2>
+            <p id="ref1">[1] Doe, J. (2021). <i>Title of the Paper</i>. Journal of Interesting Results, 15(3), 123-456.</p>
         </section>
     </div>
 </body>
