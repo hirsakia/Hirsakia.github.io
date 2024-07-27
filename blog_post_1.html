@@ -124,7 +124,7 @@
             <p>Our findings demonstrate that the existence of a suitable probability distribution is a sufficient condition for 
                 convergence, irrespective of the feature space dimensions. We further extend our analysis to special cases, such 
                 as scalar and tabular feature spaces, providing a nuanced understanding of the underlying dynamics in these simplified 
-                scenarios.</p>
+                scenarios. The idea of this report is inspired by corollary 2 of the paper by Asadi et al.<a href="#ref1">[1]</a></p>
             <h2>Definitions</h2>
             <p>We define \(\phi_i\) as the feature of state \(i\), where \(\phi_i=\|\phi_i\|e_i\) with \(\|\phi_i\|\) as its norm 
                 and \(e_i\) as its direction in the form of a row vector (we assume \(\|\phi_i\|=1\) for all the states). Rows of 
@@ -142,7 +142,7 @@
             
 
             <h2>Transforming the original formulation</h2>
-            <p>As it was mentioned in <a href="#ref1">[1]</a> Optimization force can be written as:</p>
+            <p>Using the notion of optimization and target forces <a href="#ref1">[1]</a>, optimization force can be written as:</p>
             \[ M_w=\Phi^\top D \Phi=\sum_{i=1}^n d_i e_i^\top e_i \]
 
             <p>Assume some of the states are aligned, creating clusters with the same direction. We call each cluster \(S_i\), say each state that belongs to this set \(S_i\) has the direction \(e_i\) and define \(S=\cup_{i=1}^{m} S_i\) (Note that for \(i\neq j\), we have \(S_i\cap S_j=\emptyset\)). Since we assumed standard unit vectors for directions, we know that \(e_i^\top e_i\) is a matrix with an entry 1 on its \((i,i)\) element and 0 everywhere else. We can rewrite this as:</p>
