@@ -211,13 +211,18 @@
 
             <h3>Tabular (n-D Feature Space)</h3>
             <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) and equation turns into:</p>
-            \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P_{lj} e_j = \sum_{i=1}^n \gamma \frac{d_i e_i^\top}{d_i} \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_j = \gamma \sum_{i=1}^n e_i^\top \sum_{j=1}^n P_{ij} e_j = \gamma E^\top P E \]
+            \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} 
+            e_i^\top \sum_{j=1}^n P_{lj} e_j = \sum_{i=1}^n \gamma \frac{d_i e_i^\top}{d_i} \sum_{s^\prime \in S^\prime} 
+            P(s^\prime | s) e_j = \gamma \sum_{i=1}^n e_i^\top \sum_{j=1}^n P_{ij} e_j = \gamma \Phi^\top P \Phi \]
 
-            <p>It can be easily proved that \(E\) is an orthogonal matrix (each row \(e_i\) is orthonormal to the rest). Eigenvalue problem can be written as:</p>
-            \[ \gamma E^\top P Ev = \lambda v \quad \Rightarrow \quad \max_{v, \text{ s.t. } \|v\|=1}\gamma \|E^\top P Ev\| = \lambda \|v\| = \lambda \]
+            <p>It can be easily proved that \(\Phi\) is an orthogonal matrix, and hence its spectral radius is equal to 1. Eigenvalue problem can be written as:</p>
+            \[ \gamma \Phi^\top P \Phi v = \lambda v \quad \Rightarrow \quad \max_{v, \text{ s.t. } \|v\|=1}\gamma \|\Phi^\top P \Phi v\|
+            = \lambda \|v\| = \lambda \]
 
             <p>We can use it to write:</p>
-            \[ \max_{v, \text{ s.t. } \|v\|=1}\gamma \|E^\top P Ev\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|E^\top (P Ev)\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|P Ev\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|Ev\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|E\| \|v\| \leq \|v\| = 1 \]
+            \[ \max_{v, \text{ s.t. } \|v\|=1}\gamma \|\Phi^\top P \Phi v\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|\Phi^\top (P \Phi v)\|
+            \leq \max_{v, \text{ s.t. } \|v\|=1}\|P \Phi v\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|\Phi v\| \leq \max_{v, \text{ s.t. } \|v\|=1}
+            \|\Phi\| \|v\| \leq \|v\| = 1 \]
 
         </section>
 
