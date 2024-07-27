@@ -108,6 +108,7 @@
     </nav>
     <div class="container">
         <section id="TD in State Aggregated Setting" class="section">
+            <h2>Introduction</h2>
             <p>For simplicity, we define \(\phi_i\) as the feature of state \(i\), where \(\phi_i=\|\phi_i\|e_i\) with \(\|\phi_i\|\) as its norm and \(e_i\) as its direction in the form of a row vector (we assume \(\|\phi_i\|=1\) for all the states). We assume standard unit vector for \(e_i\), meaning that it is an \(n\)-length row vector whose \(i\)-th component is one while all the others are zeros. Rows of matrix \(\Phi\) are features \(\phi_i\) of each state. Matrix \(D\) is a diagonal matrix with entries \(d_i\) less than one and trace equal to 1. \(ij\)-th element of probability transition matrix \(P\), written as \(P_{ij}\), is equivalent to \(P(s_j|s_i)\). \(x\) is the eigenvector and \(x_i\) is the \(i\)-th element of \(x\). We have \(n\) states.</p>
 
             <h2>Assumptions</h2>
@@ -162,7 +163,7 @@
             <h3>Lemma</h3>
             <p>Matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix.</p>
 
-            <h4>Proof</h4>
+            <h3>Proof</h3>
             <p>To show that a given matrix is a stochastic matrix, we need to prove that it has no negative entry and the summation of each row is equal to 1. To show the matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, we check each row of the matrix. We know \(p\)-th row of the matrix \((M_w)^{-1} M_{\theta}\) can be written as:</p>
 
             \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Bigl[\sum_{s^\prime \in S_1} P(s^\prime | s) , \hdots, \sum_{s^\prime \in S_m} P(s^\prime | s) \Bigl] \]
@@ -180,7 +181,7 @@
             <h3>Theorem</h3>
             <p>Maximum absolute eigenvalue of the matrix \(\gamma (M_w)^{-1} M_{\theta}\) is \(\gamma\).</p>
 
-            <h4>Proof</h4>
+            <h3>Proof</h3>
             <p>Since from lemma we know that \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, then its eigenvalues lie in the unit circle of complex plane. Multiplying it by \(\gamma\) would shrink the unit circle, resulting in the maximum eigenvalue of \(\gamma\).</p>
 
             <h2>Special Cases</h2>
