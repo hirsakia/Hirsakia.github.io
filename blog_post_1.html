@@ -68,6 +68,9 @@
         .section h2 {
             color: #D6596C;
         }
+        .section h3 {
+            color: #D6596C;
+        }
         .projects img {
             max-width: 100%;
             height: auto;
@@ -106,7 +109,7 @@
 </head>
 <body>
     <header>
-        <h1>Blog: TD in State Aggregated Setting</h1>
+        <h1>Technical Report: TD in State Aggregated Setting</h1>
     </header>
     <nav>
         <a href="index.html#about">About</a>
@@ -139,8 +142,6 @@
                 the second and third \((1-D\) and \(n-D\)) we assume orthonormal feature vectors.</li>
             </ul>
 
-            
-
             <h2>Transforming the original formulation</h2>
             <p>Using the notion of optimization and target forces <a href="#ref1">[1]</a>, optimization force can be written as:</p>
             \[ M_w=\Phi^\top D \Phi=\sum_{i=1}^n d_i e_i^\top e_i \]
@@ -165,10 +166,12 @@
 
             <p>As for the Target force, we can write:</p>
             \[ M_\theta = \Phi^\top D P \Phi = \sum_{i=1}^n d_i e_i^\top \sum_{j=1}^n P_{ij} e_j = \sum_{S_i \subset S} \sum_{s \in S_i} d(s) e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} \]
-
+            <h2>Scenario 1: standard unit vectors for direction</h2>
             <p>Now multiplying \((M_w)^{-1}\) and \(M_{\theta}\) to calculate \((M_w)^{-1} M_{\theta}\), we can write:</p>
             \[ M_w^{-1} M_\theta = \Bigl(\sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i \Bigl)\Bigl(\sum_{S_i \subset S} \sum_{s \in S_i} d(s) e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} \Bigl) \]
-
+            
+            <h2>Scenario 1: standard unit directions</h2>
+            
             <p>Notice that in the right parenthesis, the summation over \(i\) describes matrices with only 1 row containing non-zero elements (since \(e_i^{\top}\) is a standard unit vector). Using that we can write:</p>
 
             \[ \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \hdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m\Big) \]
@@ -202,9 +205,9 @@
             <h3>Proof</h3>
             <p>Since from lemma we know that \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, then its eigenvalues lie in the unit circle of complex plane. Multiplying it by \(\gamma\) would shrink the unit circle, resulting in the maximum eigenvalue of \(\gamma\).</p>
 
-            <h2>Special Cases</h2>
+            <h2>Scenario 2: orthonormal directions</h2>
             <p> We drop the cartesian unit vector assumption. Here we only assume that the state features are orthonormal to each other.</p>
-            <h3>Scalar (1-D Feature Space)</h3>
+            <h3>1-D Feature Space</h3>
             <p>In case of scalar, since there is only 1 direction, we have only one cluster (S=S<sub>1</sub>) and equation turns into:</p>
 
             \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P(s^\prime | s) e_j = \frac{\sum_{i=1}^n \gamma d_i e_1^\top \sum_{j=1}^n P(s^\prime | s) e_1}{\sum_{k=1}^n d(s)} = \frac{\gamma \sum_{i=1}^n d_i \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)} e_1^\top e_1 \]
@@ -214,7 +217,7 @@
 
             <p>Meaning that all the parents and children would contribute to the final value.</p>
 
-            <h3>Tabular (n-D Feature Space)</h3>
+            <h3>n-D Feature Space</h3>
             <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) and equation turns into:</p>
             \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} 
             e_i^\top \sum_{j=1}^n P_{lj} e_j = \sum_{i=1}^n \gamma \frac{d_i e_i^\top}{d_i} \sum_{s^\prime \in S^\prime} 
