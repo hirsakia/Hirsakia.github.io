@@ -219,11 +219,9 @@
 
             <h3>n-D Feature Space</h3>
             <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) and equation turns into:</p>
-            \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} 
-            e_i^\top \sum_{j=1}^n P_{lj} e_j = \sum_{i=1}^n \gamma \frac{d_i e_i^\top}{d_i} \sum_{s^\prime \in S^\prime} 
-            P(s^\prime | s) e_j = \gamma \sum_{i=1}^n e_i^\top \sum_{j=1}^n P_{ij} e_j = \gamma \Phi^\top P \Phi \]
+            \[ \gamma (M_w)^{-1} M_{\theta} = (\phi^\top D \phi)^{-1}\phi^\top DP \phi= \phi^{-1} D^{-1} \phi^{-\top}\phi^\top DP \phi= \gamma \Phi^\top P \Phi \]
 
-            <p>It can be easily proved that \(\Phi\) is an orthogonal matrix, and hence its spectral radius is equal to 1. Eigenvalue problem can be written as:</p>
+            <p>It can be easily proved that \(\Phi\) is an orthogonal matrix, hence its spectral radius is equal to 1 and \(\phi^{-1}=\phi^\top\). Eigenvalue problem can be written as:</p>
             \[ \gamma \Phi^\top P \Phi v = \lambda v \quad \Rightarrow \quad \max_{v, \text{ s.t. } \|v\|=1}\gamma \|\Phi^\top P \Phi v\|
             = \lambda \|v\| = \lambda \]
 
