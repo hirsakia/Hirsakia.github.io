@@ -213,21 +213,12 @@
             <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) and equation turns into:</p>
             \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P_{lj} e_j = \sum_{i=1}^n \gamma \frac{d_i e_i^\top}{d_i} \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_j = \gamma \sum_{i=1}^n e_i^\top \sum_{j=1}^n P_{ij} e_j = \gamma E^\top P E \]
 
-            <p>It can be easily proved that \(E\) is an orthogonal matrix. Eigenvalue problem can be written as:</p>
-            \[ \gamma E^\top P Ev = \lambda v \quad \Rightarrow \quad \gamma \|E^\top P Ev\| = \lambda \|v\| = \lambda \]
+            <p>It can be easily proved that \(E\) is an orthogonal matrix (each row e_i is orthonormal to the rest). Eigenvalue problem can be written as:</p>
+            \[ \gamma E^\top P Ev = \lambda v \quad \Rightarrow \quad max_{v, st. \|v\|=1}\gamma \|E^\top P Ev\| = \lambda \|v\| = \lambda \]
 
             <p>We can use it to write:</p>
-            \[ \gamma \|E^\top P Ev\| \leq \|E^\top (P Ev)\| \leq \|P Ev\| \leq \|Ev\| \leq \|E\| \|v\| \leq \|v\| = 1 \]
+            \[ max_{v, st. \|v\|=1}\gamma \|E^\top P Ev\| \leq max_{v, st. \|v\|=1}\|E^\top (P Ev)\| \leq max_{v, st. \|v\|=1}\|P Ev\| \leq max_{v, st. \|v\|=1}\|Ev\| max_{v, st. \|v\|=1}\leq \|E\| \|v\| \leq \|v\| = 1 \]
 
-            <p>For each row we can write:</p>
-            \[ \gamma \sum_{j=1}^n P_{ij} = \gamma \]
-
-            <p>The last part is equivalent to finding the maximum eigenvalues of \(P\), which is a stochastic matrix, hence its maximum eigenvalue is 1.</p>
-
-            <p>Another trivial option to calculate it would be:</p>
-            \[ (M_w)^{-1} M_{\theta} = (\Phi^\top D \Phi)^{-1} \Phi^\top DP \Phi = \Phi^{-1} D^{-1} \Phi^{-\top} \Phi^\top DP \Phi = \Phi^{-1} P \Phi = P^\prime \]
-
-            <p>Since \(\Phi\) is a permutation matrix (no two states have the same direction), \(P^\prime\) is still a row-stochastic matrix.</p>
         </section>
     </div>
 </body>
