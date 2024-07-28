@@ -168,7 +168,8 @@
             \[ M_\theta = \Phi^\top D P \Phi = \sum_{i=1}^n d_i e_i^\top \sum_{j=1}^n P_{ij} e_j = \sum_{S_i \subset S} \sum_{s \in S_i} d(s) e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} \]
             <p>Now multiplying \((M_w)^{-1}\) and \(M_{\theta}\) to calculate \((M_w)^{-1} M_{\theta}\), we can write:</p>
             \[ M_w^{-1} M_\theta = \Bigl(\sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i \Bigl)\Bigl(\sum_{S_i \subset S} \sum_{s \in S_i} d(s) e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} \Bigl) \]
-            
+            Using orthogonality between different directions we can write:
+            \[ \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime}\]
             <h2>Scenario 1: standard unit directions</h2>
             
             <p>Notice that in the right parenthesis, the summation over \(i\) describes matrices with only 1 row containing non-zero elements (since \(e_i^{\top}\) is a standard unit vector). Using that we can write:</p>
