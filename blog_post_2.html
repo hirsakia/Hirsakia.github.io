@@ -133,23 +133,34 @@
             <p>Let’s also say this matrix has n different eigenvectors and eigenvalues. If the direction of any vector aligns 
               with any of the eigenvectors, the only transformation would be the rescaling of our vector with the amount of the 
               corresponding eigenvalue.</p>
-
+            
+            \[Av=\lambda v\]
 
             <p>For the sake of the simplicity, let’s also say we have a bunch of points which together represent a circle in 2D dimension. 
               What happens if we transform them by a matrix? Spoiler alert, our circle gets stretched into an ellipse. Let’s see how it 
               happens: let us define this bunch of points by the following set.</p>
-    
+
+            \[\{x\in R^n|x^\top x=r^2\}\]
     
             <p>Also, someone told us that the matrix has an eigenvalue decomposition in the following form.</p>
-    
+            \[A=V\Gamma V^\top\]
     
             <p>using these properties, we can expand the transformation of the vector as the following:</p>
-    
+
+            \[Ax=V\Gamma V^\top x=\begin{bmatrix}
+            V_1,\cdot \cdot \cdot, V_n
+            \end{bmatrix} \begin{bmatrix}
+            \Gamma V_1^\top\\
+            \vdots\\
+            \Gamma V_n^\top
+            \end{bmatrix}x=(\Gamma V_1^top x)V_1+\cdot \cdot \cdot+ (\Gamma V_n^top x)V_n
+            \]
     
             <p>Here is the fun part: the last equation states that when we transform a vector, we are projecting the vector on the 
               eigenvectors, multiplying the components by the corresponding eigenvalues and finally reconstructing the vector in the 
               space with eigenvectors as the new basis vectors. The following figure shows an example of a circle with radius one 
               transforming into an ellipse.</p>
+            
 
             <p>I hope now you have a basic understanding of why we calculate eigenvectors and eigenvalues. There are a lot of intuition 
               and applications hidden in the concept. As an application example, for those of you coming from an engineering background, 
@@ -158,7 +169,8 @@
               check if the material can sustain tolerate such stress configurations without breaking.</p>
             <p>P.S.: I will try to recommend some references (textbooks, online courses and etc.). When I was 19, I bought the book 
               “Linear Algebra” by Gilbert Strang and spent my whole summer reading through it. It was and is one of the best resources 
-              on Linear Algebra out there. Also, here is a mini course by the master himself, to boost your understanding of linear algebra. 
+              on Linear Algebra out there. Also, here is a <a href="https://www.youtube.com/watch?list=PLUl4u3cNGP61iQEFiWLE21EJCxwmWvvek&v=nTwRjQ4xqUc">mini course</a>
+                 by the master himself, to boost your understanding of linear algebra. 
               A course by Gilbert Strang</p> 
         </section>
     </div>
