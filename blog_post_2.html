@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hirsa Kia's Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1F1F1F;
+            color: #E6E6E6;
+            line-height: 1.6; /* Set the line-height for the body */
+        }
+        header {
+            background-color: #E6E6E6;
+            color: #1F1F1F;
+            padding: 2em 1em; /* Increased padding to make the header bar wider */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .header-img {
+            display: flex;
+            align-items: center;
+            margin-left: 5em; /* Adjust this value to move the image further to the right */
+        }
+        header img {
+            width: 150px;
+            height: 150px;
+        }
+        header h1 {
+            margin: 20px 0 0 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%; /* Set a larger width */
+            max-width: 1200px; /* Optional: Set a maximum width to control the size on large screens */
+            text-align: center; /* Center the text within the h1 */
+            
+        }
+        nav {
+            background-color: #E6E6E6;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        nav a {
+            color: #1F1F1F;
+            padding: 1em;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease, border-radius 0.3s ease; /* Added transition for smooth effect */
+        }
+        nav a:hover {
+            background-color: #D6596C;
+            border-radius: 15px; /* Smooth rectangle corners */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2em;
+        }
+        .section {
+            margin: 2em 0;
+        }
+        .section h2 {
+            color: #D6596C;
+        }
+        .section h3 {
+            color: #D6596C;
+        }
+        .projects img {
+            max-width: 100%;
+            height: auto;
+        }
+        .contact-info {
+            list-style: none;
+            padding: 0;
+        }
+        .contact-info li {
+            margin: 0.5em 0;
+        }
+        .contact-info a {
+            color: #D6596C; /* Change this color to your desired hyperlink color */
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        section a {
+            color: #D6596C; /* Change the color of hyperlinks inside section elements */
+            text-decoration: none;
+        }
+        section a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Level 1 Mini boss: Eigenvectors</h1>
+    </header>
+    <nav>
+        <a href="index.html#about">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Blog</a>
+    </nav>
+    <div class="container">
+        <section id="TD in State Aggregated Setting" class="section">
+            <p>This post is about Eigenvalue/eigenvectors and it is supposed to give you a fascinating insight about them. 
+              For this reason, I am going to be introducing a lot of, not so crazy, assumptions to construct an environment 
+              for you to see how you can look at these things from a new perspective. First things first, let’s reiterate what 
+              an eigenvalue/eigenvector is: basically, imagine a vector which stays the same when transformed by a square matrix.</p>
+            
+            <p>When we say transformed, we simply mean transforming our old vector into a new one, like rotating or scaling it. 
+              We can do transformations by multiplying the vector by a matrix, which we call transformation matrix.</p>
+            
+            <p>Let’s also say this matrix has n different eigenvectors and eigenvalues. If the direction of any vector aligns 
+              with any of the eigenvectors, the only transformation would be the rescaling of our vector with the amount of the 
+              corresponding eigenvalue.</p>
+
+
+            <p>For the sake of the simplicity, let’s also say we have a bunch of points which together represent a circle in 2D dimension. 
+              What happens if we transform them by a matrix? Spoiler alert, our circle gets stretched into an ellipse. Let’s see how it 
+              happens: let us define this bunch of points by the following set.</p>
+    
+    
+            <p>Also, someone told us that the matrix has an eigenvalue decomposition in the following form.</p>
+    
+    
+            <p>using these properties, we can expand the transformation of the vector as the following:</p>
+    
+    
+            <p>Here is the fun part: the last equation states that when we transform a vector, we are projecting the vector on the 
+              eigenvectors, multiplying the components by the corresponding eigenvalues and finally reconstructing the vector in the 
+              space with eigenvectors as the new basis vectors. The following figure shows an example of a circle with radius one 
+              transforming into an ellipse.</p>
+
+            <p>I hope now you have a basic understanding of why we calculate eigenvectors and eigenvalues. There are a lot of intuition 
+              and applications hidden in the concept. As an application example, for those of you coming from an engineering background, 
+              you probably heard about Cauchy stress tensor, which is used to organize the stress tensors. Using this matrix, people would 
+              compute eigenvectors and eigenvalues to determine the principal normal stresses and the direction it is applied, in order to 
+              check if the material can sustain tolerate such stress configurations without breaking.</p>
+            <p>P.S.: I will try to recommend some references (textbooks, online courses and etc.). When I was 19, I bought the book 
+              “Linear Algebra” by Gilbert Strang and spent my whole summer reading through it. It was and is one of the best resources 
+              on Linear Algebra out there. Also, here is a mini course by the master himself, to boost your understanding of linear algebra. 
+              A course by Gilbert Strang</p> 
+        </section>
+    </div>
+</body>
+</html>
