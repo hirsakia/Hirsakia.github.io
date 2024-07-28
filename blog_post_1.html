@@ -220,8 +220,10 @@
             <p>Meaning that all the parents and children would contribute to the final value.</p>
 
             <h3>n-D Feature Space</h3>
-            <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) and equation turns into:</p>
-            \[ \gamma (M_w)^{-1} M_{\theta} = (\phi^\top D \phi)^{-1}\phi^\top DP \phi= \phi^{-1} D^{-1} \phi^{-\top}\phi^\top DP \phi= \gamma \Phi^\top P \Phi \]
+            <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) 
+                and equation turns into:</p>
+            \[ \gamma (M_w)^{-1} M_{\theta} = (\Phi^\top D \Phi)^{-1}\Phi^\top DP \Phi= \Phi^{-1} D^{-1} \Phi^{-\top}\Phi^\top DP \Phi= 
+            \gamma \Phi^\top P \Phi \]
 
             <p>It can be easily proved that \(\Phi\) is an orthogonal matrix, hence its spectral radius is equal to 1 and \(\phi^{-1}=\phi^\top\). Eigenvalue problem can be written as:</p>
             \[ \gamma \Phi^\top P \Phi v = \lambda v \quad \Rightarrow \quad \max_{v, \text{ s.t. } \|v\|=1}\gamma \|\Phi^\top P \Phi v\|
