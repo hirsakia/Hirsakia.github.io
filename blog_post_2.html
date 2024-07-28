@@ -97,6 +97,15 @@
             color: #D6596C; /* Change the color of hyperlinks inside section elements */
             text-decoration: none;
         }
+        figure {
+            margin: 2em 0;
+            text-align: center;
+        }
+        figcaption {
+            margin-top: 0.5em;
+            font-size: 0.9em;
+            color: #D6596C; /* Change the color of the caption */
+        }
         section a:hover {
             text-decoration: underline;
         }
@@ -160,7 +169,10 @@
               eigenvectors, multiplying the components by the corresponding eigenvalues and finally reconstructing the vector in the 
               space with eigenvectors as the new basis vectors. The following figure shows an example of a circle with radius one 
               transforming into an ellipse.</p>
-            
+            <figure>
+                <img src="Images/EigenvecCirc.jpg" alt="a circle transforming into an ellipse">
+                <figcaption>a circle transforming into an ellipse.</figcaption>
+            </figure>
 
             <p>I hope now you have a basic understanding of why we calculate eigenvectors and eigenvalues. There are a lot of intuition 
               and applications hidden in the concept. As an application example, for those of you coming from an engineering background, 
