@@ -154,8 +154,8 @@
 
             <p>Since matrix \(M_w \in \mathbb{R}^{m \times m}\) is symmetric \((M_w^\top=(\Phi^\top D \Phi)^\top = \Phi^\top D \Phi = M_w)\), we can write its eigenvalue decomposition:</p>
             \[ M_w = Q\Lambda Q^\top = \begin{bmatrix}
-                    e_1^\top & \hdots & e_m^\top 
-                \end{bmatrix} Diag(\lambda_1, \hdots, \lambda_m) \begin{bmatrix}
+                    e_1^\top & \cdot \cdot \cdot & e_m^\top 
+                \end{bmatrix} Diag(\lambda_1, \cdot \cdot \cdot, \lambda_m) \begin{bmatrix}
                     e_1 \\
                     \vdots \\
                     e_m 
@@ -174,10 +174,10 @@
             
             <p>Notice that in the right parenthesis, the summation over \(i\) describes matrices with only 1 row containing non-zero elements (since \(e_i^{\top}\) is a standard unit vector). Using that we can write:</p>
 
-            \[ \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \hdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m\Big) \]
+            \[ \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \cdot \cdot \cdot + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m\Big) \]
 
             <p>For parents in \(S_p\) we can write:</p>
-            \[ \gamma e_p^\top \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \hdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m \Big) \]
+            \[ \gamma e_p^\top \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \cdot \cdot \cdot + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m \Big) \]
 
             <p>Which represents \(p\)-th row of \(\gamma (M_w)^{-1} M_{\theta}\) matrix (This summation is over outer-products with column vector as \(e_p\), which has only a 1 in the \(p\)-th entry, resulting in a matrix with all zeroes except for row \(p\)).</p>
 
@@ -187,11 +187,11 @@
             <h3>Proof</h3>
             <p>To show that a given matrix is a stochastic matrix, we need to prove that it has no negative entry and the summation of each row is equal to 1. To show the matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, we check each row of the matrix. We know \(p\)-th row of the matrix \((M_w)^{-1} M_{\theta}\) can be written as:</p>
 
-            \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Bigl[\sum_{s^\prime \in S_1} P(s^\prime | s) , \hdots, \sum_{s^\prime \in S_m} P(s^\prime | s) \Bigl] \]
+            \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Bigl[\sum_{s^\prime \in S_1} P(s^\prime | s) , \cdot \cdot \cdot, \sum_{s^\prime \in S_m} P(s^\prime | s) \Bigl] \]
 
             <p>Since each term is a non-negative value the first part is proved. For the second part we can rewrite the equation as:</p>
 
-            \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Bigl[\sum_{s^\prime \in S_1} P(s^\prime | s) + \hdots + \sum_{s^\prime \in S_m} P(s^\prime | s) \Bigl] \]
+            \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Bigl[\sum_{s^\prime \in S_1} P(s^\prime | s) + \cdot \cdot \cdot + \sum_{s^\prime \in S_m} P(s^\prime | s) \Bigl] \]
 
             <p>The probabilities inside the bracket are for each state and hence the summation would be equal to 1:</p>
 
