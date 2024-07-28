@@ -176,7 +176,7 @@
 
             \[ \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \cdot \cdot \cdot + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m\Big) \]
 
-            <p>For parents in \(S_p\) we can write:</p>
+            <p>For parents in \(S_p\) (corresponding to row \(p\) of the matrix) we can write:</p>
             \[ \gamma e_p^\top \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \cdot \cdot \cdot + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m \Big) \]
 
             <p>Which represents \(p\)-th row of \(\gamma (M_w)^{-1} M_{\theta}\) matrix (This summation is over outer-products with column vector as \(e_p\), which has only a 1 in the \(p\)-th entry, resulting in a matrix with all zeroes except for row \(p\)).</p>
