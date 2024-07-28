@@ -182,7 +182,8 @@
             <p>Which represents \(p\)-th row of \(\gamma (M_w)^{-1} M_{\theta}\) matrix (This summation is over outer-products with column vector as \(e_p\), which has only a 1 in the \(p\)-th entry, resulting in a matrix with all zeroes except for row \(p\)).</p>
 
             <h3>Lemma</h3>
-            <p>Matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix.</p>
+            <p>Assuming standard unit vectors as state features and orthogonality between clusters of states with the same state representations,
+                Matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix.</p>
 
             <h3>Proof</h3>
             <p>To show that a given matrix is a stochastic matrix, we need to prove that it has no negative entry and the summation of each row is equal to 1. To show the matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, we check each row of the matrix. We know \(p\)-th row of the matrix \((M_w)^{-1} M_{\theta}\) can be written as:</p>
@@ -200,7 +201,8 @@
             <p>Since this is true for each row, we proved that the matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix.</p>
 
             <h3>Theorem</h3>
-            <p>Maximum absolute eigenvalue of the matrix \(\gamma (M_w)^{-1} M_{\theta}\) is \(\gamma\).</p>
+            <p>Assuming standard unit vectors as state features and orthogonality between clusters of states with the same state representations, 
+                maximum absolute eigenvalue of the matrix \(\gamma (M_w)^{-1} M_{\theta}\) is \(\gamma\).</p>
 
             <h3>Proof</h3>
             <p>Since from lemma we know that \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, then its eigenvalues lie in the unit circle of complex plane. Multiplying it by \(\gamma\) would shrink the unit circle, resulting in the maximum eigenvalue of \(\gamma\).</p>
