@@ -146,7 +146,7 @@
             <p>Using the notion of optimization and target forces <a href="#ref1">[1]</a>, optimization force can be written as:</p>
             \[ M_w=\Phi^\top D \Phi=\sum_{i=1}^n d_i e_i^\top e_i \]
 
-            <p>Assume some of the states are aligned, creating clusters with the same direction. We call each cluster \(S_i\), say each state that belongs to this set \(S_i\) has the direction \(e_i\) and define \(S=\cup_{i=1}^{m} S_i\) (Note that for \(i\neq j\), we have \(S_i\cap S_j=\emptyset\)). Since we assumed standard unit vectors for directions, we know that \(e_i^\top e_i\) is a matrix with an entry 1 on its \((i,i)\) element and 0 everywhere else. We can rewrite this as:</p>
+            <p>Assume some of the states are aligned, creating clusters with the same direction<a href="#ref2">[2]</a>. We call each cluster \(S_i\), say each state that belongs to this set \(S_i\) has the direction \(e_i\) and define \(S=\cup_{i=1}^{m} S_i\) (Note that for \(i\neq j\), we have \(S_i\cap S_j=\emptyset\)). Since we assumed standard unit vectors for directions, we know that \(e_i^\top e_i\) is a matrix with an entry 1 on its \((i,i)\) element and 0 everywhere else. We can rewrite this as:</p>
             \[ M_w=\Phi^\top D \Phi=\sum_{S_i\subset S} \Bigl(\sum_{s\in S_i} d(s) \Bigl) e_i^\top e_i \]
 
             <p>We can easily obtain \(m\) eigenvalues and their corresponding eigenvectors:</p>
@@ -239,7 +239,10 @@
 
         <section id="references" class="section">
             <h2>References</h2>
-            <p id="ref1">[1] Asadi, K., Sabach, S., Liu, Y., Gottesman, O., & Fakoor, R. (2024). <i>Td convergence: An optimization perspective</i>. Advances in Neural Information Processing Systems, 36.</p>
+            <p id="ref1">[1] Asadi, K., Sabach, S., Liu, Y., Gottesman, O., & Fakoor, R. (2024). 
+                <i>Td convergence: An optimization perspective</i>. Advances in Neural Information Processing Systems, 36.</p>
+            <p id="ref2">[2] Li, Lihong and Walsh, Thomas J and Littman, Michael L (2006). 
+                <i>Towards a unified theory of state abstraction for MDPs.</i>. AI\&M, 1.</p>
         </section>
     </div>
 </body>
