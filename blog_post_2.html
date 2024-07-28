@@ -158,17 +158,17 @@
             \[\{x\in R^n|x^\top x=r^2\}\]
     
             <p>Also, someone told us that the matrix has an eigenvalue decomposition in the following form.</p>
-            \[A=V\Gamma V^\top\]
+            \[A=V\Lambda V^\top\]
     
             <p>using these properties, we can expand the transformation of the vector as the following:</p>
 
-            \[Ax=V\Gamma V^\top x=\begin{bmatrix}
+            \[Ax=V\Lambda V^\top x=\begin{bmatrix}
             V_1,\cdot \cdot \cdot, V_n
             \end{bmatrix} \begin{bmatrix}
-            \Gamma V_1^\top\\
+            \Lambda V_1^\top\\
             \vdots\\
-            \Gamma V_n^\top
-            \end{bmatrix}x=(\Gamma V_1^top x)V_1+\cdot \cdot \cdot+ (\Gamma V_n^top x)V_n
+            \Lambda V_n^\top
+            \end{bmatrix}x=(\Lambda V_1^top x)V_1+\cdot \cdot \cdot+ (\Lambda V_n^top x)V_n
             \]
     
             <p>Here is the fun part: the last equation states that when we transform a vector, we are projecting the vector on the 
