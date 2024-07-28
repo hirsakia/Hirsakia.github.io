@@ -202,7 +202,7 @@
 
             <h3>Theorem</h3>
             <p>Assuming standard unit vectors as state features and orthogonality between clusters of states with the same state representations, 
-                maximum absolute eigenvalue of the matrix \(\gamma (M_w)^{-1} M_{\theta}\) is \(\gamma\).</p>
+                spectral radius of the matrix \(\gamma (M_w)^{-1} M_{\theta}\) is at most \(\gamma\).</p>
 
             <h3>Proof</h3>
             <p>Since from lemma we know that \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, then its eigenvalues lie in the unit circle of complex plane. Multiplying it by \(\gamma\) would shrink the unit circle, resulting in the maximum eigenvalue of \(\gamma\).</p>
@@ -217,7 +217,8 @@
             <p>Since it is the only non-zero element of the matrix (and it is on the diagonal), we would want it to be less than one:</p>
             \[ \frac{\gamma \sum_{i=1}^n d(s) \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)} = \frac{\gamma \sum_{i=1}^n d(s)}{\sum_{k=1}^n d(s)} = \gamma \]
 
-            <p>Meaning that all the parents and children would contribute to the final value.</p>
+            <p>It can be observed that all the parents and children would contribute to the final value of optimization and target forces.
+            
 
             <h3>n-D Feature Space</h3>
             <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) 
@@ -239,6 +240,9 @@
                 <li>Convergence does not depend on the feature space size.</li>
                 <li>Convergence does not depend on the form of update distribution \(D\). The sole existence of such probability distribution makes the convergence possible.</li>
             </ul>
+            It can also be shown that in all three scenarios we can relax the assumption \(\phi(s)=1\) by replacing it with
+            the assumption that for each state \( \gamma \phi(s^\prime) \leq \phi(s)\) (in actuallity 
+                \(\gamma E(\phi(s^\prime))\leq \phi(s)\) is enough). In that case, again, the convergence is guaranteed. </p> 
         </section>
 
         <section id="references" class="section">
