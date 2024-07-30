@@ -31,12 +31,13 @@
         }
         .main-content {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            align-items: flex-start;
+            justify-content: flex-start;
             padding: 2em;
         }
         .header-img {
             margin-right: 2em;
+            text-align: center;
         }
         .header-img img {
             width: 150px;
@@ -48,6 +49,7 @@
         }
         .header-text h1 {
             margin: 0;
+            margin-bottom: 1em;
         }
         .contact-info {
             list-style: none;
@@ -99,8 +101,6 @@
     <div class="main-content">
         <div class="header-img">
             <img src="Images/IMG_2420.JPG" alt="Hirsa Kia">
-        </div>
-        <div class="header-text">
             <h1>Hirsa Kia</h1>
             <ul class="contact-info">
                 <li><a href="mailto:hirsa.kia@temple.edu">Email</a></li>
@@ -108,21 +108,21 @@
                 <li><a href="https://github.com/hirsakia" target="_blank">GitHub</a></li>
             </ul>
         </div>
-    </div>
-    <div class="container">
-        <section id="about" class="section">
-            <h2>About Me</h2>
-            <p>Hello! I'm Hirsa Kia, a PhD student in Computer Science at Temple University.</p>
-        </section>
-        <section id="contact" class="section">
-            <h2>Contact Me</h2>
-            <p>If you'd like to get in touch, feel free to reach out via email or connect with me on social media:</p>
-            <ul class="contact-info">
-                <li><a href="mailto:hirsa.kia@temple.edu">Email</a></li>
-                <li><a href="https://www.linkedin.com/in/hirsakia/" target="_blank">LinkedIn</a></li>
-                <li><a href="https://github.com/hirsakia" target="_blank">GitHub</a></li>
-            </ul>
-        </section>
+        <div class="header-text">
+            <section id="about" class="section">
+                <h2>About Me</h2>
+                <p>Hello! I'm Hirsa Kia, a PhD student in Computer Science at Temple University.</p>
+            </section>
+            <section id="contact" class="section">
+                <h2>Contact Me</h2>
+                <p>If you'd like to get in touch, feel free to reach out via email or connect with me on social media:</p>
+                <ul class="contact-info">
+                    <li><a href="mailto:hirsa.kia@temple.edu">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/hirsakia/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/hirsakia" target="_blank">GitHub</a></li>
+                </ul>
+            </section>
+        </div>
     </div>
     <footer>
         &copy; 2024 Hirsa Kia
