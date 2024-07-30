@@ -33,11 +33,10 @@
         }
         .main-content {
             display: flex;
-            flex-wrap: wrap;
             align-items: flex-start;
             padding: 2em;
-            margin-left: 2em;
-            margin-right: 2em;
+            margin-left: 12em; /* Add padding to move content to the right */
+            margin-right: 12em;
         }
         .header-img {
             margin-right: 2em;
@@ -51,11 +50,11 @@
         .header-text {
             flex-grow: 1;
             text-align: left;
-            min-width: 300px;
         }
         .header-text h1 {
             margin: 0;
             margin-bottom: 1em;
+            padding-left: 12em;
         }
         .contact-info {
             list-style: none;
@@ -88,7 +87,7 @@
             color: #D6596C;
         }
         .section a {
-            color: #D6596C;
+            color: #D6596C; /* Color for hyperlinks inside the content */
             text-decoration: none;
         }
         .section a:hover {
@@ -106,30 +105,6 @@
             position: fixed;
             width: 100%;
             bottom: 0;
-        }
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-                align-items: center;
-                padding: 1em;
-                margin-left: 1em;
-                margin-right: 1em;
-            }
-            .header-img {
-                margin: 0 0 1em 0;
-                text-align: center;
-            }
-            .header-img img {
-                width: 100px;
-                height: 100px;
-            }
-            .header-text {
-                text-align: center;
-                padding-left: 0;
-            }
-            .header-text h1 {
-                padding-left: 0;
-            }
         }
     </style>
 </head>
