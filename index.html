@@ -16,30 +16,45 @@
         header {
             background-color: #E6E6E6;
             color: #1F1F1F;
-            padding: 2em 1em; /* Increased padding to make the header bar wider */
+            padding: 2em 1em;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: relative;
         }
-        .header-img {
+        .header-content {
             display: flex;
             align-items: center;
-            margin-left: 5em; /* Adjust this value to move the image further to the right */
+        }
+        .header-img {
+            margin-right: 1em;
         }
         header img {
             width: 150px;
             height: 150px;
+            border-radius: 50%;
+        }
+        .header-text {
+            display: flex;
+            flex-direction: column;
         }
         header h1 {
-            margin: 20px 0 0 0;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%; /* Set a larger width */
-            max-width: 1200px; /* Optional: Set a maximum width to control the size on large screens */
-            text-align: center; /* Center the text within the h1 */
-            
+            margin: 0;
+        }
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            margin: 0.5em 0 0 0;
+        }
+        .contact-info li {
+            margin: 0.5em 0;
+        }
+        .contact-info a {
+            color: #1F1F1F;
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
         }
         nav {
             background-color: #E6E6E6;
@@ -52,11 +67,11 @@
             padding: 1em;
             text-decoration: none;
             display: inline-block;
-            transition: background-color 0.3s ease, border-radius 0.3s ease; /* Added transition for smooth effect */
+            transition: background-color 0.3s ease, border-radius 0.3s ease;
         }
         nav a:hover {
             background-color: #D6596C;
-            border-radius: 15px; /* Smooth rectangle corners */
+            border-radius: 15px;
         }
         .container {
             max-width: 1200px;
@@ -73,20 +88,6 @@
             max-width: 100%;
             height: auto;
         }
-        .contact-info {
-            list-style: none;
-            padding: 0;
-        }
-        .contact-info li {
-            margin: 0.5em 0;
-        }
-        .contact-info a {
-            color: #D6596C; /* Change this color to your desired hyperlink color */
-            text-decoration: none;
-        }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
         footer {
             background-color: #333;
             color: white;
@@ -100,23 +101,30 @@
 </head>
 <body>
     <header>
-        <!--<div class="header-img">
-            <img src="Images/IMG_2420.JPG" alt="Hirsa Kia">
-        </div>-->
-        <h1>Hirsa Kia</h1>
+        <div class="header-content">
+            <div class="header-img">
+                <img src="Images/IMG_2420.JPG" alt="Hirsa Kia">
+            </div>
+            <div class="header-text">
+                <h1>Hirsa Kia</h1>
+                <ul class="contact-info">
+                    <li><a href="mailto:hirsa.kia@temple.edu">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/hirsakia/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/hirsakia" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
     </header>
     <nav>
         <a href="#about">About</a>
         <a href="projects.html">Projects</a>
-        <!-- <a href="https://aimissingpieces.wordpress.com/">Blog</a> -->
         <a href="blog.html">Blog</a>
     </nav>
     <div class="container">
         <section id="about" class="section">
             <h2>About Me</h2>
-            <p>Hello! I'm Hirsa Kia, a PhD student in Computer Science at Temple University.</p> 
+            <p>Hello! I'm Hirsa Kia, a PhD student in Computer Science at Temple University.</p>
         </section>
-       
         <section id="contact" class="section">
             <h2>Contact Me</h2>
             <p>If you'd like to get in touch, feel free to reach out via email or connect with me on social media:</p>
@@ -124,7 +132,6 @@
                 <li><a href="mailto:hirsa.kia@temple.edu">Email</a></li>
                 <li><a href="https://www.linkedin.com/in/hirsakia/" target="_blank">LinkedIn</a></li>
                 <li><a href="https://github.com/hirsakia" target="_blank">GitHub</a></li>
-                <!-- Add more contact methods as needed -->
             </ul>
         </section>
     </div>
