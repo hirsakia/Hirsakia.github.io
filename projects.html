@@ -123,8 +123,13 @@
                     I wrote it as a technical report in a <a href="blog_post_1.html">post</a>.
             <h2>Centralized and Decentralized Energy Transfer Strategies in Wireless Intrabody Networks (In Progress)</h2>                
                 <p>Maintaining Wireless Intrabody Networks' energy level is one of the most important aspects in their design. We provide two strategies, 
-                    Centralized and Decentralized, to achieve the goal of energy distribution. We showed that although the Centralized strategy is able to
-                    do a better job in general, it is not as robust as the Decentralized strategy, due to its heavy dependence on the predicted energy level. 
+                    Centralized and Decentralized, to achieve the goal of energy distribution. using
+                    the energy properties data it receives from all the nodes, Centralized strategy uses a prediction algorithm to estimate the energy level
+                    trajectories and solves an optimization problem to decide which nodes should be allowed to harvest the energy. Decentralized strategy
+                    on the other hand, allows each node to decide autonomously and probabilistically if they want to harvest, according to their energy level and their crude
+                    estimate of their own trajectory.
+                    We showed that although the Centralized strategy is able to do a better job in general, it is not as robust as the 
+                    Decentralized strategy, due to its heavy dependence on the predicted energy level. 
                     We also showed that Decentralized strategy can be easier to tune and augment with priorities. 
             <h2>Multi-Library SINDy: A Computationally Efficient Framework for SINDy (In Progress)</h2>                
                 <p>We showed that although SINDy is very efficient in finding the dynamcis, however there is no need for some of the constraints, such 
