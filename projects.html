@@ -121,24 +121,34 @@
                     However, it has been shown that it may exhibit divergent behavior. I aimed to demystify the relationship between convergence 
                     and state representations in a simplified setting (linear function approximation and state aggregation).
                     I wrote it as a technical report in a <a href="blog_post_1.html">post</a>.
-            <h2>Nonlinear modelling and analysis of macroeconomy using SINDyC</h2>                
-                <p>We used SINDyC, one of the variations of SINDy algorithm, to create an explainable nonlinear model out of macroeconomical data. 
-                The data used was obtained from Federal Reserve Economic Data (FRED), which spanned from 1965 to 2022. We used unemployment 
-                    rate, inflation rate and GDP as states and interest rate as the control variable. We used Phase Plane Analysis to study the properties 
-                    of the model. The model was consistent with qualitative properties of macroeconomy and showed some additional new and surprising 
+            <h2>Centralized and Decentralized Energy Transfer Strategies in Wireless Intrabody Networks (In Progress)</h2>                
+                <p>Maintaining Wireless Intrabody Networks' energy level is one of the most important aspects in their design. We provide two strategies, 
+                    Centralized and Decentralized, to achieve the goal of energy distribution. We showed that although the Centralized strategy is able to
+                    do a better job in general, it is not as robust as the Decentralized strategy, due to its heavy dependence on the predicted energy level. 
+                    We also showed that Decentralized strategy can be easier to tune and augment with priorities. 
+            <h2>Multi-Library SINDy: A Computationally Efficient Framework for SINDy (In Progress)</h2>                
+                <p>We showed that although SINDy is very efficient in finding the dynamcis, however there is no need for some of the constraints, such 
+                    as a fixed library function for all the states. We showed using Multi-Library SINDy is more efficient in terms of computations and
+                    it can provide additional freedom in choosing and guiding the identification process.        
+            <h2>Nonlinear modelling and analysis of macroeconomy using SINDyC (Under Review)</h2>                
+                <p>We used SINDyC, one of the variations of SINDy algorithm, to create an explainable nonlinear dynamics model out of macroeconomical data.
+                The data used was obtained from Federal Reserve Economic Data (FRED), which spanned from 1965 to 2022. We used <b>unemployment rate</b>, 
+                    <b>inflation rate</b> and <b>GDP</b> as states and <b>interest rate</b> as the control variable. We used Phase Plane Analysis to 
+                    study the properties 
+                    of the model. The model is consistent with qualitative properties of macroeconomy and showed some additional new and surprising 
                     properties. 
                     The results are under review at <a href="https://link.springer.com/journal/10614">Computational Economics Journal</a>.
             <h2>Autotuning of MRC circuits</h2>                
                 <p>The resonance between a transmitter and receiver is critical in efficient power transfer or data communication. We created an
                 adaptive controller that basically solves a quasiconvex optimization problem with a zeroth-order oracle, simply and efficiently. We consider 
-                    capacitance as the control signal, use zeroth-order gradient estimation to drive the system into resonance. 
+                    capacitance as the control signal and used zeroth-order gradient estimation to drive the system into resonance. 
                     The results were published in <a href="https://ieeexplore.ieee.org/document/10621507">DCOSS 2024</a>. A small proof
                 for the convergence of the algorithm is provided in <a href="blog_post_4">the blog</a></p>
             
             <h2>Adsorption modeling using FNN and BO for hyperparameter tuning</h2>                
                 <p>I used a relatively simple FNN (2 layered) with Huber loss objective function to model adsorption process of
-                tetracycline removal by multi-walled carbon nanotube functionalized with aspartic acid and poly-pyrrole. Then, instead of trial and error,
-                I implemented Bayesian Optimization with RMSE cost function as the hyperparameter tuning scheme. For decision variables, I chose 
+                tetracycline removal by multi-walled carbon nanotube functionalized with aspartic acid and poly-pyrrole. Then we 
+                    implemented Bayesian Optimization with RMSE cost function as the hyperparameter tuning scheme. For decision variables, I chose 
                 First Layer Neuron Count, Second Layer Neuron Count, Huber Constant, Learning Rate, First Layer Activation function, 
                 First Layer Activation function, Batch size, Dropout, The exponential decay rate for the 1st moment estimates and 
                 exponential decay rate for the exponentially weighted infinity norm (last two were hyperparameters of the optimizer NADAM). The results
