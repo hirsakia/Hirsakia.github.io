@@ -68,6 +68,8 @@
         <a href="#definitions">Definitions</a>
         <a href="#assumptions">Assumptions</a>
         <a href="#transformations">Transformations</a>
+        <a href="#scenario1">Scenario 1</a>
+        <a href="#scenario2">Scenario 2</a>
         <a href="#outcomes">Outcomes</a>
         <a href="#references">References</a>
     </nav>
@@ -102,11 +104,37 @@
             \[
             M_w = \Phi^\top D \Phi = \sum_{i=1}^n d_i e_i^\top e_i
             \]
-            <p>Assume some of the states are aligned, creating clusters with the same direction \cite{li2006}. We call each cluster \( S_i \), say each state that belongs to this set \( S_i \) has the direction \( e_i \) and define \( S=\cup_{i=1}^{m} S_i \) (Note that for \( i \neq j \), we have \( S_i \cap S_j = \emptyset \)). Since we assumed standard unit vectors for directions, we know that \( e_i^\top e_i \) is a matrix with an entry 1 on its \((i,i)\) element and 0 everywhere else. We can rewrite this as:</p>
+            <p>Assume some of the states are aligned, creating clusters with the same direction \cite{li2006}. We call each cluster \( S_i \), say each state that belongs to this set \( S_i \) has the direction \( e_i \) and define \( S=\cup_{i=1}^{m} S_i \) (Note that for \( i \neq j \), we have \( S_i \cap S_j = \emptyset \)).</p>
+            <p>Since we assumed standard unit vectors for directions, we know that \( e_i^\top e_i \) is a matrix with an entry 1 on its \((i,i)\) element and 0 everywhere else. We can rewrite this as:</p>
             \[
             M_w = \Phi^\top D \Phi = \sum_{S_i \subset S} \Bigl(\sum_{s \in S_i} d(s) \Bigr) e_i^\top e_i
             \]
-            <!-- Add additional content and formulas as needed -->
+            <p>We then invert \( M_w \):</p>
+            \[
+            M_w^{-1} = \sum_{i=1}^m \frac{1}{\lambda_i} e_i^\top e_i = \sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i
+            \]
+        </section>
+
+        <section id="scenario1" class="section">
+            <h2>Scenario 1: Standard Unit Directions</h2>
+            <p>Notice that in the right parenthesis, the summation over \( i \) describes matrices with only one row containing non-zero elements (since \( e_i^{\top} \) is a standard unit vector). Using that, we can write:</p>
+            \[
+            \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime}
+            \]
+            <p>For parents in \( S_p \) (corresponding to row \( p \) of the matrix), we can write:</p>
+            \[
+            \gamma e_p^\top \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \cdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m \Big)
+            \]
+        </section>
+
+        <section id="scenario2" class="section">
+            <h2>Scenario 2: Orthonormal Directions</h2>
+            <p>We drop the Cartesian unit vector assumption. Here we only assume that the state features are orthonormal to each other.</p>
+            <h3>1-Dimensional Feature Space</h3>
+            <p>In the case of scalar features, since there is only one direction, we have only one cluster (\( S = S_1 \)). The equation becomes:</p>
+            \[
+            \gamma (M_w)^{-1} M_{\theta} = \frac{\gamma \sum_{i=1}^n d(s) \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)}
+            \]
         </section>
 
         <section id="outcomes" class="section">
