@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TD Learning with Linear Function Approximation in State-Aggregated Environments</title>
+    <title>Hirsa Kia's Projects</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -14,71 +14,78 @@
             padding: 0;
             background-color: #1F1F1F;
             color: #E6E6E6;
-            line-height: 1.6;
-            padding-bottom: 60px;
+            line-height: 1.6; /* Set the line-height for the body */
         }
-
         header {
             background-color: #E6E6E6;
             color: #1F1F1F;
-            padding: 2em 1em;
-            text-align: center;
+            padding: 2em 1em; /* Increased padding to make the header bar wider */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
         }
-
+        .header-img {
+            display: flex;
+            align-items: center;
+            margin-left: 5em; /* Adjust this value to move the image further to the right */
+        }
+        header img {
+            width: 150px;
+            height: 150px;
+        }
         header h1 {
-            margin: 0 auto;
-            width: 80%;
-            max-width: 1200px;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
-
         nav {
             background-color: #E6E6E6;
-            padding: 1em 0;
+            margin: 0;
+            padding: 0;
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
-
         nav a {
             color: #1F1F1F;
             padding: 1em;
             text-decoration: none;
             display: inline-block;
-            transition: background-color 0.3s ease, border-radius 0.3s ease;
-            margin: 0 0.5em;
+            transition: background-color 0.3s ease, border-radius 0.3s ease; /* Added transition for smooth effect */
         }
-
         nav a:hover {
             background-color: #D6596C;
-            border-radius: 15px;
-            color: #E6E6E6;
+            border-radius: 15px; /* Smooth rectangle corners */
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2em;
         }
-
         .section {
             margin: 2em 0;
         }
-
-        .section h2, .section h3 {
+        .section h2 {
             color: #D6596C;
-            margin-top: 1.5em;
         }
-
-        section a {
-            color: #D6596C;
+        .projects img {
+            max-width: 100%;
+            height: auto;
+        }
+        .contact-info {
+            list-style: none;
+            padding: 0;
+        }
+        .contact-info li {
+            margin: 0.5em 0;
+        }
+        .contact-info a {
+            color: #D6596C; /* Change this color to your desired hyperlink color */
             text-decoration: none;
         }
-
-        section a:hover {
+        .contact-info a:hover {
             text-decoration: underline;
         }
-
         footer {
             background-color: #333;
             color: white;
@@ -88,88 +95,100 @@
             width: 100%;
             bottom: 0;
         }
-
-        .mjx-chtml {
-            color: #E6E6E6;
-        }
     </style>
 </head>
 <body>
     <header>
-        <h1>TD Learning with Linear Function Approximation in State-Aggregated Environments</h1>
+        <h1>Projects</h1>
     </header>
-    
     <nav>
-        <a href="#abstract">Abstract</a>
-        <a href="#introduction">Introduction</a>
-        <a href="#definitions">Definitions</a>
-        <a href="#assumptions">Assumptions</a>
-        <a href="#transformations">Transformations</a>
-        <a href="#outcomes">Outcomes</a>
-        <a href="#references">References</a>
+        <a href="index.html#about">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Blog</a>
     </nav>
-
     <div class="container">
-        <section id="abstract" class="section">
-            <h2>Abstract</h2>
-            <p>We analyze the convergence of TD learning with linear function approximation through the lens of optimization and target forces in state-aggregated environments. Using matrix decomposition and eigenvalue analysis, we examine three scenarios: standard unit directions, one-dimensional, and n-dimensional feature spaces. Our analysis proves that convergence is independent of feature space dimensionality and requires only the existence of a suitable probability distribution. We show these convergence properties hold across scalar and tabular cases. The results extend to cases where the feature norm equality assumption is relaxed to the parent's feature norm being larger than the expectation of the feature norms of the children.</p>
-        </section>
-
-        <section id="introduction" class="section">
-            <h2>Introduction</h2>
-            <p>Our focus is on providing a comprehensive analysis of the convergence of TD with linear function approximation by examining its formulation within the context of feature representation and state aggregation. We assume an environment characterized by states with associated features, represented in a feature matrix \( \Phi \), and we explore the dynamics of convergence influenced by various parameters including the probability transition matrix \( P \), and the diagonal matrix \( D \) that encapsulates update distributions.</p>
-            <p>Our findings demonstrate that the existence of a suitable probability distribution is a sufficient condition for convergence, irrespective of the feature space dimensions. We further extend our analysis to special cases, such as scalar and tabular feature spaces, providing a nuanced understanding of the underlying dynamics in these simplified scenarios.</p>
-        </section>
-
-        <section id="definitions" class="section">
-            <h2>Definitions</h2>
-            <p>We define \( \phi_i \) as the feature of state \( i \), where \( \phi_i = \|\phi_i\| e_i \) with \( \|\phi_i\| \) as its norm and \( e_i \) as its direction in the form of a row vector (we assume \( \|\phi_i\|=1 \) for all the states). Rows of matrix \( \Phi \) are features \( \phi_i \) of each state. Matrix \( D \) is a diagonal matrix with entries \( d_i \) less than one and trace equal to 1. The \( ij \)-th element of probability transition matrix \( P \), written as \( P_{ij} \), is equivalent to \( P(s_j|s_i) \).</p>
-        </section>
-
-        <section id="assumptions" class="section">
+        <section id="projects" class="section">
+            <p>For simplicity, we define \(\phi_i\) as the feature of state \(i\), where \(\phi_i=\|\phi_i\|e_i\) with \(\|\phi_i\|\) as its norm and \(e_i\) as its direction in the form of a row vector (we assume \(\|\phi_i\|=1\) for all the states). We assume standard unit vector for \(e_i\), meaning that it is an \(n\)-length row vector whose \(i\)-th component is one while all the others are zeros. Rows of matrix \(\Phi\) are features \(\phi_i\) of each state. Matrix \(D\) is a diagonal matrix with entries \(d_i\) less than one and trace equal to 1. \(ij\)-th element of probability transition matrix \(P\), written as \(P_{ij}\), is equivalent to \(P(s_j|s_i)\). \(x\) is the eigenvector and \(x_i\) is the \(i\)-th element of \(x\). We have \(n\) states.</p>
             <h2>Assumptions</h2>
             <ul>
                 <li>We assume directions are either aligned or orthogonal to each other.</li>
-                <li>For the first scenario, we assume for now that directions (\( e_i \)) are standard unit vectors. For the second and third (1-D and n-D) we assume orthonormal feature vectors.</li>
+                <li>We assume for now that directions (\(e_i\)) are cartesian unit vectors.</li>
             </ul>
-        </section>
-
-        <section id="transformations" class="section">
-            <h2>Transforming the Original Formulation</h2>
-            <p>Using the notion of optimization and target forces, optimization force can be written as:</p>
-            \[ M_w = \Phi^\top D \Phi = \sum_{i=1}^n d_i e_i^\top e_i \]
-            
-            <p>Assume some of the states are aligned, creating clusters with the same direction. We call each cluster \( S_i \), where each state in this set \( S_i \) has the direction \( e_i \) and define \( S=\cup_{i=1}^{m} S_i \) (Note that for \( i \neq j \), we have \( S_i \cap S_j = \emptyset \)). Since we assumed standard unit vectors for directions, \( e_i^\top e_i \) is a matrix with an entry 1 on its \((i,i)\) element and 0 elsewhere. We can rewrite this as:</p>
-            \[ M_w = \Phi^\top D \Phi = \sum_{S_i \subset S} \Bigl(\sum_{s \in S_i} d(s) \Bigr) e_i^\top e_i \]
-
-            <h3>1-D Feature Space</h3>
-            <p>In case of scalar, since there is only 1 direction, we have only one cluster (S=S<sub>1</sub>) and equation turns into:</p>
-            \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P(s^\prime | s) e_j = \frac{\sum_{i=1}^n \gamma d_i e_1^\top \sum_{j=1}^n P(s^\prime | s) e_1}{\sum_{k=1}^n d(s)} = \frac{\gamma \sum_{i=1}^n d_i \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)} e_1^\top e_1 \]
-
-            <h3>n-D Feature Space</h3>
-            <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) and equation turns into:</p>
-            \[ \gamma (M_w)^{-1} M_{\theta} = (\Phi^\top D \Phi)^{-1}\Phi^\top DP \Phi = \gamma \Phi^{-1} D^{-1} \Phi^{-\top}\Phi^\top DP \Phi = \gamma \Phi^\top P \Phi \]
-        </section>
-
-        <section id="outcomes" class="section">
             <h2>Outcomes</h2>
-            <p>In all three scenarios we observed that:</p>
             <ul>
                 <li>Convergence does not depend on the feature space size.</li>
-                <li>Convergence does not depend on the form of update distribution \( D \). The sole existence of such probability distribution makes the convergence possible.</li>
+                <li>Convergence does not depend on the form of update distribution \(D\). The sole existence of such probability distribution makes the convergence possible.</li>
             </ul>
-            <p>It can also be shown that in all three scenarios we can relax the assumption \(\|\phi(s)\|=1\) by replacing it with the assumption that for each state \( \gamma \|\phi(s^\prime)\| \leq \|\phi(s)\|\) (in actuality \(\gamma E(\|\phi(s^\prime)\|)\leq \|\phi(s)\|\) is enough). In that case, again, the convergence is guaranteed.</p>
-        </section>
-
-        <section id="references" class="section">
-            <h2>References</h2>
-            <p>[1] Asadi, K., et al. (2024). <i>TD convergence: An optimization perspective</i>. Advances in Neural Information Processing Systems, 36.</p>
-            <p>[2] Li, L., et al. (2006). <i>Towards a unified theory of state abstraction for MDPs</i>. AI&amp;M, 1.</p>
+            <h2>Transforming the original formulation</h2>
+            <p>Optimization force can be written as:</p>
+            \[ M_w=\Phi^\top D \Phi=\sum_{i=1}^n d_i e_i^\top e_i \]
+            <p>Assume some of the states are aligned, creating clusters with the same direction. We call each cluster \(S_i\), say each state that belongs to this set \(S_i\) has the direction \(e_i\) and define \(S=\cup_{i=1}^{m} S_i\) (Note that for \(i\neq j\), we have \(S_i\cap S_j=\emptyset\)). Since we assumed standard unit vectors for directions, we know that \(e_i^\top e_i\) is a matrix with an entry 1 on its \((i,i)\) element and 0 everywhere else. We can rewrite this as:</p>
+            \[ M_w=\Phi^\top D \Phi=\sum_{S_i\subset S} \Bigl(\sum_{s\in S_i} d(s) \Bigl) e_i^\top e_i \]
+            <p>We can easily obtain \(m\) eigenvalues and their corresponding eigenvectors:</p>
+            \[ M_w x=\sum_{S_i\subset S} \Bigl(\sum_{s\in S_i} d(s) \Bigl) e_i^\top \langle e_i,x\rangle \Rightarrow x=e_i, \lambda_i=\sum_{s\in S_i} d(s) \]
+            <p>Since matrix \(M_w \in \mathbb{R}^{m \times m}\) is symmetric \((M_w^\top=(\Phi^\top D \Phi)^\top = \Phi^\top D \Phi = M_w)\), we can write its eigenvalue decomposition:</p>
+            \[ M_w = Q\Lambda Q^\top = \begin{bmatrix}
+                    e_1^\top & \hdots & e_m^\top 
+                \end{bmatrix} Diag(\lambda_1, \hdots, \lambda_m) \begin{bmatrix}
+                    e_1 \\
+                    \vdots \\
+                    e_m 
+                \end{bmatrix} = \sum_{i=1}^m \lambda_i e_i^\top e_i \]
+            <p>We can now invert \(M_w\):</p>
+            \[ M_w^{-1} = Q\Lambda^{-1} Q^\top = \sum_{i=1}^m \frac{1}{\lambda_i} e_i^\top e_i = \sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i \]
+            <p>As for the Target force, we can write:</p>
+            \[ M_\theta = \Phi^\top D P \Phi = \sum_{i=1}^n d_i e_i^\top \sum_{j=1}^n P_{ij} e_j = \sum_{S_i \subset S} \sum_{s \in S_i} d(s) e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} \]
+            <p>Now multiplying \((M_w)^{-1}\) and \(M_{\theta}\) to calculate \((M_w)^{-1} M_{\theta}\), we can write:</p>
+            \[ M_w^{-1} M_\theta = \Bigl(\sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i \Bigl)\Bigl(\sum_{S_i \subset S} \sum_{s \in S_i} d(s) e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} \Bigl) \]
+            <p>Notice that in the right parenthesis, the summation over \(i\) describes matrices with only 1 row containing non-zero elements (since \(e_i^{\top}\) is a standard unit vector). Using that we can write:</p>
+            \[ \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \hdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m\Big) \]
+            <p>For parents in \(S_p\) we can write:</p>
+            \[ \gamma e_p^\top \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \hdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m \Big) \]
+            <p>Which represents \(p\)-th row of \(\gamma (M_w)^{-1} M_{\theta}\) matrix (This summation is over outer-products with column vector as \(e_p\), which has only a 1 in the \(p\)-th entry, resulting in a matrix with all zeroes except for row \(p\)).</p>
+            <h3>Lemma</h3>
+            <p>Matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix.</p>
+            <h4>Proof</h4>
+            <p>To show that a given matrix is a stochastic matrix, we need to prove that it has no negative entry and the summation of each row is equal to 1. To show the matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, we check each row of the matrix. We know \(p\)-th row of the matrix \((M_w)^{-1} M_{\theta}\) can be written as:</p>
+            \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Bigl[\sum_{s^\prime \in S_1} P(s^\prime | s) , \hdots, \sum_{s^\prime \in S_m} P(s^\prime | s) \Bigl] \]
+            <p>Since each term is a non-negative value the first part is proved. For the second part we can rewrite the equation as:</p>
+            \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Bigl[\sum_{s^\prime \in S_1} P(s^\prime | s) + \hdots + \sum_{s^\prime \in S_m} P(s^\prime | s) \Bigl] \]
+            <p>The probabilities inside the bracket are for each state and hence the summation would be equal to 1:</p>
+            \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) = 1 \]
+            <p>Since this is true for each row, we proved that the matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix.</p>
+            <h3>Theorem</h3>
+            <p>Maximum absolute eigenvalue of the matrix \(\gamma (M_w)^{-1} M_{\theta}\) is \(\gamma\).</p>
+            <h4>Proof</h4>
+            <p>Since from lemma we know that \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, then its eigenvalues lie in the unit circle of complex plane. Multiplying it by \(\gamma\) would shrink the unit circle, resulting in the maximum eigenvalue of \(\gamma\).</p>
+            <h2>Special Cases</h2>
+            <h3>Scalar (1-D Feature Space)</h3>
+            <p>In case of scalar, since there is only 1 direction, we have only one cluster (S=S<sub>1</sub>) and equation turns into:</p>
+            \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P(s^\prime | s) e_j = \frac{\sum_{i=1}^n \gamma d_i e_1^\top \sum_{j=1}^n P(s^\prime | s) e_1}{\sum_{k=1}^n d(s)} = \frac{\gamma \sum_{i=1}^n d_i \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)} e_1^\top e_1 \]
+            <p>Since it is the only non-zero element of the matrix (and it is on the diagonal), we would want it to be less than one:</p>
+            \[ \frac{\gamma \sum_{i=1}^n d(s) \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)} = \frac{\gamma \sum_{i=1}^n d(s)}{\sum_{k=1}^n d(s)} = \gamma \]
+            <p>Meaning that all the parents and children would contribute to the final value.</p>
+            <h3>Tabular (n-D Feature Space)</h3>
+            <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) and equation turns into:</p>
+            \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P_{lj} e_j = \sum_{i=1}^n \gamma \frac{d_i e_i^\top}{d_i} \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_j = \gamma \sum_{i=1}^n e_i^\top \sum_{j=1}^n P_{ij} e_j \]
+            <p>For each row we can write:</p>
+            \[ \gamma \sum_{j=1}^n P_{ij} = \gamma \]
+            <p>The last part is equivalent to finding the maximum eigenvalues of \(P\), which is a stochastic matrix, hence its maximum eigenvalue is 1.</p>
+            <p>Another trivial option to calculate it would be:</p>
+            \[ (M_w)^{-1} M_{\theta} = (\Phi^\top D \Phi)^{-1} \Phi^\top DP \Phi = \Phi^{-1} D^{-1} \Phi^{-\top} \Phi^\top DP \Phi = \Phi^{-1} P \Phi = P^\prime \]
+            <p>Since \(\Phi\) is a permutation matrix (no two states have the same direction), \(P^\prime\) is still a row-stochastic matrix.</p>
+            <h3>Tabular (n-D Feature Space)</h3>
+            <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) and equation turns into:</p>
+            \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P_{lj} e_j = \sum_{i=1}^n \gamma \frac{d_i e_i^\top}{d_i} \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_j = \gamma \sum_{i=1}^n e_i^\top \sum_{j=1}^n P_{ij} e_j = \gamma E^\top P E \]
+            <p>It can be easily proved that \(E\) is an orthogonal matrix. Eigenvalue problem can be written as:</p>
+            \[ \gamma E^\top P Ev = \lambda v \quad \Rightarrow \quad \gamma \|E^\top P Ev\| = \lambda \|v\| = \lambda \]
+            <p>We can use it to write:</p>
+            \[ \gamma \|E^\top P Ev\| \leq \|E^\top (P Ev)\| \leq \|P Ev\| \leq \|Ev\| \leq \|E\| \|v\| \leq \|v\| = 1 \]
+            <p>For each row we can write:</p>
+            \[ \gamma \sum_{j=1}^n P_{ij} = \gamma \]
+            <p>The last part is equivalent to finding the maximum eigenvalues of \(P\), which is a stochastic matrix, hence its maximum eigenvalue is 1.</p>
+            <p>Another trivial option to calculate it would be:</p>
+            \[ (M_w)^{-1} M_{\theta} = (\Phi^\top D \Phi)^{-1} \Phi^\top DP \Phi = \Phi^{-1} D^{-1} \Phi^{-\top} \Phi^\top DP \Phi = \Phi^{-1} P \Phi = P^\prime \]
+            <p>Since \(\Phi\) is a permutation matrix (no two states have the same direction), \(P^\prime\) is still a row-stochastic matrix.</p>
         </section>
     </div>
-
-    <footer>
-        <p>&copy; 2024 Hirsa Kia</p>
-    </footer>
 </body>
 </html>
