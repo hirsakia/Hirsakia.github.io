@@ -6,7 +6,7 @@
     <title>TD Learning with Linear Function Approximation in State-Aggregated Environments</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3/es5/tex-mml-chtml.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -47,6 +47,23 @@
         .section h2, .section h3 {
             color: #D6596C;
         }
+        .theorem {
+            margin: 1em 0;
+            padding: 1em;
+            background-color: rgba(214, 89, 108, 0.1);
+            border-left: 4px solid #D6596C;
+        }
+        .lemma {
+            margin: 1em 0;
+            padding: 1em;
+            background-color: rgba(214, 89, 108, 0.05);
+            border-left: 4px solid #D6596C;
+        }
+        .proof {
+            margin: 1em 0;
+            padding: 1em;
+            background-color: rgba(230, 230, 230, 0.05);
+        }
         footer {
             background-color: #333;
             color: white;
@@ -61,6 +78,7 @@
 <body>
     <header>
         <h1>TD Learning with Linear Function Approximation in State-Aggregated Environments</h1>
+        <p>Hirsa Kia - August 2024</p>
     </header>
     <nav>
         <a href="#abstract">Abstract</a>
@@ -71,84 +89,65 @@
         <a href="#scenario1">Scenario 1</a>
         <a href="#scenario2">Scenario 2</a>
         <a href="#outcomes">Outcomes</a>
-        <a href="#references">References</a>
     </nav>
     <div class="container">
         <section id="abstract" class="section">
             <h2>Abstract</h2>
-            <p>We analyze the convergence of TD learning with linear function approximation through the lens of optimization and target forces in state-aggregated environments. Using matrix decomposition and eigenvalue analysis, we examine three scenarios: standard unit directions, one-dimensional, and n-dimensional feature spaces. Our analysis proves that convergence is independent of feature space dimensionality and requires only the existence of a suitable probability distribution. We show these convergence properties hold across scalar and tabular cases. The results extend to cases where the feature norm equality assumption is relaxed to the parent's feature norm being larger than the expectation of the feature norms of the children.</p>
-        </section>
-
-        <section id="introduction" class="section">
-            <h2>Introduction</h2>
-            <p>Our focus is on providing a comprehensive analysis of the convergence of TD with linear function approximation by examining its formulation within the context of feature representation and state aggregation. We assume an environment characterized by states with associated features, represented in a feature matrix \( \Phi \), and we explore the dynamics of convergence influenced by various parameters, including the probability transition matrix \( P \), and the diagonal matrix \( D \) that encapsulates update distributions.</p>
-            <p>Our findings demonstrate that the existence of a suitable probability distribution is a sufficient condition for convergence, irrespective of the feature space dimensions. We further extend our analysis to special cases, such as scalar and tabular feature spaces, providing a nuanced understanding of the underlying dynamics in these simplified scenarios. The idea of this report is inspired by corollary 2 of the paper by Asadi et al \cite{asadi2023td}.</p>
+            <p>We analyze the convergence of TD learning with linear function approximation through the lens of optimization and target forces in state-aggregated environments. Using matrix decomposition and eigenvalue analysis, we examine three scenarios: standard unit directions, one-dimensional, and n-dimensional feature spaces. Our analysis proves that convergence is independent of feature space dimensionality and requires only the existence of a suitable probability distribution. We show these convergence properties hold across scalar and tabular cases. The results extend to cases where the feature norm equality assumption is relaxed to parent's feature norm larger than expectation of feature norms of the children.</p>
         </section>
 
         <section id="definitions" class="section">
             <h2>Definitions</h2>
-            <p>We define \( \phi_i \) as the feature of state \( i \), where \( \phi_i = \|\phi_i\| e_i \) with \( \|\phi_i\| \) as its norm and \( e_i \) as its direction in the form of a row vector (we assume \( \|\phi_i\|=1 \) for all the states). Rows of matrix \( \Phi \) are features \( \phi_i \) of each state. Matrix \( D \) is a diagonal matrix with entries \( d_i \) less than one and trace equal to 1. The \( ij \)-th element of the probability transition matrix \( P \), written as \( P_{ij} \), is equivalent to \( P(s_j|s_i) \).</p>
-        </section>
-
-        <section id="assumptions" class="section">
-            <h2>Assumptions</h2>
-            <ul>
-                <li>We assume directions are either aligned or orthogonal to each other.</li>
-                <li>For the first scenario, we assume for now that directions (\( e_i \)) are standard unit vectors. For the second and third (1-D and n-D) we assume orthonormal feature vectors.</li>
-            </ul>
+            <p>We define \(\phi_i\) as the feature of state \(i\), where \(\phi_i=\|\phi_i\|e_i\) with \(\|\phi_i\|\) as its norm and \(e_i\) as its direction in the form of a row vector (we assume \(\|\phi_i\|=1\) for all the states). Rows of matrix \(\Phi\) are features \(\phi_i\) of each state. Matrix \(D\) is a diagonal matrix with entries \(d_i\) less than one and trace equal to 1. \(ij\)-th element of probability transition matrix \(P\), written as \(P_{ij}\), is equivalent to \(P(s_j|s_i)\).</p>
         </section>
 
         <section id="transformations" class="section">
             <h2>Transforming the Original Formulation</h2>
-            <p>Using the notion of optimization and target forces \cite{asadi2023td}, optimization force can be written as:</p>
-            \[
-            M_w = \Phi^\top D \Phi = \sum_{i=1}^n d_i e_i^\top e_i
-            \]
-            <p>Assume some of the states are aligned, creating clusters with the same direction \cite{li2006}. We call each cluster \( S_i \), say each state that belongs to this set \( S_i \) has the direction \( e_i \) and define \( S=\cup_{i=1}^{m} S_i \) (Note that for \( i \neq j \), we have \( S_i \cap S_j = \emptyset \)).</p>
-            <p>Since we assumed standard unit vectors for directions, we know that \( e_i^\top e_i \) is a matrix with an entry 1 on its \((i,i)\) element and 0 everywhere else. We can rewrite this as:</p>
-            \[
-            M_w = \Phi^\top D \Phi = \sum_{S_i \subset S} \Bigl(\sum_{s \in S_i} d(s) \Bigr) e_i^\top e_i
-            \]
-            <p>We then invert \( M_w \):</p>
-            \[
-            M_w^{-1} = \sum_{i=1}^m \frac{1}{\lambda_i} e_i^\top e_i = \sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i
-            \]
+            <p>Using the notion of optimization and target forces, optimization force can be written as:</p>
+            \[ M_w=\Phi^\top D \Phi=\sum_{i=1}^n d_i e_i^\top e_i \]
+            
+            <p>Assume some of the states are aligned, creating clusters with the same direction. We can write:</p>
+            \[ M_w=\Phi^\top D \Phi=\sum_{S_i\subset S} \Bigl(\sum_{s\in S_i} d(s) \Bigr) e_i^\top e_i \]
+            
+            <p>We can now invert \(M_w\):</p>
+            \[ M_w^{-1} = \sum_{i=1}^m \frac{1}{\lambda_i} e_i^\top e_i = \sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i \]
         </section>
 
         <section id="scenario1" class="section">
             <h2>Scenario 1: Standard Unit Directions</h2>
-            <p>Notice that in the right parenthesis, the summation over \( i \) describes matrices with only one row containing non-zero elements (since \( e_i^{\top} \) is a standard unit vector). Using that, we can write:</p>
-            \[
-            \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime}
-            \]
-            <p>For parents in \( S_p \) (corresponding to row \( p \) of the matrix), we can write:</p>
-            \[
-            \gamma e_p^\top \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \cdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m \Big)
-            \]
+            <p>For parents in \(S_p\) (corresponding to row \(p\) of the matrix) we can write:</p>
+            \[ \gamma e_p^\top \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \cdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m \Big) \]
+
+            <div class="lemma">
+                <h3>Lemma 1</h3>
+                <p>Matrix \((M_w)^{-1}M_{\theta}\) is a stochastic matrix.</p>
+            </div>
+
+            <div class="proof">
+                <h3>Proof</h3>
+                <p>To show that a given matrix is a stochastic matrix, we need to prove that it has no negative entry and the summation of each row is equal to 1. Since each term is a non-negative value the first part is proved.</p>
+                
+                <p>For the second part we can write:</p>
+                \[ \frac{1}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p} d(s) = 1 \]
+            </div>
         </section>
 
         <section id="scenario2" class="section">
             <h2>Scenario 2: Orthonormal Directions</h2>
             <p>We drop the Cartesian unit vector assumption. Here we only assume that the state features are orthonormal to each other.</p>
+
             <h3>1-Dimensional Feature Space</h3>
-            <p>In the case of scalar features, since there is only one direction, we have only one cluster (\( S = S_1 \)). The equation becomes:</p>
-            \[
-            \gamma (M_w)^{-1} M_{\theta} = \frac{\gamma \sum_{i=1}^n d(s) \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)}
-            \]
+            <p>In case of scalar features, since there is only one direction, we have only one cluster (\(S = S_1\)). The equation becomes:</p>
+            \[ \gamma (M_w)^{-1} M_{\theta} = \frac{\gamma \sum_{i=1}^n d(s) \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)} \]
         </section>
 
         <section id="outcomes" class="section">
             <h2>Outcomes</h2>
+            <p>In all three scenarios we observed that:</p>
             <ul>
                 <li>Convergence does not depend on the feature space size.</li>
-                <li>Convergence does not depend on the form of update distribution \( D \). The sole existence of such probability distribution makes the convergence possible.</li>
+                <li>Convergence does not depend on the form of update distribution \(D\). The sole existence of such probability distribution makes the convergence possible.</li>
             </ul>
-        </section>
-
-        <section id="references" class="section">
-            <h2>References</h2>
-            <p>[1] Asadi, K., et al. (2024). <i>TD convergence: An optimization perspective</i>. Advances in Neural Information Processing Systems, 36.</p>
-            <p>[2] Li, L., et al. (2006). <i>Towards a unified theory of state abstraction for MDPs</i>. AI&amp;M, 1.</p>
         </section>
     </div>
     <footer>
