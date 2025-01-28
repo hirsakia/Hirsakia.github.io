@@ -179,9 +179,9 @@
                 <div class="proof">
                     <h4>Proof</h4>
                     <p>To show that a given matrix is a stochastic matrix, we need to prove that it has no negative entry and the summation of each row is equal to 1. To show the matrix \((M_w)^{-1}M_{\theta}\) is a stochastic matrix, we check each row of the matrix. We know \(p\)-th row of the matrix \((M_w)^{-1}M_{\theta}\) can be written as:</p>
-                    <p>\[\frac{1}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) \quad,\quad\hdots\quad,\quad\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr]\]</p>
+                    <p>\[\frac{1}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) \quad,\quad\cdots\quad,\quad\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr]\]</p>
                     <p>Since each term is a non-negative value the first part is proved. For the second part we can rewrite the equation as:</p>
-                    <p>\[\frac{1}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) +\hdots+\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr]\]</p>
+                    <p>\[\frac{1}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) +\cdots+\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr]\]</p>
                     <p>The probabilities inside the bracket are for each state and hence the summation would be equal to 1:</p>
                     <p>\[\frac{1}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s)=1\]</p>
                     <p>Since this is true for each row, we proved that the matrix is \((M_w)^{-1}M_{\theta}\) is a stochastic matrix.</p>
@@ -223,7 +223,7 @@
         
                 <h4>Intermediate Case: m-dimensional Feature Space</h4>
                 <p>Consider the case where feature space dimension m is less than number of states n. States sharing the same feature direction form clusters \(S_i\) for \(i=1,\ldots,m\). For states in cluster \(S_p\) (corresponding to row p of the matrix), the p-th row of \(\gamma (M_w)^{-1}M_{\theta}\) can be written as:</p>
-                <p>\[ \frac{\gamma}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) \quad,\quad\hdots\quad,\quad\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr] \]</p>
+                <p>\[ \frac{\gamma}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) \quad,\quad\cdots\quad,\quad\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr] \]</p>
         
                 <div class="lemma">
                     <h4>Lemma 2</h4>
@@ -233,7 +233,7 @@
                 <div class="proof">
                     <h4>Proof</h4>
                     <p>Each row is a non-negative vector since both \(d(s)\) and \(P(s^\prime|s)\) are non-negative. For row sum:</p>
-                    <p>\[ \frac{\gamma}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) +\hdots+\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr] = \gamma \]</p>
+                    <p>\[ \frac{\gamma}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) +\cdots+\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr] = \gamma \]</p>
                     <p>since \(P\) is stochastic and the term in square brackets sums to 1.</p>
                 </div>
         
