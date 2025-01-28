@@ -108,86 +108,157 @@
     </nav>
     <div class="container">
         <section id="projects" class="section">
-            <p>For simplicity, we define \(\phi_i\) as the feature of state \(i\), where \(\phi_i=\|\phi_i\|e_i\) with \(\|\phi_i\|\) as its norm and \(e_i\) as its direction in the form of a row vector (we assume \(\|\phi_i\|=1\) for all the states). We assume standard unit vector for \(e_i\), meaning that it is an \(n\)-length row vector whose \(i\)-th component is one while all the others are zeros. Rows of matrix \(\Phi\) are features \(\phi_i\) of each state. Matrix \(D\) is a diagonal matrix with entries \(d_i\) less than one and trace equal to 1. \(ij\)-th element of probability transition matrix \(P\), written as \(P_{ij}\), is equivalent to \(P(s_j|s_i)\). \(x\) is the eigenvector and \(x_i\) is the \(i\)-th element of \(x\). We have \(n\) states.</p>
-            <h2>Assumptions</h2>
-            <ul>
-                <li>We assume directions are either aligned or orthogonal to each other.</li>
-                <li>We assume for now that directions (\(e_i\)) are cartesian unit vectors.</li>
-            </ul>
-            <h2>Outcomes</h2>
-            <ul>
-                <li>Convergence does not depend on the feature space size.</li>
-                <li>Convergence does not depend on the form of update distribution \(D\). The sole existence of such probability distribution makes the convergence possible.</li>
-            </ul>
-            <h2>Transforming the original formulation</h2>
-            <p>Optimization force can be written as:</p>
-            \[ M_w=\Phi^\top D \Phi=\sum_{i=1}^n d_i e_i^\top e_i \]
-            <p>Assume some of the states are aligned, creating clusters with the same direction. We call each cluster \(S_i\), say each state that belongs to this set \(S_i\) has the direction \(e_i\) and define \(S=\cup_{i=1}^{m} S_i\) (Note that for \(i\neq j\), we have \(S_i\cap S_j=\emptyset\)). Since we assumed standard unit vectors for directions, we know that \(e_i^\top e_i\) is a matrix with an entry 1 on its \((i,i)\) element and 0 everywhere else. We can rewrite this as:</p>
-            \[ M_w=\Phi^\top D \Phi=\sum_{S_i\subset S} \Bigl(\sum_{s\in S_i} d(s) \Bigl) e_i^\top e_i \]
-            <p>We can easily obtain \(m\) eigenvalues and their corresponding eigenvectors:</p>
-            \[ M_w x=\sum_{S_i\subset S} \Bigl(\sum_{s\in S_i} d(s) \Bigl) e_i^\top \langle e_i,x\rangle \Rightarrow x=e_i, \lambda_i=\sum_{s\in S_i} d(s) \]
-            <p>Since matrix \(M_w \in \mathbb{R}^{m \times m}\) is symmetric \((M_w^\top=(\Phi^\top D \Phi)^\top = \Phi^\top D \Phi = M_w)\), we can write its eigenvalue decomposition:</p>
-            \[ M_w = Q\Lambda Q^\top = \begin{bmatrix}
-                    e_1^\top & \hdots & e_m^\top 
-                \end{bmatrix} Diag(\lambda_1, \hdots, \lambda_m) \begin{bmatrix}
+            <h2>TD Learning Convergence Analysis</h2>
+            
+            <div class="abstract">
+                <h3>Abstract</h3>
+                <p>We analyze the convergence of TD learning with linear function approximation through the lens of optimization and target forces in state-aggregated environments. Using matrix decomposition and eigenvalue analysis, we examine three scenarios: standard unit directions, one-dimensional, and n-dimensional feature spaces. Our analysis proves that convergence is independent of feature space dimensionality and requires only the existence of a suitable probability distribution. We show these convergence properties hold across scalar and tabular cases. The results extend to cases where the feature norm equality assumption is relaxed to parent's feature norm larger than expectation of feature norms of the children.</p>
+            </div>
+        
+            <div class="section-content">
+                <h3>Introduction</h3>
+                <p>Our focus is on providing a comprehensive analysis of the convergence of TD with linear function approximation by examining its formulation within the context of feature representation and state aggregation. We assume an environment characterized by states with associated features, represented in a feature matrix \(\Phi\), and we explore the dynamics of convergence influenced by various parameters including the probability transition matrix \(P\), and the diagonal matrix \(D\) that encapsulates update distributions.</p>
+                
+                <p>Our findings demonstrate that the existence of a suitable probability distribution is a sufficient condition for convergence, irrespective of the feature space dimensions. We further extend our analysis to special cases, such as scalar and tabular feature spaces, providing a nuanced understanding of the underlying dynamics in these simplified scenarios. The idea of this report is inspired by corollary 2 of the paper by Asadi et al.</p>
+        
+                <h3>Definitions</h3>
+                <p>We define \(\phi_i\) as the feature of state \(i\), where \(\phi_i=\|\phi_i\|e_i\) with \(\|\phi_i\|\) as its norm and \(e_i\) as its direction in the form of a row vector (we assume \(\|\phi_i\|=1\) for all the states). Rows of matrix \(\Phi\) are features \(\phi_i\) of each state. Matrix \(D\) is a diagonal matrix with entries \(d_i\) less than one and trace equal to 1. \(ij\)-th element of probability transition matrix \(P\), written as \(P_{ij}\), is equivalent to \(P(s_j|s_i)\).</p>
+        
+                <h3>Assumptions</h3>
+                <ul>
+                    <li>We assume directions are either aligned or orthogonal to each other.</li>
+                    <li>For the first scenario, we assume for now that directions (\(e_i\)) are standard unit vectors. For the second and third (1-D and n-D) we assume orthonormal feature vectors.</li>
+                </ul>
+        
+                <h3>Transforming the Original Formulation</h3>
+                <p>Using the notion of optimization and target forces, optimization force can be written as:</p>
+                <p>\[ M_w=\Phi^\top D \Phi=\sum_{i=1}^n d_i e_i^\top e_i \]</p>
+        
+                <p>Assume some of the states are aligned, creating clusters with the same direction. We call each cluster \(S_i\), say each state that belongs to this set \(S_i\) has the direction \(e_i\) and define \(S=\cup_{i=1}^{m} S_i\) (Note that for \(i\neq j\), we have \(S_i\cap S_j=\emptyset\)). Since we assumed standard unit vectors for directions, we know that \(e_i^\top e_i\) is a matrix with an entry 1 on its \((i,i)\) element and 0 everywhere else. We can rewrite this as:</p>
+                <p>\[ M_w=\Phi^\top D \Phi=\sum_{S_i\subset S} \Bigl(\sum_{s\in S_i} d(s) \Bigr) e_i^\top e_i \]</p>
+        
+                <p>We can easily obtain \(m\) eigenvalues and their corresponding eigenvectors:</p>
+                <p>\[ M_w x=\sum_{S_i\subset S} \Bigl(\sum_{s\in S_i} d(s) \Bigr) e_i^\top \langle e_i,x\rangle \Rightarrow x=e_i, \lambda_i=\sum_{s\in S_i} d(s) \]</p>
+        
+                <p>Since matrix \(M_w \in \mathbb{R}^{m \times m}\) is symmetric \((M_w^\top=(\Phi^\top D \Phi)^\top = \Phi^\top D \Phi = M_w)\), we can write its eigenvalue decomposition:</p>
+                <p>\[ M_w = Q\Lambda Q^\top = \begin{bmatrix}
+                    e_1^\top & \cdots & e_m^\top 
+                \end{bmatrix} \text{Diag}(\lambda_1, \cdots, \lambda_m) \begin{bmatrix}
                     e_1 \\
                     \vdots \\
                     e_m 
-                \end{bmatrix} = \sum_{i=1}^m \lambda_i e_i^\top e_i \]
-            <p>We can now invert \(M_w\):</p>
-            \[ M_w^{-1} = Q\Lambda^{-1} Q^\top = \sum_{i=1}^m \frac{1}{\lambda_i} e_i^\top e_i = \sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i \]
-            <p>As for the Target force, we can write:</p>
-            \[ M_\theta = \Phi^\top D P \Phi = \sum_{i=1}^n d_i e_i^\top \sum_{j=1}^n P_{ij} e_j = \sum_{S_i \subset S} \sum_{s \in S_i} d(s) e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} \]
-            <p>Now multiplying \((M_w)^{-1}\) and \(M_{\theta}\) to calculate \((M_w)^{-1} M_{\theta}\), we can write:</p>
-            \[ M_w^{-1} M_\theta = \Bigl(\sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i \Bigl)\Bigl(\sum_{S_i \subset S} \sum_{s \in S_i} d(s) e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} \Bigl) \]
-            <p>Notice that in the right parenthesis, the summation over \(i\) describes matrices with only 1 row containing non-zero elements (since \(e_i^{\top}\) is a standard unit vector). Using that we can write:</p>
-            \[ \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \hdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m\Big) \]
-            <p>For parents in \(S_p\) we can write:</p>
-            \[ \gamma e_p^\top \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \hdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m \Big) \]
-            <p>Which represents \(p\)-th row of \(\gamma (M_w)^{-1} M_{\theta}\) matrix (This summation is over outer-products with column vector as \(e_p\), which has only a 1 in the \(p\)-th entry, resulting in a matrix with all zeroes except for row \(p\)).</p>
-            <h3>Lemma</h3>
-            <p>Matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix.</p>
-            <h4>Proof</h4>
-            <p>To show that a given matrix is a stochastic matrix, we need to prove that it has no negative entry and the summation of each row is equal to 1. To show the matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, we check each row of the matrix. We know \(p\)-th row of the matrix \((M_w)^{-1} M_{\theta}\) can be written as:</p>
-            \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Bigl[\sum_{s^\prime \in S_1} P(s^\prime | s) , \hdots, \sum_{s^\prime \in S_m} P(s^\prime | s) \Bigl] \]
-            <p>Since each term is a non-negative value the first part is proved. For the second part we can rewrite the equation as:</p>
-            \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Bigl[\sum_{s^\prime \in S_1} P(s^\prime | s) + \hdots + \sum_{s^\prime \in S_m} P(s^\prime | s) \Bigl] \]
-            <p>The probabilities inside the bracket are for each state and hence the summation would be equal to 1:</p>
-            \[ \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) = 1 \]
-            <p>Since this is true for each row, we proved that the matrix \((M_w)^{-1} M_{\theta}\) is a stochastic matrix.</p>
-            <h3>Theorem</h3>
-            <p>Maximum absolute eigenvalue of the matrix \(\gamma (M_w)^{-1} M_{\theta}\) is \(\gamma\).</p>
-            <h4>Proof</h4>
-            <p>Since from lemma we know that \((M_w)^{-1} M_{\theta}\) is a stochastic matrix, then its eigenvalues lie in the unit circle of complex plane. Multiplying it by \(\gamma\) would shrink the unit circle, resulting in the maximum eigenvalue of \(\gamma\).</p>
-            <h2>Special Cases</h2>
-            <h3>Scalar (1-D Feature Space)</h3>
-            <p>In case of scalar, since there is only 1 direction, we have only one cluster (S=S<sub>1</sub>) and equation turns into:</p>
-            \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P(s^\prime | s) e_j = \frac{\sum_{i=1}^n \gamma d_i e_1^\top \sum_{j=1}^n P(s^\prime | s) e_1}{\sum_{k=1}^n d(s)} = \frac{\gamma \sum_{i=1}^n d_i \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)} e_1^\top e_1 \]
-            <p>Since it is the only non-zero element of the matrix (and it is on the diagonal), we would want it to be less than one:</p>
-            \[ \frac{\gamma \sum_{i=1}^n d(s) \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)} = \frac{\gamma \sum_{i=1}^n d(s)}{\sum_{k=1}^n d(s)} = \gamma \]
-            <p>Meaning that all the parents and children would contribute to the final value.</p>
-            <h3>Tabular (n-D Feature Space)</h3>
-            <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) and equation turns into:</p>
-            \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P_{lj} e_j = \sum_{i=1}^n \gamma \frac{d_i e_i^\top}{d_i} \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_j = \gamma \sum_{i=1}^n e_i^\top \sum_{j=1}^n P_{ij} e_j \]
-            <p>For each row we can write:</p>
-            \[ \gamma \sum_{j=1}^n P_{ij} = \gamma \]
-            <p>The last part is equivalent to finding the maximum eigenvalues of \(P\), which is a stochastic matrix, hence its maximum eigenvalue is 1.</p>
-            <p>Another trivial option to calculate it would be:</p>
-            \[ (M_w)^{-1} M_{\theta} = (\Phi^\top D \Phi)^{-1} \Phi^\top DP \Phi = \Phi^{-1} D^{-1} \Phi^{-\top} \Phi^\top DP \Phi = \Phi^{-1} P \Phi = P^\prime \]
-            <p>Since \(\Phi\) is a permutation matrix (no two states have the same direction), \(P^\prime\) is still a row-stochastic matrix.</p>
-            <h3>Tabular (n-D Feature Space)</h3>
-            <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (S<sub>i</sub>={s<sub>i</sub>}) and equation turns into:</p>
-            \[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P_{lj} e_j = \sum_{i=1}^n \gamma \frac{d_i e_i^\top}{d_i} \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_j = \gamma \sum_{i=1}^n e_i^\top \sum_{j=1}^n P_{ij} e_j = \gamma E^\top P E \]
-            <p>It can be easily proved that \(E\) is an orthogonal matrix. Eigenvalue problem can be written as:</p>
-            \[ \gamma E^\top P Ev = \lambda v \quad \Rightarrow \quad \gamma \|E^\top P Ev\| = \lambda \|v\| = \lambda \]
-            <p>We can use it to write:</p>
-            \[ \gamma \|E^\top P Ev\| \leq \|E^\top (P Ev)\| \leq \|P Ev\| \leq \|Ev\| \leq \|E\| \|v\| \leq \|v\| = 1 \]
-            <p>For each row we can write:</p>
-            \[ \gamma \sum_{j=1}^n P_{ij} = \gamma \]
-            <p>The last part is equivalent to finding the maximum eigenvalues of \(P\), which is a stochastic matrix, hence its maximum eigenvalue is 1.</p>
-            <p>Another trivial option to calculate it would be:</p>
-            \[ (M_w)^{-1} M_{\theta} = (\Phi^\top D \Phi)^{-1} \Phi^\top DP \Phi = \Phi^{-1} D^{-1} \Phi^{-\top} \Phi^\top DP \Phi = \Phi^{-1} P \Phi = P^\prime \]
-            <p>Since \(\Phi\) is a permutation matrix (no two states have the same direction), \(P^\prime\) is still a row-stochastic matrix.</p>
+                \end{bmatrix} = \sum_{i=1}^m \lambda_i e_i^\top e_i \]</p>
+        
+                <p>We can now invert \(M_w\):</p>
+                <p>\[ M_w^{-1} = Q\Lambda^{-1} Q^\top = \sum_{i=1}^m \frac{1}{\lambda_i} e_i^\top e_i = \sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i \]</p>
+        
+                <p>As for the Target force, we can write:</p>
+                <p>\[ M_\theta = \Phi^\top D P \Phi = \sum_{i=1}^n d_i e_i^\top \sum_{j=1}^n P_{ij} e_j = \sum_{S_i \subset S} \sum_{s \in S_i} d(s) e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} \]</p>
+        
+                <p>Now multiplying \((M_w)^{-1}\) and \(M_{\theta}\) to calculate \((M_w)^{-1} M_{\theta}\), we can write:</p>
+                <p>\[ M_w^{-1} M_\theta = \Bigl(\sum_{S_i \subset S} \frac{1}{\sum_{s \in S_i} d(s)} e_i^\top e_i \Bigr)\Bigl(\sum_{S_i \subset S} \sum_{s \in S_i} d(s) e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} \Bigr) \]</p>
+        
+                <p>Using orthogonality between different directions we can write:</p>
+                <p>\[ \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime}\]</p>
+        
+                <p>The main idea is to ensure the upper bound of the spectral radius of \(\gamma (M_w)^{-1} M_{\theta}\) is 1, to be able to guarantee the convergence of TD.</p>
+        
+                <h3>Scenario 1: Standard Unit Directions</h3>
+                <p>Notice that in the right parenthesis, the summation over \(i\) describes matrices with only 1 row containing non-zero elements (since \(e_i^{\top}\) is a standard unit vector). Using that we can write:</p>
+                <p>\[ \gamma (M_w)^{-1} M_{\theta} = \gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{s^\prime \in S^\prime} P(s^\prime | s) e_{s^\prime} = \]</p>
+                <p>\[\gamma \sum_{S_i \subset S} \sum_{s \in S_i} \frac{d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \cdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m\Big) \]</p>
+        
+                <p>For parents in \(S_p\) (corresponding to row \(p\) of the matrix) we can write:</p>
+                <p>\[ \gamma e_p^\top \frac{1}{\sum_{s \in S_p} d(s)} \sum_{s \in S_p} d(s) \Big(\sum_{s^\prime \in S_1} P(s^\prime | s) e_1 + \cdots + \sum_{s^\prime \in S_m} P(s^\prime | s) e_m \Big) \]</p>
+        
+                <div class="lemma">
+                    <h4>Lemma 1</h4>
+                    <p>Matrix \((M_w)^{-1}M_{\theta}\) is a stochastic matrix.</p>
+                </div>
+        
+                <div class="proof">
+                    <h4>Proof</h4>
+                    <p>To show that a given matrix is a stochastic matrix, we need to prove that it has no negative entry and the summation of each row is equal to 1. To show the matrix \((M_w)^{-1}M_{\theta}\) is a stochastic matrix, we check each row of the matrix. We know \(p\)-th row of the matrix \((M_w)^{-1}M_{\theta}\) can be written as:</p>
+                    <p>\[\frac{1}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) \quad,\quad\hdots\quad,\quad\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr]\]</p>
+                    <p>Since each term is a non-negative value the first part is proved. For the second part we can rewrite the equation as:</p>
+                    <p>\[\frac{1}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) +\hdots+\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr]\]</p>
+                    <p>The probabilities inside the bracket are for each state and hence the summation would be equal to 1:</p>
+                    <p>\[\frac{1}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s)=1\]</p>
+                    <p>Since this is true for each row, we proved that the matrix is \((M_w)^{-1}M_{\theta}\) is a stochastic matrix.</p>
+                </div>
+        
+                <div class="theorem">
+                    <h4>Theorem 1</h4>
+                    <p>Maximum absolute eigenvalue of the matrix \(\gamma (M_w)^{-1}M_{\theta}\) is \(\gamma\).</p>
+                </div>
+        
+                <div class="proof">
+                    <h4>Proof</h4>
+                    <p>Since from lemma 1 we know that \((M_w)^{-1}M_{\theta}\) is a stochastic matrix, then its eigenvalues lie in the unit circle of complex plane. Multiplying it by \(\gamma\) would shrink the unit circle, resulting in the maximum eigenvalue of \(\gamma\).</p>
+                </div>
+        
+                <h3>Scenario 2: Orthonormal Directions</h3>
+                <p>We drop the cartesian unit vector assumption. Here we only assume that the state features are orthonormal to each other.</p>
+        
+                <h4>1-D Feature Space</h4>
+                <p>In case of scalar, since there is only 1 direction, we have only one cluster (\(S=S_1\)) and equation turns into:</p>
+                <p>\[ \gamma (M_w)^{-1} M_{\theta} = \sum_{S_i \subset S} \sum_{s \in S_i} \frac{\gamma d(s)}{\sum_{s \in S_i} d(s)} e_i^\top \sum_{j=1}^n P(s^\prime | s) e_j\]</p>
+        
+                <p>\[ = \frac{\sum_{i=1}^n \gamma d_i e_1^\top \sum_{j=1}^n P(s^\prime | s) e_1}{\sum_{k=1}^n d(s)} = \frac{\gamma \sum_{i=1}^n d_i \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)} e_1^\top e_1 \]</p>
+        
+                <p>Since it is the only non-zero element of the matrix (and it is on the diagonal), we would want it to be less than one:</p>
+                <p>\[ \frac{\gamma \sum_{i=1}^n d(s) \sum_{j=1}^n P(s^\prime | s)}{\sum_{k=1}^n d(s)} = \frac{\gamma \sum_{i=1}^n d(s)}{\sum_{k=1}^n d(s)} = \gamma \]</p>
+        
+                <p>It can be observed that all the parents and children would contribute to the final value of optimization and target forces.</p>
+        
+                <h4>n-D Feature Space</h4>
+                <p>In case of Tabular, since there are \(n\) directions, each cluster is assigned only one state (\(S_i=\{s_i\}\)) and equation turns into:</p>
+                <p>\[ \gamma (M_w)^{-1} M_{\theta} = (\Phi^\top D \Phi)^{-1}\Phi^\top DP \Phi= \Phi^{-1} D^{-1} \Phi^{-\top}\Phi^\top DP \Phi= \gamma \Phi^\top P \Phi \]</p>
+        
+                <p>It can be easily proved that \(\Phi\) is an orthogonal matrix, hence its spectral radius is equal to 1 and \(\phi^{-1}=\phi^\top\). Eigenvalue problem can be written as:</p>
+                <p>\[ \gamma \Phi^\top P \Phi v = \lambda v \quad \Rightarrow \quad \max_{v, \text{ s.t. } \|v\|=1}\gamma \|\Phi^\top P \Phi v\| = \lambda \|v\| = \lambda \]</p>
+        
+                <p>We can use it to write:</p>
+                <p>\[ \max_{v, \text{ s.t. } \|v\|=1}\gamma \|\Phi^\top P \Phi v\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|\Phi^\top (P \Phi v)\| \]\[\leq \max_{v, \text{ s.t. } \|v\|=1}\|P \Phi v\| \leq \max_{v, \text{ s.t. } \|v\|=1}\|\Phi v\| \leq \max_{v, \text{ s.t. } \|v\|=1} \|\Phi\| \|v\| \leq \|v\| = 1 \]</p>
+        
+                <h4>Intermediate Case: m-dimensional Feature Space</h4>
+                <p>Consider the case where feature space dimension m is less than number of states n. States sharing the same feature direction form clusters \(S_i\) for \(i=1,\ldots,m\). For states in cluster \(S_p\) (corresponding to row p of the matrix), the p-th row of \(\gamma (M_w)^{-1}M_{\theta}\) can be written as:</p>
+                <p>\[ \frac{\gamma}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) \quad,\quad\hdots\quad,\quad\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr] \]</p>
+        
+                <div class="lemma">
+                    <h4>Lemma 2</h4>
+                    <p>Matrix \((M_w)^{-1}M_{\theta}\) is a stochastic matrix.</p>
+                </div>
+        
+                <div class="proof">
+                    <h4>Proof</h4>
+                    <p>Each row is a non-negative vector since both \(d(s)\) and \(P(s^\prime|s)\) are non-negative. For row sum:</p>
+                    <p>\[ \frac{\gamma}{\sum_{s\in S_p}d(s)}\sum_{s\in S_p}  d(s) \Bigl[\sum_{s^\prime\in S_1} P(s^\prime|s) +\hdots+\sum_{s^\prime\in S_m}P(s^\prime|s) \Bigr] = \gamma \]</p>
+                    <p>since \(P\) is stochastic and the term in square brackets sums to 1.</p>
+                </div>
+        
+                <div class="theorem">
+                    <h4>Theorem 2</h4>
+                    <p>Maximum absolute eigenvalue of matrix \(\gamma (M_w)^{-1}M_{\theta}\) is \(\gamma\).</p>
+                </div>
+        
+                <div class="proof">
+                    <h4>Proof</h4>
+                    <p>From the lemma, \((M_w)^{-1}M_{\theta}\) is stochastic, therefore its eigenvalues lie in the unit circle of complex plane. Multiplying by \(\gamma\) shrinks the unit circle, resulting in maximum eigenvalue of \(\gamma\).</p>
+                </div>
+        
+                <h3>Outcomes</h3>
+                <p>In all three scenarios we observed that:</p>
+                <ul>
+                    <li>Convergence does not depend on the feature space size.</li>
+                    <li>Convergence does not depend on the form of update distribution \(D\). The sole existence of such probability distribution makes the convergence possible.</li>
+                </ul>
+        
+                <p>It can also be shown that in all three scenarios we can relax the assumption \(\|\phi(s)\|=1\) by replacing it with the assumption that for each state \(\gamma \|\phi(s^\prime)\| \leq \|\phi(s)\|\) (in actuality \(\gamma E(\|\phi(s^\prime)\|)\leq \|\phi(s)\|\) is enough). In that case, again, the convergence is guaranteed.</p>
+        
+                <h3>Acknowledgments</h3>
+                <p>I want to express my sincere gratitude to Dr. Asadi for providing the insightful idea and offering invaluable support throughout this work.</p>
+            </div>
         </section>
     </div>
 </body>
