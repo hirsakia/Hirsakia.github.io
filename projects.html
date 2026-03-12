@@ -122,7 +122,7 @@
                     and state representations in a simplified setting (linear function approximation and state aggregation).
                     I wrote it as a technical report in a <a href="blog_post_1.html">post</a>.
             
-            <h2>Energy Transfer Strategies in Magnetic Resonance–Based Intrabody Networks (WoWMoM 2025)</h2>
+            <h2>Energy Transfer Strategies in Magnetic Resonance–Based Intrabody Networks (WoWMoM, 2025)</h2>
                 <p>We study a general resource allocation problem in Chronic Disease Management Networks (CDMNs), where a single on-body 
                     node must distribute limited wireless power, via Magnetic Resonance Communication (MRC), across multiple implanted hubs 
                     and sensors over long time horizons. Using a detailed, calibrated energy-centric simulation of CDMNs, we compare three 
@@ -143,11 +143,46 @@
                     observed post-transfer energies as feedback. This bandit-style strategy reduces reliance on imperfect models, adapts to 
                     non-stationary channel conditions, and empirically outperforms the centralized, decentralized, and hybrid baselines in 
                     terms of maintaining balanced energy across the network while keeping computation tractable.</p>
-            
-            <h2>Multi-Library SINDy: A Computationally Efficient Framework for SINDy (In Progress)</h2>                
-                <p>We showed that although SINDy is very efficient in finding the dynamcis, however there is no need for some of the constraints, such 
-                    as a fixed library function for all the states. We showed using Multi-Library SINDy is more efficient in terms of computations and
-                    it can provide additional freedom in choosing and guiding the identification process. 
+
+            <h2>Energy–Accuracy Tradeoff in Intra‑body Networks (CHASE 2025)</h2>
+                <p> Chronic Disease Management Networks (CDMNs) need to minimize communication energy over Magnetic Resonance Communication 
+                    (MRC) links while preserving physiological signal fidelity for hub-side monitoring and actuation. In our
+                    paper, we introduce a closed-loop Kalman-filter controller where the hub predicts sensor readings and dynamically tunes 
+                    per-sensor transmission thresholds based on reconstruction error, sending samples (or batches) only when predictions would 
+                    deviate too far. Simulations on multi-sensor links show 30–67% reductions in sensor–hub communication with 88–94% 
+                    reconstruction accuracy (<a href="https://doi.org/10.1145/3721201.3721411">CHASE 2025</a>).</p>
+                <p> I am extending this into a general selective communication framework with three components: a sensor classifier that gates 
+                    transmissions, a hub predictor that reconstructs missing samples from mixed true/imputed history, and a manager that updates 
+                    the gating threshold. The extension replaces ad‑hoc rules with two principled schemes—instantaneous-error using 
+                    innovation-energy statistics and log-MSE feedback, and cumulative-error based on CUSUM drift detection—for stable, tunable 
+                    control along the energy–accuracy tradeoff.</p>
+
+            <h2>SINDy+RL for Pendulum and Nonstationary Oscillator Control</h2>
+                <p>This project investigates a SINDy-RL approach where Sparse Identification of Nonlinear Dynamics (SINDy) is used to 
+                    learn compact surrogate models that drive model-based reinforcement learning controllers. Using a classic swing-up 
+                    pendulum and a second-order oscillator with time-varying stiffness and damping, I train SINDy from limited interaction 
+                    data and embed it in a receding-horizon planner that optimizes action sequences over the learned dynamics. On the pendulum, 
+                    I compare online and offline SINDy-RL to show how continuous model adaptation enables successful swing-up under noisy 
+                    observations, whereas a fixed model learned from a small dataset can converge to the wrong equilibrium. On the nonstationary
+                    oscillator, I compare online SINDy-RL against a neural-network dynamics model and a model-free DQN agent: SINDy-RL matches
+                    the NN controller’s low tracking error (MSE ≈ 0.18 vs. 0.17) while maintaining interpretable stiffness and damping 
+                    coefficients, and outperforms DQN by roughly two orders of magnitude in tracking error (MSE ≈ 11.15), highlighting 
+                    its robustness to drifting dynamics and its data efficiency.
+                </p>
+
+            <h2>Augmenting Optimizers with NARS: A Learning Rate Scheduler</h2>
+                <p>
+                I designed the NARS Learning Rate Scheduler, which integrates the Non-Axiomatic Reasoning System (NARS) with gradient-based 
+                    optimization to adapt learning rates through explicit logical reasoning rather than fixed heuristics. The scheduler treats 
+                    learning rate selection as a sequential decision problem: it encodes training signals (loss trajectory, gradient norms, 
+                    validation performance) as NARS beliefs with frequency–confidence truth values, then uses syllogistic inference to choose 
+                    phase-specific update strategies for exploration, exploitation, and fine-tuning. Experiments on the Rosenbrock function 
+                    and deep networks trained on Fashion-MNIST and CIFAR-10 show consistent improvements over standard schedulers such as 
+                    fixed-rate and OneCycle (e.g., roughly 75% lower final loss on Rosenbrock, and accuracy gains of about 3.2% on Fashion-MNIST 
+                    and 1.1% on CIFAR-10), while providing interpretable explanations for each learning-rate adjustment. This project 
+                    illustrates how symbolic reasoning can serve as a meta-optimizer for deep learning, bridging logical AI with numerical 
+                    optimization.
+                </p>
                     
             <h2>Nonlinear Modelling and Analysis of Macroeconomy using SINDyC (Computational Economics, 2025)</h2>
                 <p>
@@ -161,7 +196,7 @@
                     published in <a href="https://link.springer.com/article/10.1007/s10614-025-11012-0">Computational Economics</a>.
                 </p>
 
-            <h2>Autotuning in MRC circuits</h2>                
+            <h2>Autotuning in MRC circuits (DCOSS, 2024)</h2>                
                 <p>The resonance between a transmitter and receiver is critical in efficient power transfer or data communication. We created an
                 adaptive controller that basically solves a quasiconvex optimization problem with a zeroth-order oracle, simply and efficiently. We consider 
                     capacitance as the control signal and used zeroth-order gradient estimation to drive the system into resonance. 
@@ -170,7 +205,7 @@
                 current method due to the natural redistribution of energy. By changing the trigger from the absolute change to ReLU, we are making sure the 
                 redistribution would not cause an undesirable activation of the retuners.</p>
             
-            <h2>Adsorption modeling using FNN and BO for hyperparameter tuning</h2>                
+            <h2>Adsorption modeling using FNN and BO for hyperparameter tuning (JTICE, 2023)</h2>                
                 <p>I used a relatively simple FNN (2 layered) with Huber loss objective function to model adsorption process of
                 tetracycline removal by multi-walled carbon nanotube functionalized with aspartic acid and poly-pyrrole. Then we 
                     implemented Bayesian Optimization with RMSE cost function as the hyperparameter tuning scheme. For decision variables, I chose 
@@ -179,7 +214,11 @@
                 exponential decay rate for the exponentially weighted infinity norm (last two were hyperparameters of the optimizer NADAM). The results
                 were published in <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876107023000731">Journal of the Taiwan Institute of 
                 Chemical Engineers</a>.</p>
-
+            
+            <h2>Multi-Library SINDy: A Computationally Efficient Framework for SINDy (In Progress)</h2>                
+                <p>We showed that although SINDy is very efficient in finding the dynamcis, however there is no need for some of the constraints, such 
+                    as a fixed library function for all the states. We showed using Multi-Library SINDy is more efficient in terms of computations and
+                    it can provide additional freedom in choosing and guiding the identification process. 
         </section>
     </div>
 </body>
