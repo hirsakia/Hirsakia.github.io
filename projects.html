@@ -121,34 +121,54 @@
                     However, it has been shown that it may exhibit divergent behavior. I aimed to demystify the relationship between convergence 
                     and state representations in a simplified setting (linear function approximation and state aggregation).
                     I wrote it as a technical report in a <a href="blog_post_1.html">post</a>.
-            <h2>Centralized and Decentralized Energy Transfer Strategies in Wireless Intrabody Networks (In Progress)</h2>                
-                <p>Maintaining Wireless Intrabody Networks' energy level is one of the most important aspects in their design. We provide two strategies, 
-                    Centralized and Decentralized, to achieve the goal of energy distribution. using
-                    the energy properties data it receives from all the nodes, Centralized strategy uses a prediction algorithm to estimate the energy level
-                    trajectories and solves an optimization problem to decide which nodes should be allowed to harvest the energy. Decentralized strategy
-                    on the other hand, allows each node to decide autonomously and probabilistically if they want to harvest, according to their energy level and their crude
-                    estimate of their own trajectory.
-                    We showed that although the Centralized strategy is able to do a better job in general, it is not as robust as the 
-                    Decentralized strategy, due to its heavy dependence on the predicted energy level. 
-                    We also showed that Decentralized strategy can be easier to tune and augment with priorities. 
+            
+            <h2>Energy Transfer Strategies in Magnetic Resonance–Based Intrabody Networks (WoWMoM 2025)</h2>
+                <p>We study a general resource allocation problem in Chronic Disease Management Networks (CDMNs), where a single on-body 
+                    node must distribute limited wireless power, via Magnetic Resonance Communication (MRC), across multiple implanted hubs 
+                    and sensors over long time horizons. Using a detailed, calibrated energy-centric simulation of CDMNs, we compare three 
+                    energy allocation policies: a centralized scheme that uses global state to jointly select which nodes harvest in each 
+                    round, a fully decentralized scheme in which nodes make probabilistic harvesting decisions based only on their local 
+                    energy state and simple trajectory estimates, and a hybrid policy that combines aspects of both. 
+                    Our results show that centralized allocation can maintain higher energy levels at critical hub nodes under nominal 
+                    conditions, but is sensitive to modeling and parameter errors and can be brittle under adverse scenarios such as supply 
+                    fluctuations or demand spikes. Decentralized control greatly reduces coordination overhead and improves robustness to 
+                    such adverse events, at the cost of some efficiency, while the hybrid policy recovers much of the centralized performance 
+                    without sacrificing robustness. Overall, the work illustrates how different classes of resource allocation policies trade 
+                    off efficiency, robustness, and overhead in small, safety-critical intrabody networks. The results are published in 
+                    <a href="https://ieeexplore.ieee.org/abstract/document/11026998"> World of Wireless, Mobile and Multimedia Networks 
+                        (WoWMoM) 2025</a>.</p>
+                <p> I am currently working on an extension of this work that formulates the subset-selection problem as a contextual bandit. 
+                    Instead of repeatedly solving a model-based optimization with a fixed path-loss approximation, the on-body node learns a 
+                    Linear Thompson Sampling policy over receiver subsets, using per-node energy state and predicted gain as context and 
+                    observed post-transfer energies as feedback. This bandit-style strategy reduces reliance on imperfect models, adapts to 
+                    non-stationary channel conditions, and empirically outperforms the centralized, decentralized, and hybrid baselines in 
+                    terms of maintaining balanced energy across the network while keeping computation tractable.</p>
+            
             <h2>Multi-Library SINDy: A Computationally Efficient Framework for SINDy (In Progress)</h2>                
                 <p>We showed that although SINDy is very efficient in finding the dynamcis, however there is no need for some of the constraints, such 
                     as a fixed library function for all the states. We showed using Multi-Library SINDy is more efficient in terms of computations and
-                    it can provide additional freedom in choosing and guiding the identification process.        
-            <h2>Nonlinear modelling and analysis of macroeconomy using SINDyC (Under Review)</h2>                
-                <p>We used SINDyC, one of the variations of SINDy algorithm, to create an explainable nonlinear dynamics model out of macroeconomical data.
-                The data used was obtained from Federal Reserve Economic Data (FRED), which spanned from 1965 to 2022. We used <b>unemployment rate</b>, 
-                    <b>inflation rate</b> and <b>GDP</b> as states and <b>interest rate</b> as the control variable. We used Phase Plane Analysis to 
-                    study the properties 
-                    of the model. The model is consistent with qualitative properties of macroeconomy and showed some additional new and surprising 
-                    properties. 
-                    The results are under review at <a href="https://link.springer.com/journal/10614">Computational Economics Journal</a>.
-            <h2>Autotuning of MRC circuits</h2>                
+                    it can provide additional freedom in choosing and guiding the identification process. 
+                    
+            <h2>Nonlinear Modelling and Analysis of Macroeconomy using SINDyC (Computational Economics, 2025)</h2>
+                <p>
+                We develop an explainable nonlinear dynamical model of key macroeconomic variables using Transfer Entropy (TE) for variable selection 
+                    and Sparse Identification of Nonlinear Dynamics with control (SINDyC). Using quarterly data from the Federal Reserve Economic Data 
+                    (FRED) from 1960 to 2022, the model captures the joint dynamics of unemployment, inflation, and GDP per capita, with the interest 
+                    rate acting as a policy-manipulated input. SINDyC learns a sparse system of differential equations that both fits out-of-sample data 
+                    and remains interpretable, revealing which interactions (e.g., inflation–GDP couplings) drive the evolution of each variable. 
+                    Phase-plane analysis of the learned system identifies stability regions for different combinations of interest rate and GDP per capita
+                    , offering a qualitative map of regimes where unemployment and inflation remain stable versus where they tend to drift. This work is 
+                    published in <a href="https://link.springer.com/article/10.1007/s10614-025-11012-0">Computational Economics</a>.
+                </p>
+
+            <h2>Autotuning in MRC circuits</h2>                
                 <p>The resonance between a transmitter and receiver is critical in efficient power transfer or data communication. We created an
                 adaptive controller that basically solves a quasiconvex optimization problem with a zeroth-order oracle, simply and efficiently. We consider 
                     capacitance as the control signal and used zeroth-order gradient estimation to drive the system into resonance. 
-                    The results were published in <a href="https://ieeexplore.ieee.org/document/10621507">DCOSS 2024</a>. A small proof
-                for the convergence of the algorithm is provided in <a href="blog_post_4">the blog</a></p>
+                    The results were published in <a href="https://ieeexplore.ieee.org/document/10621507">DCOSS 2024</a>. </p>
+                <p> As an extension, we are considering a network-wide retuning of transmitter and receivers, where detuning results in a cascading failure of the
+                current method due to the natural redistribution of energy. By changing the trigger from the absolute change to ReLU, we are making sure the 
+                redistribution would not cause an undesirable activation of the retuners.</p>
             
             <h2>Adsorption modeling using FNN and BO for hyperparameter tuning</h2>                
                 <p>I used a relatively simple FNN (2 layered) with Huber loss objective function to model adsorption process of
