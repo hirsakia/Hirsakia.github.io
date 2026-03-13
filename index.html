@@ -45,6 +45,31 @@
         .main-content {
             display: flex;
             align-items: flex-start;
+            max-width: 1100px;
+            margin: 4em auto; /* Centers the whole app on the screen */
+            padding: 0 2em;
+        }
+        .header-img {
+            width: 250px; /* Gives the photo and links a dedicated width */
+            flex-shrink: 0; /* Prevents the right column from crushing the left */
+            margin-right: 3em; 
+            text-align: left;
+        }
+        .header-text {
+            flex-grow: 1;
+            min-width: 0; /* Prevents wide content from breaking the flex layout */
+        }
+        
+        
+        .header-img img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        /*
+        .main-content {
+            display: flex;
+            align-items: flex-start;
             padding: 2em;
             margin-left: 12em;
             margin-right: 12em;
@@ -54,15 +79,10 @@
             margin-right: 2em;
             text-align: left;
         }
-        .header-img img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-        }
         .header-text {
             flex-grow: 1;
             text-align: left;
-        }
+        }*/
         .header-text h1 {
             margin: 0;
             margin-bottom: 1em;
@@ -205,7 +225,8 @@
         <a href="cv.pdf">CV</a>
     </nav>
 
-    <div class="main-content" id="about">
+    <div class="main-content">
+        
         <div class="header-img">
             <img src="Images/IMG_2420.JPG" alt="Photo of Hirsa Kia">
             <h1>Hirsa Kia</h1>
@@ -216,8 +237,10 @@
                 <li><a href="https://github.com/hirsakia" target="_blank"><i class="fab fa-github"></i>GitHub</a></li>
             </ul>
         </div>
+
         <div class="header-text">
-            <section class="section">
+            
+            <section id="about" class="section" style="margin-top: 0;">
                 <h2>About Me</h2>
                 <p>Hello! I'm Hirsa Kia, Computer Science PhD student at Temple University. 
                     Under the supervision of <a href="https://www.kkant.net">Krishna Kant</a>, I am working on reconfigurable intra-body networks.
@@ -225,174 +248,175 @@
                     University of Tehran, working at <a href="https://cast-tech.ir/">CAST lab</a> on humanoid robots 
                     under the supervision of <a href="https://scholar.google.com/citations?hl=en&user=Cz1X5e8AAAAJ&view_op=list_works&sortby=pubdate">Aghil Yousefi-Koma</a>.</p>
             </section>
+
+            <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, #1F1F1F, #333, #1F1F1F); margin: 3em 0;">
+
+            <section id="projects" class="section">
+                <h2>Research & Projects</h2>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        TD with Linear Function Approximation in State Aggregated Setting
+                        <span class="chevron">&#9660;</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>The Temporal Difference (TD) algorithm is at the heart of some of the most successful examples of reinforcement learning (RL). 
+                            However, it has been shown that it may exhibit divergent behavior. I aimed to demystify the relationship between convergence 
+                            and state representations in a simplified setting (linear function approximation and state aggregation).
+                            I wrote it as a technical report in a <a href="blog_post_1.html">post</a>.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        Energy Transfer Strategies in Magnetic Resonance–Based Intrabody Networks (WoWMoM, 2025)
+                        <span class="chevron">&#9660;</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>We study a general resource allocation problem in Chronic Disease Management Networks (CDMNs), where a single on-body 
+                            node must distribute limited wireless power, via Magnetic Resonance Communication (MRC), across multiple implanted hubs 
+                            and sensors over long time horizons. Using a detailed, calibrated energy-centric simulation of CDMNs, we compare three 
+                            energy allocation policies: a centralized scheme that uses global state to jointly select which nodes harvest in each 
+                            round, a fully decentralized scheme in which nodes make probabilistic harvesting decisions based only on their local 
+                            energy state and simple trajectory estimates, and a hybrid policy that combines aspects of both. 
+                            Our results show that centralized allocation can maintain higher energy levels at critical hub nodes under nominal 
+                            conditions, but is sensitive to modeling and parameter errors and can be brittle under adverse scenarios such as supply 
+                            fluctuations or demand spikes. Decentralized control greatly reduces coordination overhead and improves robustness to 
+                            such adverse events, at the cost of some efficiency, while the hybrid policy recovers much of the centralized performance 
+                            without sacrificing robustness. Overall, the work illustrates how different classes of resource allocation policies trade 
+                            off efficiency, robustness, and overhead in small, safety-critical intrabody networks. The results are published in 
+                            <a href="https://ieeexplore.ieee.org/abstract/document/11026998">World of Wireless, Mobile and Multimedia Networks (WoWMoM) 2025</a>.</p>
+                        <p>I am currently working on an extension of this work that formulates the subset-selection problem as a contextual bandit. 
+                            Instead of repeatedly solving a model-based optimization with a fixed path-loss approximation, the on-body node learns a 
+                            Linear Thompson Sampling policy over receiver subsets, using per-node energy state and predicted gain as context and 
+                            observed post-transfer energies as feedback. This bandit-style strategy reduces reliance on imperfect models, adapts to 
+                            non-stationary channel conditions, and empirically outperforms the centralized, decentralized, and hybrid baselines in 
+                            terms of maintaining balanced energy across the network while keeping computation tractable.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        Energy–Accuracy Tradeoff in Intra‑body Networks (CHASE, 2025)
+                        <span class="chevron">&#9660;</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Chronic Disease Management Networks (CDMNs) need to minimize communication energy over Magnetic Resonance Communication 
+                            (MRC) links while preserving physiological signal fidelity for hub-side monitoring and actuation. In our
+                            paper, we introduce a closed-loop Kalman-filter controller where the hub predicts sensor readings and dynamically tunes 
+                            per-sensor transmission thresholds based on reconstruction error, sending samples (or batches) only when predictions would 
+                            deviate too far. Simulations on multi-sensor links show 30–67% reductions in sensor–hub communication with 88–94% 
+                            reconstruction accuracy (<a href="https://doi.org/10.1145/3721201.3721411">CHASE 2025</a>).</p>
+                        <p>I am extending this into a general selective communication framework with three components: a sensor classifier that gates 
+                            transmissions, a hub predictor that reconstructs missing samples from mixed true/imputed history, and a manager that updates 
+                            the gating threshold. The extension replaces ad‑hoc rules with two principled schemes—instantaneous-error using 
+                            innovation-energy statistics and log-MSE feedback, and cumulative-error based on CUSUM drift detection—for stable, tunable 
+                            control along the energy–accuracy tradeoff.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        SINDy+RL for Pendulum and Nonstationary Oscillator Control
+                        <span class="chevron">&#9660;</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>This project investigates a SINDy-RL approach where Sparse Identification of Nonlinear Dynamics (SINDy) is used to 
+                            learn compact surrogate models that drive model-based reinforcement learning controllers. Using a classic swing-up 
+                            pendulum and a second-order oscillator with time-varying stiffness and damping, I train SINDy from limited interaction 
+                            data and embed it in a receding-horizon planner that optimizes action sequences over the learned dynamics. On the pendulum, 
+                            I compare online and offline SINDy-RL to show how continuous model adaptation enables successful swing-up under noisy 
+                            observations, whereas a fixed model learned from a small dataset can converge to the wrong equilibrium. On the nonstationary
+                            oscillator, I compare online SINDy-RL against a neural-network dynamics model and a model-free DQN agent: SINDy-RL matches
+                            the NN controller's low tracking error (MSE ≈ 0.18 vs. 0.17) while maintaining interpretable stiffness and damping 
+                            coefficients, and outperforms DQN by roughly two orders of magnitude in tracking error (MSE ≈ 11.15), highlighting 
+                            its robustness to drifting dynamics and its data efficiency.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        Augmenting Optimizers with NARS: A Learning Rate Scheduler
+                        <span class="chevron">&#9660;</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>I designed the NARS Learning Rate Scheduler, which integrates the Non-Axiomatic Reasoning System (NARS) with gradient-based 
+                            optimization to adapt learning rates through explicit logical reasoning rather than fixed heuristics. The scheduler treats 
+                            learning rate selection as a sequential decision problem: it encodes training signals (loss trajectory, gradient norms, 
+                            validation performance) as NARS beliefs with frequency–confidence truth values, then uses syllogistic inference to choose 
+                            phase-specific update strategies for exploration, exploitation, and fine-tuning. Experiments on the Rosenbrock function 
+                            and deep networks trained on Fashion-MNIST and CIFAR-10 show consistent improvements over standard schedulers such as 
+                            fixed-rate and OneCycle (e.g., roughly 75% lower final loss on Rosenbrock, and accuracy gains of about 3.2% on Fashion-MNIST 
+                            and 1.1% on CIFAR-10), while providing interpretable explanations for each learning-rate adjustment. This project 
+                            illustrates how symbolic reasoning can serve as a meta-optimizer for deep learning, bridging logical AI with numerical 
+                            optimization.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        Macroeconomy Dynamics Discovery using SINDyC (Computational Economics, 2025)
+                        <span class="chevron">&#9660;</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>We develop an explainable nonlinear dynamical model of key macroeconomic variables using Transfer Entropy (TE) for variable selection 
+                            and Sparse Identification of Nonlinear Dynamics with control (SINDyC). Using quarterly data from the Federal Reserve Economic Data 
+                            (FRED) from 1960 to 2022, the model captures the joint dynamics of unemployment, inflation, and GDP per capita, with the interest 
+                            rate acting as a policy-manipulated input. SINDyC learns a sparse system of differential equations that both fits out-of-sample data 
+                            and remains interpretable, revealing which interactions (e.g., inflation–GDP couplings) drive the evolution of each variable. 
+                            Phase-plane analysis of the learned system identifies stability regions for different combinations of interest rate and GDP per capita, 
+                            offering a qualitative map of regimes where unemployment and inflation remain stable versus where they tend to drift. This work is 
+                            published in <a href="https://link.springer.com/article/10.1007/s10614-025-11012-0">Computational Economics</a>.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        Autotuning in MRC circuits (DCOSS, 2024)
+                        <span class="chevron">&#9660;</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>The resonance between a transmitter and receiver is critical in efficient power transfer or data communication. We created an
+                            adaptive controller that basically solves a quasiconvex optimization problem with a zeroth-order oracle, simply and efficiently. We consider 
+                            capacitance as the control signal and used zeroth-order gradient estimation to drive the system into resonance. 
+                            The results were published in <a href="https://ieeexplore.ieee.org/document/10621507">DCOSS 2024</a>.</p>
+                        <p>As an extension, we are considering a network-wide retuning of transmitter and receivers, where detuning results in a cascading failure of the
+                            current method due to the natural redistribution of energy. By changing the trigger from the absolute change to ReLU, we are making sure the 
+                            redistribution would not cause an undesirable activation of the retuners.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        Bayesian-optimized Neural Net for Adsorption modeling (JTICE, 2023)
+                        <span class="chevron">&#9660;</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>I used a relatively simple NN (2 layered) with Huber loss objective function to model adsorption process of
+                            tetracycline removal by multi-walled carbon nanotube functionalized with aspartic acid and poly-pyrrole. Then we 
+                            implemented Bayesian Optimization with RMSE cost function as the hyperparameter tuning scheme. For decision variables, I chose 
+                            First Layer Neuron Count, Second Layer Neuron Count, Huber Constant, Learning Rate, First Layer Activation function, 
+                            First Layer Activation function, Batch size, Dropout, The exponential decay rate for the 1st moment estimates and 
+                            exponential decay rate for the exponentially weighted infinity norm (last two were hyperparameters of the optimizer NADAM). The results
+                            were published in <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876107023000731">Journal of the Taiwan Institute of 
+                            Chemical Engineers</a>.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        Multi-Library SINDy: A Computationally Efficient Framework for SINDy (In Progress)
+                        <span class="chevron">&#9660;</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>We showed that although SINDy is very efficient in finding the dynamics, however there is no need for some of the constraints, such 
+                            as a fixed library function for all the states. We showed using Multi-Library SINDy is more efficient in terms of computations and
+                            it can provide additional freedom in choosing and guiding the identification process.</p>
+                    </div>
+                </div>
+
+            </section>
         </div>
-    </div>
-
-    <div class="container" id="projects">
-        <section class="section">
-            <h2>Research & Projects</h2>
-            
-            <div class="accordion-item">
-                <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                    TD with Linear Function Approximation in State Aggregated Setting
-                    <span class="chevron">&#9660;</span>
-                </div>
-                <div class="accordion-body">
-                    <p>The Temporal Difference (TD) algorithm is at the heart of some of the most successful examples of reinforcement learning (RL). 
-                        However, it has been shown that it may exhibit divergent behavior. I aimed to demystify the relationship between convergence 
-                        and state representations in a simplified setting (linear function approximation and state aggregation).
-                        I wrote it as a technical report in a <a href="blog_post_1.html">post</a>.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                    Energy Transfer Strategies in Magnetic Resonance–Based Intrabody Networks (WoWMoM, 2025)
-                    <span class="chevron">&#9660;</span>
-                </div>
-                <div class="accordion-body">
-                    <p>We study a general resource allocation problem in Chronic Disease Management Networks (CDMNs), where a single on-body 
-                        node must distribute limited wireless power, via Magnetic Resonance Communication (MRC), across multiple implanted hubs 
-                        and sensors over long time horizons. Using a detailed, calibrated energy-centric simulation of CDMNs, we compare three 
-                        energy allocation policies: a centralized scheme that uses global state to jointly select which nodes harvest in each 
-                        round, a fully decentralized scheme in which nodes make probabilistic harvesting decisions based only on their local 
-                        energy state and simple trajectory estimates, and a hybrid policy that combines aspects of both. 
-                        Our results show that centralized allocation can maintain higher energy levels at critical hub nodes under nominal 
-                        conditions, but is sensitive to modeling and parameter errors and can be brittle under adverse scenarios such as supply 
-                        fluctuations or demand spikes. Decentralized control greatly reduces coordination overhead and improves robustness to 
-                        such adverse events, at the cost of some efficiency, while the hybrid policy recovers much of the centralized performance 
-                        without sacrificing robustness. Overall, the work illustrates how different classes of resource allocation policies trade 
-                        off efficiency, robustness, and overhead in small, safety-critical intrabody networks. The results are published in 
-                        <a href="https://ieeexplore.ieee.org/abstract/document/11026998">World of Wireless, Mobile and Multimedia Networks (WoWMoM) 2025</a>.</p>
-                    <p>I am currently working on an extension of this work that formulates the subset-selection problem as a contextual bandit. 
-                        Instead of repeatedly solving a model-based optimization with a fixed path-loss approximation, the on-body node learns a 
-                        Linear Thompson Sampling policy over receiver subsets, using per-node energy state and predicted gain as context and 
-                        observed post-transfer energies as feedback. This bandit-style strategy reduces reliance on imperfect models, adapts to 
-                        non-stationary channel conditions, and empirically outperforms the centralized, decentralized, and hybrid baselines in 
-                        terms of maintaining balanced energy across the network while keeping computation tractable.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                    Energy–Accuracy Tradeoff in Intra‑body Networks (CHASE, 2025)
-                    <span class="chevron">&#9660;</span>
-                </div>
-                <div class="accordion-body">
-                    <p>Chronic Disease Management Networks (CDMNs) need to minimize communication energy over Magnetic Resonance Communication 
-                        (MRC) links while preserving physiological signal fidelity for hub-side monitoring and actuation. In our
-                        paper, we introduce a closed-loop Kalman-filter controller where the hub predicts sensor readings and dynamically tunes 
-                        per-sensor transmission thresholds based on reconstruction error, sending samples (or batches) only when predictions would 
-                        deviate too far. Simulations on multi-sensor links show 30–67% reductions in sensor–hub communication with 88–94% 
-                        reconstruction accuracy (<a href="https://doi.org/10.1145/3721201.3721411">CHASE 2025</a>).</p>
-                    <p>I am extending this into a general selective communication framework with three components: a sensor classifier that gates 
-                        transmissions, a hub predictor that reconstructs missing samples from mixed true/imputed history, and a manager that updates 
-                        the gating threshold. The extension replaces ad‑hoc rules with two principled schemes—instantaneous-error using 
-                        innovation-energy statistics and log-MSE feedback, and cumulative-error based on CUSUM drift detection—for stable, tunable 
-                        control along the energy–accuracy tradeoff.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                    SINDy+RL for Pendulum and Nonstationary Oscillator Control
-                    <span class="chevron">&#9660;</span>
-                </div>
-                <div class="accordion-body">
-                    <p>This project investigates a SINDy-RL approach where Sparse Identification of Nonlinear Dynamics (SINDy) is used to 
-                        learn compact surrogate models that drive model-based reinforcement learning controllers. Using a classic swing-up 
-                        pendulum and a second-order oscillator with time-varying stiffness and damping, I train SINDy from limited interaction 
-                        data and embed it in a receding-horizon planner that optimizes action sequences over the learned dynamics. On the pendulum, 
-                        I compare online and offline SINDy-RL to show how continuous model adaptation enables successful swing-up under noisy 
-                        observations, whereas a fixed model learned from a small dataset can converge to the wrong equilibrium. On the nonstationary
-                        oscillator, I compare online SINDy-RL against a neural-network dynamics model and a model-free DQN agent: SINDy-RL matches
-                        the NN controller's low tracking error (MSE ≈ 0.18 vs. 0.17) while maintaining interpretable stiffness and damping 
-                        coefficients, and outperforms DQN by roughly two orders of magnitude in tracking error (MSE ≈ 11.15), highlighting 
-                        its robustness to drifting dynamics and its data efficiency.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                    Augmenting Optimizers with NARS: A Learning Rate Scheduler
-                    <span class="chevron">&#9660;</span>
-                </div>
-                <div class="accordion-body">
-                    <p>I designed the NARS Learning Rate Scheduler, which integrates the Non-Axiomatic Reasoning System (NARS) with gradient-based 
-                        optimization to adapt learning rates through explicit logical reasoning rather than fixed heuristics. The scheduler treats 
-                        learning rate selection as a sequential decision problem: it encodes training signals (loss trajectory, gradient norms, 
-                        validation performance) as NARS beliefs with frequency–confidence truth values, then uses syllogistic inference to choose 
-                        phase-specific update strategies for exploration, exploitation, and fine-tuning. Experiments on the Rosenbrock function 
-                        and deep networks trained on Fashion-MNIST and CIFAR-10 show consistent improvements over standard schedulers such as 
-                        fixed-rate and OneCycle (e.g., roughly 75% lower final loss on Rosenbrock, and accuracy gains of about 3.2% on Fashion-MNIST 
-                        and 1.1% on CIFAR-10), while providing interpretable explanations for each learning-rate adjustment. This project 
-                        illustrates how symbolic reasoning can serve as a meta-optimizer for deep learning, bridging logical AI with numerical 
-                        optimization.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                    Macroeconomy Dynamics Discovery using SINDyC (Computational Economics, 2025)
-                    <span class="chevron">&#9660;</span>
-                </div>
-                <div class="accordion-body">
-                    <p>We develop an explainable nonlinear dynamical model of key macroeconomic variables using Transfer Entropy (TE) for variable selection 
-                        and Sparse Identification of Nonlinear Dynamics with control (SINDyC). Using quarterly data from the Federal Reserve Economic Data 
-                        (FRED) from 1960 to 2022, the model captures the joint dynamics of unemployment, inflation, and GDP per capita, with the interest 
-                        rate acting as a policy-manipulated input. SINDyC learns a sparse system of differential equations that both fits out-of-sample data 
-                        and remains interpretable, revealing which interactions (e.g., inflation–GDP couplings) drive the evolution of each variable. 
-                        Phase-plane analysis of the learned system identifies stability regions for different combinations of interest rate and GDP per capita, 
-                        offering a qualitative map of regimes where unemployment and inflation remain stable versus where they tend to drift. This work is 
-                        published in <a href="https://link.springer.com/article/10.1007/s10614-025-11012-0">Computational Economics</a>.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                    Autotuning in MRC circuits (DCOSS, 2024)
-                    <span class="chevron">&#9660;</span>
-                </div>
-                <div class="accordion-body">
-                    <p>The resonance between a transmitter and receiver is critical in efficient power transfer or data communication. We created an
-                        adaptive controller that basically solves a quasiconvex optimization problem with a zeroth-order oracle, simply and efficiently. We consider 
-                        capacitance as the control signal and used zeroth-order gradient estimation to drive the system into resonance. 
-                        The results were published in <a href="https://ieeexplore.ieee.org/document/10621507">DCOSS 2024</a>.</p>
-                    <p>As an extension, we are considering a network-wide retuning of transmitter and receivers, where detuning results in a cascading failure of the
-                        current method due to the natural redistribution of energy. By changing the trigger from the absolute change to ReLU, we are making sure the 
-                        redistribution would not cause an undesirable activation of the retuners.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                    Bayesian-optimized Neural Net for Adsorption modeling (JTICE, 2023)
-                    <span class="chevron">&#9660;</span>
-                </div>
-                <div class="accordion-body">
-                    <p>I used a relatively simple NN (2 layered) with Huber loss objective function to model adsorption process of
-                        tetracycline removal by multi-walled carbon nanotube functionalized with aspartic acid and poly-pyrrole. Then we 
-                        implemented Bayesian Optimization with RMSE cost function as the hyperparameter tuning scheme. For decision variables, I chose 
-                        First Layer Neuron Count, Second Layer Neuron Count, Huber Constant, Learning Rate, First Layer Activation function, 
-                        First Layer Activation function, Batch size, Dropout, The exponential decay rate for the 1st moment estimates and 
-                        exponential decay rate for the exponentially weighted infinity norm (last two were hyperparameters of the optimizer NADAM). The results
-                        were published in <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876107023000731">Journal of the Taiwan Institute of 
-                        Chemical Engineers</a>.</p>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                    Multi-Library SINDy: A Computationally Efficient Framework for SINDy (In Progress)
-                    <span class="chevron">&#9660;</span>
-                </div>
-                <div class="accordion-body">
-                    <p>We showed that although SINDy is very efficient in finding the dynamics, however there is no need for some of the constraints, such 
-                        as a fixed library function for all the states. We showed using Multi-Library SINDy is more efficient in terms of computations and
-                        it can provide additional freedom in choosing and guiding the identification process.</p>
-                </div>
-            </div>
-        </section>
     </div>
 
     <footer>
