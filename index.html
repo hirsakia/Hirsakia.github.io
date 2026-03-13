@@ -8,134 +8,145 @@
     <meta name="keywords" content="Hirsa Kia, Computer Science, PhD, Temple University, Mechanical Engineering, Research, Projects">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
+        /* Color Palette Variables */
+        :root {
+            --bg-dark: #1F1F1F;
+            --text-light: #E6E6E6;
+            --khaki: #D4C4A8;
+            --light-blue: #8AB4F8;
+        }
+
         /* Enable smooth scrolling for anchor links */
         html {
             scroll-behavior: smooth;
         }
+
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1F1F1F;
-            color: #E6E6E6;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
         }
+
         nav {
-            background-color: #E6E6E6;
+            background-color: var(--text-light);
             padding: 1em;
             text-align: center;
-            position: sticky; /* Optional: keeps navbar at top while scrolling */
+            position: sticky;
             top: 0;
             z-index: 1000;
         }
+
         nav a {
-            color: #1F1F1F;
+            color: var(--bg-dark);
             padding: 1em;
             text-decoration: none;
             display: inline-block;
             transition: background-color 0.3s ease, border-radius 0.3s ease;
             font-weight: bold;
         }
+
         nav a:hover {
-            background-color: #D6596C;
+            background-color: var(--khaki);
             border-radius: 15px;
-            color: #E6E6E6;
+            color: var(--bg-dark);
         }
+
+        /* Two-Column Layout */
         .main-content {
             display: flex;
             align-items: flex-start;
             max-width: 1100px;
-            margin: 4em auto; /* Centers the whole app on the screen */
+            margin: 4em auto;
             padding: 0 2em;
+            padding-bottom: 6em; /* Extra padding for the footer */
         }
+
         .header-img {
-            width: 250px; /* Gives the photo and links a dedicated width */
-            flex-shrink: 0; /* Prevents the right column from crushing the left */
+            width: 250px;
+            flex-shrink: 0;
             margin-right: 3em; 
             text-align: left;
         }
-        .header-text {
-            flex-grow: 1;
-            min-width: 0; /* Prevents wide content from breaking the flex layout */
-        }
-        
-        
+
         .header-img img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
         }
-        /*
-        .main-content {
-            display: flex;
-            align-items: flex-start;
-            padding: 2em;
-            margin-left: 12em;
-            margin-right: 12em;
-            margin-top: 2em;
-        }
-        .header-img {
-            margin-right: 2em;
-            text-align: left;
-        }
-        .header-text {
-            flex-grow: 1;
-            text-align: left;
-        }*/
-        .header-text h1 {
+
+        .header-img h1 {
             margin: 0;
             margin-bottom: 1em;
         }
+
         .contact-info {
             list-style: none;
             padding: 0;
             margin: 0.5em 0 0 0;
         }
+
         .contact-info li {
             margin: 0.5em 0;
         }
+
         .contact-info a {
-            color: #E6E6E6;
+            color: var(--text-light);
             text-decoration: none;
         }
+
         .contact-info a:hover {
             text-decoration: underline;
         }
+
         .contact-info i {
+            color: var(--light-blue);
             margin-right: 0.5em;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2em;
-            padding-bottom: 6em; /* Extra padding so the footer doesn't cover the last project */
+
+        .header-text {
+            flex-grow: 1;
+            min-width: 0;
         }
+
         .section {
-            margin: 2em 0;
+            margin-bottom: 3em;
             text-align: justify;
         }
+
         .section h2 {
-            color: #D6596C;
+            color: var(--khaki);
             border-bottom: 2px solid #333;
             padding-bottom: 0.5em;
             margin-bottom: 1em;
         }
+
         .section a {
-            color: #D6596C;
+            color: var(--light-blue);
             text-decoration: none;
         }
+
         .section a:hover {
             text-decoration: underline;
         }
         
+        /* THIS FIXES THE SCROLL JUMP FOR THE PROJECTS NAV LINK */
+        #projects {
+            scroll-margin-top: 5em; 
+        }
+
         /* Accordion styles */
         .accordion-item {
             border-bottom: 1px solid #333;
             margin-bottom: 0.5em;
         }
+
         .accordion-header {
-            color: #D6596C;
+            color: var(--khaki);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -147,23 +158,28 @@
             font-size: 1.1em;
             font-weight: bold;
         }
+
         .accordion-header:hover {
             opacity: 0.8;
         }
+
         .accordion-header .chevron {
             font-size: 0.8em;
             transition: transform 0.3s ease;
             flex-shrink: 0;
             margin-left: 1em;
         }
+
         .accordion-header.open .chevron {
             transform: rotate(180deg);
         }
+
         .accordion-body {
             display: none;
             padding-bottom: 1em;
             padding-top: 0.5em;
         }
+
         .accordion-body.open {
             display: block;
         }
@@ -183,26 +199,18 @@
             .main-content {
                 flex-direction: column;
                 align-items: center;
-                margin-left: 1em;
-                margin-right: 1em;
-                padding: 1em;
+                margin: 2em auto;
             }
             .header-img {
                 margin-right: 0;
-                margin-bottom: 1em;
+                margin-bottom: 2em;
                 text-align: center;
             }
             .header-text {
-                text-align: center;
-            }
-            .container {
-                padding: 1em;
+                text-align: left;
             }
         }
     </style>
-    #projects {
-            scroll-margin-top: 5em; /* Adjust this value to get the perfect amount of breathing room */
-        }
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -252,7 +260,7 @@
                     under the supervision of <a href="https://scholar.google.com/citations?hl=en&user=Cz1X5e8AAAAJ&view_op=list_works&sortby=pubdate">Aghil Yousefi-Koma</a>.</p>
             </section>
 
-            <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, #1F1F1F, #333, #1F1F1F); margin: 3em 0;">
+            <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, var(--bg-dark), #333, var(--bg-dark)); margin: 3em 0;">
 
             <section id="projects" class="section">
                 <h2>Research & Projects</h2>
@@ -427,11 +435,9 @@
     </footer>
 
     <script>
-        // Automatically set the current year in the footer
+        // Set the dynamic copyright year
         document.getElementById('copyright-year').textContent = new Date().getFullYear();
-    </script>
 
-    <script>
         // Upgraded Accordion Script with Accessibility
         document.querySelectorAll('.accordion-header').forEach(header => {
             // Allow triggering with Enter/Space keys for accessibility
