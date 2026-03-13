@@ -420,8 +420,13 @@
     </div>
 
     <footer>
-        &copy; 2024 Hirsa Kia. All rights reserved.
+        &copy; <span id="copyright-year"></span> Hirsa Kia. All rights reserved.
     </footer>
+
+    <script>
+        // Automatically set the current year in the footer
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    </script>
 
     <script>
         // Upgraded Accordion Script with Accessibility
