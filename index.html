@@ -63,7 +63,7 @@
             max-width: 1100px;
             margin: 4em auto;
             padding: 0 2em;
-            padding-bottom: 6em; /* Extra padding for the footer */
+            padding-bottom: 6em; 
         }
 
         .header-img {
@@ -134,33 +134,34 @@
             text-decoration: underline;
         }
         
-        /* THIS FIXES THE SCROLL JUMP FOR THE PROJECTS NAV LINK */
         #projects {
-            scroll-margin-top: 10em; 
+            scroll-margin-top: 7.5em; 
         }
 
-        /* Accordion styles */
+        /* Accordion styles upgraded to Dark Cards */
         .accordion-item {
-            border-bottom: 1px solid #333;
-            margin-bottom: 0.5em;
+            background-color: #2A2A2A;
+            border-radius: 8px;
+            margin-bottom: 1em;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .accordion-item:hover {
+            background-color: #333;
+            transform: translateX(8px); /* Subtle slide matching the blog */
         }
 
         .accordion-header {
-            color: var(--light-blue);
+            color: var(--khaki);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             user-select: none;
             margin: 0;
-            padding: 1em 0;
-            transition: opacity 0.2s;
+            padding: 1.2em; /* Added internal padding so text doesn't hit the edges */
             font-size: 1.1em;
             font-weight: bold;
-        }
-
-        .accordion-header:hover {
-            opacity: 0.8;
         }
 
         .accordion-header .chevron {
@@ -176,8 +177,8 @@
 
         .accordion-body {
             display: none;
-            padding-bottom: 1em;
-            padding-top: 0.5em;
+            padding: 0 1.2em 1.2em 1.2em; /* Padding inside the card */
+            color: var(--text-light);
         }
 
         .accordion-body.open {
@@ -211,6 +212,7 @@
             }
         }
     </style>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
