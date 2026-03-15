@@ -344,6 +344,25 @@
 
                 <div class="accordion-item">
                     <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        Relational-Discriminative Fraud Detection
+                        <span class="chevron">&#9660;</span>
+                    </div>
+                    <div class="accordion-body">
+                        <ul>
+                            <li>Problem: Detect illicit money-laundering transactions in large-scale Bitcoin transaction graphs where fraud is rare and most nodes are unlabeled.</li>
+                            <li>Dataset: Elliptic Bitcoin Dataset (~200K nodes, 234K edges) with classes: Illicit (4,545), Licit (42,019), Unknown (157K).</li>
+                            <li>Approach: Evolve from vanilla GCN (AUPRC 0.5453) to GraphSAGE (AUPRC 0.6650) to hybrid GraphSAGE+XGBoost (AUPRC <strong>0.7539</strong>).</li>
+                            <li>GraphSAGE: Inductive neighborhood sampling with mean-pooling captures structural signatures like peeling chains and rapid distributions.</li>
+                            <li>Hybrid innovation: Stack 64-dim GraphSAGE embeddings with 165 raw features for XGBoost, combining relational context with discriminative signals.</li>
+                            <li>Visualization: t-SNE reveals "Fraud Islands" on the periphery of licit clusters, validating topological separation.</li>
+                            <li>Key insight: Relational-discriminative synergy resolves ambiguities in dense network cores where fraud signals are subtle.</li>
+                            <li>Status: Complete Jupyter notebook (<a href="FraudDet.ipynb">FraudDet.ipynb</a>) demonstrates scalable pipeline for blockchain forensics.[file:10]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
                         Augmenting Optimizers with NARS: A Learning Rate Scheduler
                         <span class="chevron">&#9660;</span>
                     </div>
