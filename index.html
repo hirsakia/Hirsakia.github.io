@@ -377,18 +377,18 @@
 
                 <div class="accordion-item">
                     <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        SINDy+RL for Pendulum and Nonstationary Oscillator Control
+                        Augmenting Optimizers with NARS: A Learning Rate Scheduler
                         <span class="chevron">&#9660;</span>
                     </div>
                     <div class="accordion-body">
                         <ul>
-                            <li>Goal: Combine Sparse Identification of Nonlinear Dynamics (SINDy) with model-based reinforcement learning to control nonlinear, possibly nonstationary systems.</li>
-                            <li>Systems: A classic swing-up pendulum and a second-order oscillator with time-varying stiffness and damping.</li>
-                            <li>Method: Learn compact SINDy surrogate models from limited interaction data and embed them in a receding-horizon planner that optimizes action sequences.</li>
-                            <li>Pendulum findings: Compare offline (fixed) and online (adaptive) SINDy-RL, showing that continuous model adaptation enables robust swing-up under noisy observations, whereas a small fixed model can converge to the wrong equilibrium.</li>
-                            <li>Nonstationary oscillator: Benchmark online SINDy-RL against a neural-network dynamics model and a model-free DQN agent.</li>
-                            <li>Performance: SINDy-RL matches the neural controller’s low tracking error (MSE ≈ 0.18 vs. 0.17) while keeping interpretable stiffness and damping coefficients.</li>
-                            <li>Robustness: SINDy-RL outperforms DQN by roughly two orders of magnitude in tracking error (MSE ≈ 11.15), illustrating robustness to drifting dynamics and data efficiency.</li>
+                            <li>Idea: Use the Non-Axiomatic Reasoning System (NARS) as a learning-rate scheduler that reasons explicitly about training signals instead of relying on fixed heuristics.</li>
+                            <li>Viewpoint: Treat learning-rate selection as a sequential decision problem over optimization phases (exploration, exploitation, fine-tuning).</li>
+                            <li>Representation: Encode loss trajectories, gradient norms, and validation performance as NARS beliefs with frequency–confidence truth values.</li>
+                            <li>Inference: Use syllogistic reasoning in NARS to select phase-specific learning-rate update strategies at each step.</li>
+                            <li>Experiments: Evaluate on the Rosenbrock function and deep networks trained on Fashion-MNIST and CIFAR-10.</li>
+                            <li>Results: Achieve roughly 75% lower final loss on Rosenbrock and accuracy gains of about 3.2% on Fashion-MNIST and 1.1% on CIFAR-10 over standard schedulers such as fixed-rate and OneCycle.</li>
+                            <li>Benefit: The scheduler provides interpretable explanations for each learning-rate adjustment, illustrating how symbolic reasoning can act as a meta-optimizer for deep learning.</li>
                         </ul>
                     </div>
                 </div>
@@ -409,21 +409,65 @@
                     </div>
                 </div>
 
-
                 <div class="accordion-item">
                     <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Augmenting Optimizers with NARS: A Learning Rate Scheduler
+                        Conversational Local RAG System (Llama 3.2 + ChromaDB)
+                        <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="accordion-body">
+                        <ul>
+                        <li><strong>Objective:</strong> Built a local-first RAG pipeline for private document querying using <strong>Ollama (Llama 3.2)</strong> and <strong>LangChain</strong>.</li>
+                        <li><strong>Architecture:</strong> Implemented a multi-format ingestion engine (PDF/TXT) using <code>DirectoryLoader</code> and <code>RecursiveCharacterTextSplitter</code> for semantic chunking.</li>
+                        <li><strong>Memory & Grounding:</strong> Developed a chat history buffer using <code>MessagesPlaceholder</code> to enable context-aware multi-turn conversations and enforced strict grounding via metadata-based source citations.</li>
+                        <li><strong>Stack:</strong> Python, ChromaDB, HuggingFace Embeddings (all-MiniLM-L6-v2), Ollama.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        Advanced RAG with Hybrid Retrieval & Cross-Encoder Reranking
+                        <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="accordion-body">
+                        <ul>
+                        <li><strong>Approach:</strong> Enhanced retrieval precision by implementing <strong>Hybrid Search</strong>, combining semantic vectors (ChromaDB) with keyword-based retrieval (BM25).</li>
+                        <li><strong>Refinement:</strong> Integrated <strong>FlashRank</strong> (cross-encoder) to re-score and filter the top retrieved chunks, significantly reducing noise in the context window.</li>
+                        <li><strong>Query Transformation:</strong> Added a contextualization layer to reformulate follow-up user questions into standalone queries for improved retrieval accuracy.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        Agentic RAG: LangGraph Orchestration & SQL Integration
+                        <span class="chevron">&#9660;</span>
+                        </div>
+                        <div class="accordion-body">
+                        <ul>
+                        <li><strong>Agentic Control:</strong> Utilized <strong>LangGraph</strong> to build a state-machine-based agent that routes queries between unstructured documents and structured <strong>PostgreSQL</strong> data.</li>
+                        <li><strong>Self-Correction:</strong> Implemented a "Quality Check" retry loop that assesses context sufficiency; if data is missing, the agent triggers broader query expansion and re-retrieval (up to 2x).</li>
+                        <li><strong>SQL Routing:</strong> Built a dynamic text-to-SQL path that allows the LLM to query student records and grades directly from a relational database when appropriate.</li>
+                        <li><strong>Capabilities:</strong> Support for query expansion (generating 3 related sub-queries) and automated routing decisions based on database schema metadata.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
+                        SINDy+RL for Pendulum and Nonstationary Oscillator Control
                         <span class="chevron">&#9660;</span>
                     </div>
                     <div class="accordion-body">
                         <ul>
-                            <li>Idea: Use the Non-Axiomatic Reasoning System (NARS) as a learning-rate scheduler that reasons explicitly about training signals instead of relying on fixed heuristics.</li>
-                            <li>Viewpoint: Treat learning-rate selection as a sequential decision problem over optimization phases (exploration, exploitation, fine-tuning).</li>
-                            <li>Representation: Encode loss trajectories, gradient norms, and validation performance as NARS beliefs with frequency–confidence truth values.</li>
-                            <li>Inference: Use syllogistic reasoning in NARS to select phase-specific learning-rate update strategies at each step.</li>
-                            <li>Experiments: Evaluate on the Rosenbrock function and deep networks trained on Fashion-MNIST and CIFAR-10.</li>
-                            <li>Results: Achieve roughly 75% lower final loss on Rosenbrock and accuracy gains of about 3.2% on Fashion-MNIST and 1.1% on CIFAR-10 over standard schedulers such as fixed-rate and OneCycle.</li>
-                            <li>Benefit: The scheduler provides interpretable explanations for each learning-rate adjustment, illustrating how symbolic reasoning can act as a meta-optimizer for deep learning.</li>
+                            <li>Goal: Combine Sparse Identification of Nonlinear Dynamics (SINDy) with model-based reinforcement learning to control nonlinear, possibly nonstationary systems.</li>
+                            <li>Systems: A classic swing-up pendulum and a second-order oscillator with time-varying stiffness and damping.</li>
+                            <li>Method: Learn compact SINDy surrogate models from limited interaction data and embed them in a receding-horizon planner that optimizes action sequences.</li>
+                            <li>Pendulum findings: Compare offline (fixed) and online (adaptive) SINDy-RL, showing that continuous model adaptation enables robust swing-up under noisy observations, whereas a small fixed model can converge to the wrong equilibrium.</li>
+                            <li>Nonstationary oscillator: Benchmark online SINDy-RL against a neural-network dynamics model and a model-free DQN agent.</li>
+                            <li>Performance: SINDy-RL matches the neural controller’s low tracking error (MSE ≈ 0.18 vs. 0.17) while keeping interpretable stiffness and damping coefficients.</li>
+                            <li>Robustness: SINDy-RL outperforms DQN by roughly two orders of magnitude in tracking error (MSE ≈ 11.15), illustrating robustness to drifting dynamics and data efficiency.</li>
                         </ul>
                     </div>
                 </div>
