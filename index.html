@@ -343,23 +343,21 @@
                 </div>
 
                 <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Relational-Discriminative Fraud Detection
-                        <span class="chevron">&#9660;</span>
+                    <div class="accordion-header">
+                        Relational-Discriminative Fraud Detection (3 Datasets, GNN+ML)
+                        <span class="chevron">▼</span>
                     </div>
                     <div class="accordion-body">
                         <ul>
-                            <li>Problem: Detect illicit money-laundering transactions in large-scale Bitcoin transaction graphs where fraud is rare and most nodes are unlabeled.</li>
-                            <li>Dataset: Elliptic Bitcoin Dataset (~200K nodes, 234K edges) with classes: Illicit (4,545), Licit (42,019), Unknown (157K).</li>
-                            <li>Approach: Evolve from vanilla GCN (AUPRC 0.5453) to GraphSAGE (AUPRC 0.6650) to hybrid GraphSAGE+XGBoost (AUPRC <strong>0.7539</strong>).</li>
-                            <li>GraphSAGE: Inductive neighborhood sampling with mean-pooling captures structural signatures like peeling chains and rapid distributions.</li>
-                            <li>Hybrid innovation: Stack 64-dim GraphSAGE embeddings with 165 raw features for XGBoost, combining relational context with discriminative signals.</li>
-                            <li>Visualization: t-SNE reveals "Fraud Islands" on the periphery of licit clusters, validating topological separation.</li>
-                            <li>Key insight: Relational-discriminative synergy resolves ambiguities in dense network cores where fraud signals are subtle.</li>
-                            <li>Status: Complete Jupyter notebook (<a href="FraudDet.ipynb">FraudDet.ipynb</a>) demonstrates scalable pipeline for blockchain forensics.[file:10]</li>
+                            <li><strong>Credit Card (284K txns):</strong> XGBoost scale_pos_weight beats SMOTE-RF (AUPRC 0.8779 vs 0.8293); CV 0.8616; top features viz.</li>
+                            <li><strong>BAF (1M accounts):</strong> Temporal split + dummies; age-FPR fairness audit (0.03-0.24); prod KaggleHub loader.</li>
+                            <li><strong>Bitcoin Graph (200K nodes):</strong> GCN→SAGE→hybrid (0.545→0.665→0.7539 AUPRC); t-SNE "Fraud Islands"; peeling-chain detection.</li>
+                            <li><strong>Key Insight:</strong> Hybrid stacking (GNN embeddings + raw feats) resolves core ambiguities; scalable for blockchain forensics.</li>
+                            <li>Tech: PyG, XGBoost, SMOTE, t-SNE, fairness metrics. <a href="FraudDet.ipynb">Full notebook</a>[file:10]</li>
                         </ul>
                     </div>
                 </div>
+
 
                 <div class="accordion-item">
                     <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
