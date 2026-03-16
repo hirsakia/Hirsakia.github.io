@@ -22,8 +22,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.6;
@@ -31,108 +30,79 @@
 
         nav {
             background-color: var(--text-light);
-            padding: 1em;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            padding: 1em; text-align: center;
+            position: sticky; top: 0; z-index: 1000;
         }
 
         nav a {
-            color: var(--bg-dark);
-            padding: 1em;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            font-weight: bold;
+            color: var(--bg-dark); padding: 1em;
+            text-decoration: none; display: inline-block;
+            transition: all 0.3s ease; font-weight: bold;
         }
 
-        nav a:hover {
-            background-color: var(--khaki);
-            border-radius: 15px;
-        }
+        nav a:hover { background-color: var(--khaki); border-radius: 15px; }
 
         .main-content {
-            display: flex;
-            align-items: flex-start;
-            max-width: 1300px;
-            margin: 2em auto;
+            display: flex; align-items: flex-start;
+            max-width: 1300px; margin: 2em auto;
             padding: 0 2em 6em 2em;
         }
 
-        .header-img {
-            width: 250px;
-            flex-shrink: 0;
-            margin-right: 2em;
-        }
-
-        .header-img img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 1em;
-        }
-
+        .header-img { width: 250px; flex-shrink: 0; margin-right: 2em; }
+        .header-img img { width: 150px; height: 150px; border-radius: 50%; margin-bottom: 1em; }
         .header-img h1 { color: var(--light-blue); margin: 0; }
 
         .contact-info { list-style: none; padding: 0; margin-top: 1em; }
         .contact-info li { margin: 0.5em 0; }
         .contact-info a { color: var(--text-light); text-decoration: none; }
-        .contact-info i { color: var(--light-blue); margin-right: 0.5em; width: 20px; }
+        .contact-info i { color: var(--light-blue); margin-right: 0.5em; width: 20px; text-align: center; }
 
         .header-text { flex-grow: 1; min-width: 0; }
 
         .section { margin-bottom: 4em; scroll-margin-top: 100px; }
-        .section h2 {
-            color: var(--light-blue);
-            border-bottom: 2px solid #333;
-            padding-bottom: 0.5em;
-        }
+        .section h2 { color: var(--light-blue); border-bottom: 2px solid #333; padding-bottom: 0.5em; margin-bottom: 1.5em; }
 
         /* Accordion Logic */
         .accordion-item {
             background-color: var(--card-bg);
-            border-radius: 8px;
-            margin-bottom: 0.8em;
-            overflow: hidden;
-            transition: transform 0.2s;
+            border-radius: 8px; margin-bottom: 0.8em;
+            overflow: hidden; transition: transform 0.2s;
         }
 
         .accordion-header {
-            padding: 1.2em;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            user-select: none;
+            padding: 1.1em; cursor: pointer;
+            display: flex; justify-content: space-between;
+            align-items: center; font-weight: bold; user-select: none;
         }
 
         /* Parent Categories */
         .parent-category { background-color: #333; border: 1px solid #444; }
         .parent-category .header-title { color: var(--light-blue); font-size: 1.1em; }
-        .parent-category .header-title i { margin-right: 10px; }
+        .parent-category .header-title i { margin-right: 12px; }
 
         /* Child Projects */
         .child-project { background-color: #252525; margin-left: 1.5em; border-left: 2px solid var(--khaki); }
         .child-project .header-title { color: var(--khaki); font-size: 0.95em; }
 
-        .chevron { transition: transform 0.3s; font-size: 0.8em; }
+        .chevron { transition: transform 0.3s; font-size: 0.8em; opacity: 0.7; }
         .accordion-header.open .chevron { transform: rotate(180deg); }
 
         .accordion-body { display: none; padding: 0 1.5em 1.2em 1.5em; }
         .accordion-body.open { display: block; }
-        .accordion-body ul { padding-left: 1.2em; margin: 0; }
-        .accordion-body li { margin-bottom: 0.5em; }
+        .accordion-body ul { padding-left: 1.2em; margin: 0.5em 0; }
+        .accordion-body li { margin-bottom: 0.6em; font-size: 0.95em; text-align: justify; }
 
         /* Publications */
-        .pub-list { display: flex; flex-direction: column; gap: 1.5em; }
+        .pub-list { display: flex; flex-direction: column; gap: 1.2em; }
         .pub-item { display: flex; gap: 1.5em; border-left: 2px solid var(--light-blue); padding-left: 1.2em; }
-        .pub-year { font-weight: bold; color: var(--khaki); min-width: 45px; }
+        .pub-year { font-weight: bold; color: var(--khaki); min-width: 50px; }
+        .pub-detail strong { color: var(--text-light); }
         .pub-detail a { 
             font-size: 0.8em; border: 1px solid var(--light-blue); 
             padding: 2px 8px; border-radius: 4px; color: var(--light-blue); text-decoration: none;
+            display: inline-block; margin-top: 5px; transition: 0.2s;
         }
+        .pub-detail a:hover { background: var(--light-blue); color: var(--bg-dark); }
 
         footer {
             background-color: #333; color: white; text-align: center;
@@ -162,7 +132,7 @@
             <h1>Hirsa Kia</h1>
             <ul class="contact-info">
                 <li><a href="mailto:hirsa.kia@temple.edu"><i class="fas fa-envelope"></i>Email</a></li>
-                <li><a href="https://scholar.google.com/citations?user=sjYygyUAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i>Scholar</a></li>
+                <li><a href="https://scholar.google.com/citations?user=sjYygyUAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a></li>
                 <li><a href="https://www.linkedin.com/in/hirsakia/" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a></li>
                 <li><a href="https://github.com/hirsakia" target="_blank"><i class="fab fa-github"></i>GitHub</a></li>
             </ul>
@@ -171,7 +141,7 @@
         <div class="header-text">
             <section id="about" class="section">
                 <h2>About Me</h2>
-                <p>Hello! I'm Hirsa Kia, a Computer Science PhD student at Temple University. Under the supervision of <a href="https://www.kkant.net" target="_blank">Krishna Kant</a>, I work on reconfigurable intra-body networks. Previously, I completed my MSc in Mechanical Engineering at the University of Tehran, focused on humanoid sensor fusion and robotics.</p>
+                <p>Hello! I'm Hirsa Kia, a Computer Science PhD student at Temple University. Under the supervision of <a href="https://www.kkant.net" target="_blank">Krishna Kant</a>, I work on reconfigurable intra-body networks. Previously, I completed my MSc in Mechanical Engineering at the University of Tehran, working at <a href="https://cast-tech.ir/">CAST lab</a> on humanoid robots under <a href="https://scholar.google.com/citations?hl=en&user=Cz1X5e8AAAAJ">Aghil Yousefi-Koma</a>.</p>
             </section>
 
             <section id="projects" class="section">
@@ -179,7 +149,7 @@
 
                 <div class="accordion-item parent-category">
                     <div class="accordion-header">
-                        <span class="header-title"><i class="fas fa-network-wired"></i> Intra-body Networks</span>
+                        <span class="header-title"><i class="fas fa-network-wired"></i> Intra-body Networks (CDMNs)</span>
                         <span class="chevron">&#9660;</span>
                     </div>
                     <div class="accordion-body">
@@ -191,9 +161,9 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li><b>Problem:</b> Distributing wireless power via Magnetic Resonance (MRC) to implanted sensors.</li>
-                                    <li><b>Insight:</b> Compared Centralized vs. Decentralized vs. Hybrid policies.</li>
-                                    <li><b>Result:</b> Hybrid policies recover centralized efficiency without losing robustness to demand spikes.</li>
+                                    <li><b>Problem:</b> Distributing limited wireless power via Magnetic Resonance (MRC) to multiple implanted hubs.</li>
+                                    <li><b>Approach:</b> Compared Centralized, Decentralized, and Hybrid allocation strategies using energy-centric simulations.</li>
+                                    <li><b>Bandit Extension:</b> Formulated subset selection as a <b>Contextual Bandit</b> (Linear Thompson Sampling), reducing reliance on imperfect path-loss models.</li>
                                 </ul>
                             </div>
                         </div>
@@ -205,22 +175,35 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li><b>Problem:</b> Preserving physiological signal fidelity while minimizing radio usage.</li>
-                                    <li><b>Method:</b> Closed-loop Kalman-filter controller where sensors transmit only when prediction error exceeds a dynamic threshold.</li>
-                                    <li><b>Impact:</b> Reduced communication energy by 30–67% with >88% accuracy.</li>
+                                    <li><b>Problem:</b> Balancing communication energy with physiological signal fidelity.</li>
+                                    <li><b>Mechanism:</b> Closed-loop Kalman-filter controller where sensors transmit only when prediction error exceeds a dynamic threshold.</li>
+                                    <li><b>Result:</b> Achieved 30–67% reduction in transmissions with 88–94% reconstruction accuracy.</li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="accordion-item child-project">
                             <div class="accordion-header">
-                                <span class="header-title">Autotuning in MRC circuits (DCOSS, 2024)</span>
+                                <span class="header-title">Autotuning of MRC Communications (DCOSS, 2024)</span>
                                 <span class="chevron">&#9660;</span>
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li><b>Problem:</b> Maintaining resonance in non-stationary environments.</li>
-                                    <li><b>Method:</b> Adaptive controller using a zeroth-order gradient oracle for capacitance tuning.</li>
+                                    <li><b>Problem:</b> Maintaining resonance between transmitter/receiver circuits under environmental shifts.</li>
+                                    <li><b>Control:</b> Adaptive controller using zeroth-order gradient estimation for real-time capacitance tuning.</li>
+                                    <li><b>Network Fix:</b> Implemented a ReLU-based trigger to prevent cascading failures during redistribution.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">Through-the-body Comms (WiMob, 2024)</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Focus:</b> Comparative study of Magnetic Resonance vs. Ultrasound-based communications for deep-tissue medical implants.</li>
                                 </ul>
                             </div>
                         </div>
@@ -230,33 +213,57 @@
 
                 <div class="accordion-item parent-category">
                     <div class="accordion-header">
-                        <span class="header-title"><i class="fas fa-wave-square"></i> RL & Nonlinear Dynamics</span>
+                        <span class="header-title"><i class="fas fa-wave-square"></i> RL, Control & Dynamics</span>
                         <span class="chevron">&#9660;</span>
                     </div>
                     <div class="accordion-body">
                         
                         <div class="accordion-item child-project">
                             <div class="accordion-header">
-                                <span class="header-title">SINDy+RL for Control</span>
+                                <span class="header-title">SINDy+RL for Nonlinear Control</span>
                                 <span class="chevron">&#9660;</span>
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li><b>Goal:</b> Combined Sparse Identification of Nonlinear Dynamics (SINDy) with RL for swing-up pendulum control.</li>
-                                    <li><b>Result:</b> SINDy-RL outperformed DQN by two orders of magnitude in tracking error while remaining fully interpretable.</li>
+                                    <li><b>Method:</b> Combined Sparse Identification of Nonlinear Dynamics (SINDy) with model-based RL to control nonstationary systems (Pendulum, Oscillators).</li>
+                                    <li><b>Robustness:</b> SINDy-RL matched neural controllers in error while outperforming DQN by two orders of magnitude in tracking accuracy.</li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="accordion-item child-project">
                             <div class="accordion-header">
-                                <span class="header-title">Macroeconomy Dynamics Discovery (Comp. Econ, 2025)</span>
+                                <span class="header-title">Multi-Library SINDy (In Progress)</span>
                                 <span class="chevron">&#9660;</span>
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li><b>Method:</b> Used Transfer Entropy and SINDyC to build an explainable model of unemployment/inflation.</li>
-                                    <li><b>Insight:</b> Identified stability regions based on interest rate policy via phase-plane analysis.</li>
+                                    <li><b>Innovation:</b> Allowing tailored function libraries for different state variables to reduce computational cost and improve flexibility in governing equation discovery.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">Macroeconomic Dynamics Discovery (Comp. Econ, 2025)</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Data:</b> Quarterly FRED data (1960–2022) for unemployment, inflation, GDP, and interest rates.</li>
+                                    <li><b>Discovery:</b> Used SINDyC and Transfer Entropy to map explainable regimes of stability and drift.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">TD Learning with State Aggregation</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Research:</b> Studied TD convergence under linear function approximation to clarify how specific aggregations preserve or break convergence guarantees.</li>
                                 </ul>
                             </div>
                         </div>
@@ -266,10 +273,23 @@
 
                 <div class="accordion-item parent-category">
                     <div class="accordion-header">
-                        <span class="header-title"><i class="fas fa-robot"></i> LLM & Applied Machine Learning</span>
+                        <span class="header-title"><i class="fas fa-brain"></i> Applied ML & LLM Systems</span>
                         <span class="chevron">&#9660;</span>
                     </div>
                     <div class="accordion-body">
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">Augmenting Optimizers with NARS (Scheduler)</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Concept:</b> Used Non-Axiomatic Reasoning System (NARS) as a symbolic meta-optimizer for learning-rate scheduling.</li>
+                                    <li><b>Result:</b> Gained ~3.2% accuracy on Fashion-MNIST over OneCycle/Fixed schedulers with full interpretability of rate adjustments.</li>
+                                </ul>
+                            </div>
+                        </div>
                         
                         <div class="accordion-item child-project">
                             <div class="accordion-header">
@@ -278,8 +298,8 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li><b>Stack:</b> LangGraph, PostgreSQL, Llama 3.2.</li>
-                                    <li><b>Feature:</b> State-machine agent that routes queries between structured SQL data and unstructured PDFs with a self-correction loop.</li>
+                                    <li><b>System:</b> Built a state-machine agent routing between PostgreSQL and PDF data.</li>
+                                    <li><b>Self-Correction:</b> Implemented a "Quality Check" loop for query expansion and re-retrieval.</li>
                                 </ul>
                             </div>
                         </div>
@@ -291,21 +311,32 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li><b>Task:</b> Fine-tuned Mistral-7B on Apple Silicon using the MLX framework.</li>
-                                    <li><b>Efficiency:</b> Trained only 0.145% of parameters to gain 4.5% zero-shot accuracy improvement.</li>
+                                    <li><b>Implementation:</b> Fine-tuned Mistral-7B using MLX on Apple Silicon.</li>
+                                    <li><b>Metric:</b> Outperformed base model by 4.5% while training only 0.145% of parameters.</li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="accordion-item child-project">
                             <div class="accordion-header">
-                                <span class="header-title">GNN-based Fraud Detection</span>
+                                <span class="header-title">Bayesian-Optimized Adsorption Modeling (JTICE, 2023)</span>
                                 <span class="chevron">&#9660;</span>
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li><b>Method:</b> Hybrid stacking (GNN embeddings + XGBoost) on Bitcoin transaction graphs.</li>
-                                    <li><b>Insight:</b> Successfully detected "Fraud Islands" and peeling chains.</li>
+                                    <li><b>Method:</b> Used Bayesian Optimization to tune a multi-layer Neural Network for tetracycline removal modeling via carbon nanotubes.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">GNN Fraud Detection (3 Datasets)</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Hybrid Approach:</b> Combined GraphSAGE embeddings with XGBoost to identify "Fraud Islands" in Bitcoin transaction graphs.</li>
                                 </ul>
                             </div>
                         </div>
@@ -315,7 +346,7 @@
             </section>
 
             <section id="publications" class="section">
-                <h2>Selected Publications</h2>
+                <h2>Publications</h2>
                 <div class="pub-list">
                     <div class="pub-item">
                         <span class="pub-year">2025</span>
@@ -327,15 +358,36 @@
                     <div class="pub-item">
                         <span class="pub-year">2025</span>
                         <div class="pub-detail">
-                            <strong>Energy efficiency and communication accuracy tradeoff</strong><br>
-                            <em>CHASE</em> | <a href="https://doi.org/10.1145/3721201.3721411" target="_blank">DOI</a>
+                            <strong>Energy efficiency and communication accuracy tradeoff in intra-body networks</strong><br>
+                            <em>IEEE/ACM CHASE</em> | <a href="https://doi.org/10.1145/3721201.3721411" target="_blank">DOI</a>
+                        </div>
+                    </div>
+                    <div class="pub-item">
+                        <span class="pub-year">2025</span>
+                        <div class="pub-detail">
+                            <strong>Nonlinear Macroeconomic Model Based on TE, SINDYC, and Phase Plane Analysis</strong><br>
+                            <em>Computational Economics</em> | <a href="https://link.springer.com/article/10.1007/s10614-025-11012-0" target="_blank">DOI</a>
                         </div>
                     </div>
                     <div class="pub-item">
                         <span class="pub-year">2024</span>
                         <div class="pub-detail">
                             <strong>Autotuning of resonant magnetic induction communications</strong><br>
-                            <em>DCOSS-IoT</em> | <a href="https://ieeexplore.ieee.org/document/10621507" target="_blank">DOI</a>
+                            <em>IEEE DCOSS-IoT</em> | <a href="https://ieeexplore.ieee.org/document/10621507" target="_blank">DOI</a>
+                        </div>
+                    </div>
+                    <div class="pub-item">
+                        <span class="pub-year">2024</span>
+                        <div class="pub-detail">
+                            <strong>Through-the-body communications study</strong><br>
+                            <em>IEEE WiMob</em> | <a href="https://ieeexplore.ieee.org/abstract/document/10770313" target="_blank">DOI</a>
+                        </div>
+                    </div>
+                    <div class="pub-item">
+                        <span class="pub-year">2023</span>
+                        <div class="pub-detail">
+                            <strong>Adsorption modeling via Bayesian optimized artificial neural network</strong><br>
+                            <em>JTICE</em> | <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876107023000731" target="_blank">DOI</a>
                         </div>
                     </div>
                 </div>
@@ -344,7 +396,7 @@
     </div>
 
     <footer>
-        &copy; <span id="year"></span> Hirsa Kia. Built with care.
+        &copy; <span id="year"></span> Hirsa Kia. All rights reserved.
     </footer>
 
     <script>
@@ -354,7 +406,7 @@
             header.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const body = header.nextElementSibling;
-                header.classList.toggle('open');
+                const isOpen = header.classList.toggle('open');
                 body.classList.toggle('open');
             });
         });
