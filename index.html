@@ -10,18 +10,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Color Palette Variables */
         :root {
             --bg-dark: #1F1F1F;
             --text-light: #E6E6E6;
             --khaki: #D4C4A8;
             --light-blue: #8AB4F8;
+            --card-bg: #2A2A2A;
         }
 
-        /* Enable smooth scrolling for anchor links */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -46,242 +43,111 @@
             padding: 1em;
             text-decoration: none;
             display: inline-block;
-            transition: background-color 0.3s ease, border-radius 0.3s ease;
+            transition: all 0.3s ease;
             font-weight: bold;
         }
 
         nav a:hover {
             background-color: var(--khaki);
             border-radius: 15px;
-            color: var(--bg-dark);
         }
 
-        /* Two-Column Layout - Adjusted for width and spacing */
         .main-content {
             display: flex;
             align-items: flex-start;
-            max-width: 1300px; /* Increased width */
-            margin: 2em auto;  /* Reduced top margin to lift content */
-            padding: 0 2em;
-            padding-bottom: 6em; 
+            max-width: 1300px;
+            margin: 2em auto;
+            padding: 0 2em 6em 2em;
         }
 
         .header-img {
             width: 250px;
             flex-shrink: 0;
-            margin-right: 1.5em; /* Columns closer together */
-            text-align: left;
+            margin-right: 2em;
         }
 
         .header-img img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-        }
-
-        .header-img h1 {
-            margin: 0;
             margin-bottom: 1em;
-            color: var(--light-blue);
         }
 
-        .contact-info {
-            list-style: none;
-            padding: 0;
-            margin: 0.5em 0 0 0;
-        }
+        .header-img h1 { color: var(--light-blue); margin: 0; }
 
-        .contact-info li {
-            margin: 0.5em 0;
-        }
+        .contact-info { list-style: none; padding: 0; margin-top: 1em; }
+        .contact-info li { margin: 0.5em 0; }
+        .contact-info a { color: var(--text-light); text-decoration: none; }
+        .contact-info i { color: var(--light-blue); margin-right: 0.5em; width: 20px; }
 
-        .contact-info a {
-            color: var(--text-light);
-            text-decoration: none;
-        }
+        .header-text { flex-grow: 1; min-width: 0; }
 
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        .contact-info i {
-            color: var(--light-blue);
-            margin-right: 0.5em;
-        }
-
-        .header-text {
-            flex-grow: 1;
-            min-width: 0;
-        }
-
-        /* Section Styling with Nav Landing Fixes */
-        .section {
-            margin-bottom: 3em;
-            text-align: justify;
-            scroll-margin-top: 100px; /* Space for sticky nav */
-        }
-        
-        #about {
-            margin-top: 0;
-            scroll-margin-top: 120px; 
-        }
-
+        .section { margin-bottom: 4em; scroll-margin-top: 100px; }
         .section h2 {
             color: var(--light-blue);
             border-bottom: 2px solid #333;
             padding-bottom: 0.5em;
-            margin-bottom: 1em;
         }
 
-        .section a {
-            color: var(--light-blue);
-            text-decoration: none;
-        }
-
-        .section a:hover {
-            text-decoration: underline;
-        }
-
-        /* Publications List Styling */
-        .pub-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5em;
-        }
-
-        .pub-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5em;
-            border-left: 2px solid var(--light-blue);
-            padding-left: 1.2em;
-        }
-
-        .pub-year {
-            font-weight: bold;
-            color: var(--khaki);
-            min-width: 45px;
-        }
-
-        .pub-detail strong {
-            color: var(--text-light);
-        }
-
-        .pub-detail em {
-            color: var(--light-blue);
-            font-size: 0.95em;
-        }
-
-        .pub-detail a {
-            font-size: 0.85em;
-            margin-top: 0.3em;
-            display: inline-block;
-            text-decoration: none;
-            border: 1px solid var(--light-blue);
-            padding: 2px 8px;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-
-        .pub-detail a:hover {
-            background-color: var(--light-blue);
-            color: var(--bg-dark);
-            text-decoration: none;
-        }
-
-        /* Accordion styles */
+        /* Accordion Logic */
         .accordion-item {
-            background-color: #2A2A2A;
+            background-color: var(--card-bg);
             border-radius: 8px;
-            margin-bottom: 1em;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-
-        .accordion-item:hover {
-            background-color: #333;
-            transform: translateX(8px);
+            margin-bottom: 0.8em;
+            overflow: hidden;
+            transition: transform 0.2s;
         }
 
         .accordion-header {
-            color: var(--khaki);
+            padding: 1.2em;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            user-select: none;
-            margin: 0;
-            padding: 1.2em;
-            font-size: 1.1em;
             font-weight: bold;
+            user-select: none;
         }
 
-        .accordion-header .chevron {
-            font-size: 0.8em;
-            transition: transform 0.3s ease;
-            flex-shrink: 0;
-            margin-left: 1em;
-        }
+        /* Parent Categories */
+        .parent-category { background-color: #333; border: 1px solid #444; }
+        .parent-category .header-title { color: var(--light-blue); font-size: 1.1em; }
+        .parent-category .header-title i { margin-right: 10px; }
 
-        .accordion-header.open .chevron {
-            transform: rotate(180deg);
-        }
+        /* Child Projects */
+        .child-project { background-color: #252525; margin-left: 1.5em; border-left: 2px solid var(--khaki); }
+        .child-project .header-title { color: var(--khaki); font-size: 0.95em; }
 
-        .accordion-body {
-            display: none;
-            padding: 0 1.2em 1.2em 1.2em;
-            color: var(--text-light);
-        }
+        .chevron { transition: transform 0.3s; font-size: 0.8em; }
+        .accordion-header.open .chevron { transform: rotate(180deg); }
 
-        .accordion-body.open {
-            display: block;
+        .accordion-body { display: none; padding: 0 1.5em 1.2em 1.5em; }
+        .accordion-body.open { display: block; }
+        .accordion-body ul { padding-left: 1.2em; margin: 0; }
+        .accordion-body li { margin-bottom: 0.5em; }
+
+        /* Publications */
+        .pub-list { display: flex; flex-direction: column; gap: 1.5em; }
+        .pub-item { display: flex; gap: 1.5em; border-left: 2px solid var(--light-blue); padding-left: 1.2em; }
+        .pub-year { font-weight: bold; color: var(--khaki); min-width: 45px; }
+        .pub-detail a { 
+            font-size: 0.8em; border: 1px solid var(--light-blue); 
+            padding: 2px 8px; border-radius: 4px; color: var(--light-blue); text-decoration: none;
         }
 
         footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            z-index: 1000;
+            background-color: #333; color: white; text-align: center;
+            padding: 1em 0; position: fixed; width: 100%; bottom: 0; z-index: 1000;
         }
 
         @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-                align-items: center;
-                margin: 2em auto;
-            }
-            .header-img {
-                margin-right: 0;
-                margin-bottom: 2em;
-                text-align: center;
-            }
-            .header-text {
-                text-align: left;
-            }
+            .main-content { flex-direction: column; align-items: center; }
+            .header-img { margin-right: 0; text-align: center; margin-bottom: 2em; }
+            .child-project { margin-left: 0.5em; }
         }
     </style>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Hirsa Kia",
-      "jobTitle": "PhD Student",
-      "affiliation": "Temple University",
-      "email": "mailto:hirsa.kia@temple.edu",
-      "url": "https://github.com/hirsakia",
-      "sameAs": [
-        "https://www.linkedin.com/in/hirsakia/",
-        "https://scholar.google.com/citations?user=sjYygyUAAAAJ&hl=en",
-        "https://github.com/hirsakia"
-      ]
-    }
-    </script>
 </head>
 <body>
+
     <nav>
         <a href="#about">About</a>
         <a href="#projects">Research</a>
@@ -291,357 +157,205 @@
     </nav>
 
     <div class="main-content">
-        
         <div class="header-img">
-            <img src="Images/IMG_2420.JPG" alt="Photo of Hirsa Kia">
+            <img src="Images/IMG_2420.JPG" alt="Hirsa Kia">
             <h1>Hirsa Kia</h1>
             <ul class="contact-info">
                 <li><a href="mailto:hirsa.kia@temple.edu"><i class="fas fa-envelope"></i>Email</a></li>
-                <li><a href="https://scholar.google.com/citations?user=sjYygyUAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i>Google Scholar</a></li>
+                <li><a href="https://scholar.google.com/citations?user=sjYygyUAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i>Scholar</a></li>
                 <li><a href="https://www.linkedin.com/in/hirsakia/" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a></li>
                 <li><a href="https://github.com/hirsakia" target="_blank"><i class="fab fa-github"></i>GitHub</a></li>
             </ul>
         </div>
 
         <div class="header-text">
-            
             <section id="about" class="section">
                 <h2>About Me</h2>
-                <p>Hello! I'm Hirsa Kia, Computer Science PhD student at Temple University. 
-                    Under the supervision of <a href="https://www.kkant.net">Krishna Kant</a>, I am working on reconfigurable intra-body networks.
-                    I completed my MSc in Mechanical Engineering from 
-                    University of Tehran, working at <a href="https://cast-tech.ir/">CAST lab</a> on humanoid robots 
-                    under the supervision of <a href="https://scholar.google.com/citations?hl=en&user=Cz1X5e8AAAAJ">Aghil Yousefi-Koma</a>.</p>
+                <p>Hello! I'm Hirsa Kia, a Computer Science PhD student at Temple University. Under the supervision of <a href="https://www.kkant.net" target="_blank">Krishna Kant</a>, I work on reconfigurable intra-body networks. Previously, I completed my MSc in Mechanical Engineering at the University of Tehran, focused on humanoid sensor fusion and robotics.</p>
             </section>
-
-            <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, var(--bg-dark), #333, var(--bg-dark)); margin: 3em 0;">
 
             <section id="projects" class="section">
                 <h2>Research & Projects</h2>
 
-                
-
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        TD with Linear Function Approximation in State Aggregated Setting
-                        <span class="chevron">&#9660;</span>
-                    </div>
-                    <div class="accordion-body">
-                    <ul>
-                        <li>Temporal Difference (TD) learning is central to many successful reinforcement learning methods but can diverge under function approximation.</li>
-                        <li>I study how TD convergence depends on state representation in a simplified setting with linear function approximation and state aggregation.</li>
-                        <li>The goal is to clarify when particular aggregations preserve or break TD’s convergence guarantees in practice.</li>
-                        <li>I wrote up the analysis and examples in a technical report, available as a blog <a href="blog_post_1.html">post</a>.</li>
-                    </ul>
-                </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Energy Transfer Strategies in Intrabody Networks (WoWMoM, 2025)
-                        <span class="chevron">&#9660;</span>
-                    </div>
-                    <div class="accordion-body">
-                        <ul>
-                            <li>Problem: A single on-body node must distribute limited wireless power via Magnetic Resonance Communication (MRC) to multiple implanted hubs and sensors over long horizons.</li>
-                            <li>Approach: We build a detailed, calibrated energy-centric simulation of Chronic Disease Management Networks (CDMNs) and compare three allocation strategies.</li>
-                            <li>Centralized: Uses global state to select harvesting nodes each round, achieving high energy levels at critical hubs under nominal conditions but showing brittleness under model errors, supply fluctuations, and demand spikes.</li>
-                            <li>Decentralized: Lets nodes make probabilistic harvesting decisions from local energy state and simple trajectory estimates, improving robustness and lowering coordination overhead at some efficiency cost.</li>
-                            <li>Hybrid: Combines centralized and decentralized elements, recovering much of the centralized performance without sacrificing robustness.</li>
-                            <li>Takeaway: The study highlights how centralized, decentralized, and hybrid policies trade off efficiency, robustness, and control overhead in small, safety-critical intrabody networks.</li>
-                            <li>Publication: Results appear in <a href="https://ieeexplore.ieee.org/abstract/document/11026998">World of Wireless, Mobile and Multimedia Networks (WoWMoM) 2025</a>.</li>
-                            <li>Ongoing work: I am extending this by formulating the subset-selection problem as a contextual bandit, where the on-body node learns a Linear Thompson Sampling policy over receiver subsets.</li>
-                            <li>Bandit idea: The policy uses per-node energy state and predicted gain as context and observed post-transfer energies as feedback, reducing reliance on imperfect path-loss models and adapting to non-stationary channels.</li>
-                            <li>Empirical result: This bandit-style strategy maintains more balanced energy across the network and outperforms the centralized, decentralized, and hybrid baselines while keeping computation tractable.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Energy–Accuracy Tradeoff in Intra‑body Networks (CHASE, 2025)
-                        <span class="chevron">&#9660;</span>
-                    </div>
-                    <div class="accordion-body">
-                        <ul>
-                            <li>Problem: Chronic Disease Management Networks (CDMNs) must minimize communication energy over MRC links while preserving physiological signal fidelity for monitoring and actuation at the hub.</li>
-                            <li>Published work: We design a closed-loop Kalman-filter controller where the hub predicts sensor readings and adjusts per-sensor transmission thresholds based on reconstruction error.</li>
-                            <li>Mechanism: Sensors send samples (or batches) only when the hub’s prediction error exceeds a threshold, reducing transmissions while controlling reconstruction quality.</li>
-                            <li>Result: Multi-sensor simulations show 30–67% reductions in sensor–hub communication with 88–94% reconstruction accuracy (<a href="https://doi.org/10.1145/3721201.3721411">CHASE 2025</a>).</li>
-                            <li>Extension: I am generalizing this into a selective communication framework with three components—a sensor-side classifier that gates transmissions, a hub-side predictor that reconstructs missing samples, and a manager that updates thresholds.</li>
-                            <li>Control schemes: The manager uses two principled strategies, an instantaneous-error scheme based on innovation-energy statistics and log-MSE feedback, and a cumulative-error scheme based on CUSUM-style drift detection.</li>
-                            <li>Goal: Provide stable, tunable control along the energy–accuracy tradeoff while decoupling prediction from decision logic.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Augmenting Optimizers with NARS: A Learning Rate Scheduler
-                        <span class="chevron">&#9660;</span>
-                    </div>
-                    <div class="accordion-body">
-                        <ul>
-                            <li>Idea: Use the Non-Axiomatic Reasoning System (NARS) as a learning-rate scheduler that reasons explicitly about training signals instead of relying on fixed heuristics.</li>
-                            <li>Viewpoint: Treat learning-rate selection as a sequential decision problem over optimization phases (exploration, exploitation, fine-tuning).</li>
-                            <li>Representation: Encode loss trajectories, gradient norms, and validation performance as NARS beliefs with frequency–confidence truth values.</li>
-                            <li>Inference: Use syllogistic reasoning in NARS to select phase-specific learning-rate update strategies at each step.</li>
-                            <li>Experiments: Evaluate on the Rosenbrock function and deep networks trained on Fashion-MNIST and CIFAR-10.</li>
-                            <li>Results: Achieve roughly 75% lower final loss on Rosenbrock and accuracy gains of about 3.2% on Fashion-MNIST and 1.1% on CIFAR-10 over standard schedulers such as fixed-rate and OneCycle.</li>
-                            <li>Benefit: The scheduler provides interpretable explanations for each learning-rate adjustment, illustrating how symbolic reasoning can act as a meta-optimizer for deep learning.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                    Quantized LoRA (QLoRA) Fine-Tuning for Sentiment Analysis
-                    <span class="chevron">&#9660;</span>
-                    </div>
-                    <div class="accordion-body">
-                        <ul>
-                        <li><strong>Objective:</strong> Fine-tuned a <strong>Mistral-7B-v0.3</strong> model on the IMDB dataset to improve domain-specific sentiment classification while minimizing hardware requirements.</li>
-                        <li><strong>Methodology:</strong> Implemented <strong>QLoRA (Quantized Low-Rank Adaptation)</strong> using the <strong>MLX</strong> framework, optimized for Apple Silicon (Metal).</li>
-                        <li><strong>Efficiency:</strong> Trained only 10.48M parameters (0.145% of the total model) with 4-bit quantization, resulting in a lightweight adapter of ~2.1 GB compared to the ~3.5 GB base 4-bit model.</li>
-                        <li><strong>Evaluation:</strong> Achieved a <strong>90.0% accuracy</strong> on the test set, outperforming the base Mistral model (85.5%) by 4.5% in a zero-shot classification task.</li>
-                        <li><strong>Stack:</strong> Python, MLX, HuggingFace <code>transformers</code>, <code>peft</code>, and YAML-based configuration for hyperparameter tuning.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="accordion-item">
+                <div class="accordion-item parent-category">
                     <div class="accordion-header">
-                        Relational-Discriminative Fraud Detection (3 Datasets, GNN+ML)
-                        <span class="chevron">▼</span>
+                        <span class="header-title"><i class="fas fa-network-wired"></i> Intra-body Networks</span>
+                        <span class="chevron">&#9660;</span>
                     </div>
                     <div class="accordion-body">
-                        <ul>
-                            <li><strong>Credit Card (284K txns):</strong> XGBoost scale_pos_weight beats SMOTE-RF (AUPRC 0.8779 vs 0.8293); CV 0.8616; top features viz.</li>
-                            <li><strong>BAF (1M accounts):</strong> Temporal split + dummies; age-FPR fairness audit (0.03-0.24); prod KaggleHub loader.</li>
-                            <li><strong>Bitcoin Graph (200K nodes):</strong> GCN→SAGE→hybrid (0.545→0.665→0.7539 AUPRC); t-SNE "Fraud Islands"; peeling-chain detection.</li>
-                            <li><strong>Key Insight:</strong> Hybrid stacking (GNN embeddings + raw feats) resolves core ambiguities; scalable for blockchain forensics.</li>
-                            <li>Tech: PyG, XGBoost, SMOTE, t-SNE, fairness metrics. <a href="https://github.com/hirsakia/Fraud-Detection.git">Full notebook</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Conversational Local RAG System (Llama 3.2 + ChromaDB)
-                        <span class="chevron">&#9660;</span>
+                        
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">Energy Transfer Strategies (WoWMoM, 2025)</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Problem:</b> Distributing wireless power via Magnetic Resonance (MRC) to implanted sensors.</li>
+                                    <li><b>Insight:</b> Compared Centralized vs. Decentralized vs. Hybrid policies.</li>
+                                    <li><b>Result:</b> Hybrid policies recover centralized efficiency without losing robustness to demand spikes.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="accordion-body">
-                        <ul>
-                        <li><strong>Objective:</strong> Built a local-first RAG pipeline for private document querying using <strong>Ollama (Llama 3.2)</strong> and <strong>LangChain</strong>.</li>
-                        <li><strong>Architecture:</strong> Implemented a multi-format ingestion engine (PDF/TXT) using <code>DirectoryLoader</code> and <code>RecursiveCharacterTextSplitter</code> for semantic chunking.</li>
-                        <li><strong>Memory & Grounding:</strong> Developed a chat history buffer using <code>MessagesPlaceholder</code> to enable context-aware multi-turn conversations and enforced strict grounding via metadata-based source citations.</li>
-                        <li><strong>Stack:</strong> Python, ChromaDB, HuggingFace Embeddings (all-MiniLM-L6-v2), Ollama.</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Advanced RAG with Hybrid Retrieval & Cross-Encoder Reranking
-                        <span class="chevron">&#9660;</span>
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">Energy–Accuracy Tradeoff (CHASE, 2025)</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Problem:</b> Preserving physiological signal fidelity while minimizing radio usage.</li>
+                                    <li><b>Method:</b> Closed-loop Kalman-filter controller where sensors transmit only when prediction error exceeds a dynamic threshold.</li>
+                                    <li><b>Impact:</b> Reduced communication energy by 30–67% with >88% accuracy.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="accordion-body">
-                        <ul>
-                        <li><strong>Approach:</strong> Enhanced retrieval precision by implementing <strong>Hybrid Search</strong>, combining semantic vectors (ChromaDB) with keyword-based retrieval (BM25).</li>
-                        <li><strong>Refinement:</strong> Integrated <strong>FlashRank</strong> (cross-encoder) to re-score and filter the top retrieved chunks, significantly reducing noise in the context window.</li>
-                        <li><strong>Query Transformation:</strong> Added a contextualization layer to reformulate follow-up user questions into standalone queries for improved retrieval accuracy.</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Agentic RAG: LangGraph Orchestration & SQL Integration
-                        <span class="chevron">&#9660;</span>
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">Autotuning in MRC circuits (DCOSS, 2024)</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Problem:</b> Maintaining resonance in non-stationary environments.</li>
+                                    <li><b>Method:</b> Adaptive controller using a zeroth-order gradient oracle for capacitance tuning.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="accordion-body">
-                        <ul>
-                        <li><strong>Agentic Control:</strong> Utilized <strong>LangGraph</strong> to build a state-machine-based agent that routes queries between unstructured documents and structured <strong>PostgreSQL</strong> data.</li>
-                        <li><strong>Self-Correction:</strong> Implemented a "Quality Check" retry loop that assesses context sufficiency; if data is missing, the agent triggers broader query expansion and re-retrieval (up to 2x).</li>
-                        <li><strong>SQL Routing:</strong> Built a dynamic text-to-SQL path that allows the LLM to query student records and grades directly from a relational database when appropriate.</li>
-                        <li><strong>Capabilities:</strong> Support for query expansion (generating 3 related sub-queries) and automated routing decisions based on database schema metadata.</li>
-                        </ul>
+
                     </div>
                 </div>
 
-                
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        SINDy+RL for Pendulum and Nonstationary Oscillator Control
+                <div class="accordion-item parent-category">
+                    <div class="accordion-header">
+                        <span class="header-title"><i class="fas fa-wave-square"></i> RL & Nonlinear Dynamics</span>
                         <span class="chevron">&#9660;</span>
                     </div>
                     <div class="accordion-body">
-                        <ul>
-                            <li>Goal: Combine Sparse Identification of Nonlinear Dynamics (SINDy) with model-based reinforcement learning to control nonlinear, possibly nonstationary systems.</li>
-                            <li>Systems: A classic swing-up pendulum and a second-order oscillator with time-varying stiffness and damping.</li>
-                            <li>Method: Learn compact SINDy surrogate models from limited interaction data and embed them in a receding-horizon planner that optimizes action sequences.</li>
-                            <li>Pendulum findings: Compare offline (fixed) and online (adaptive) SINDy-RL, showing that continuous model adaptation enables robust swing-up under noisy observations, whereas a small fixed model can converge to the wrong equilibrium.</li>
-                            <li>Nonstationary oscillator: Benchmark online SINDy-RL against a neural-network dynamics model and a model-free DQN agent.</li>
-                            <li>Performance: SINDy-RL matches the neural controller’s low tracking error (MSE ≈ 0.18 vs. 0.17) while keeping interpretable stiffness and damping coefficients.</li>
-                            <li>Robustness: SINDy-RL outperforms DQN by roughly two orders of magnitude in tracking error (MSE ≈ 11.15), illustrating robustness to drifting dynamics and data efficiency.</li>
-                        </ul>
+                        
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">SINDy+RL for Control</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Goal:</b> Combined Sparse Identification of Nonlinear Dynamics (SINDy) with RL for swing-up pendulum control.</li>
+                                    <li><b>Result:</b> SINDy-RL outperformed DQN by two orders of magnitude in tracking error while remaining fully interpretable.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">Macroeconomy Dynamics Discovery (Comp. Econ, 2025)</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Method:</b> Used Transfer Entropy and SINDyC to build an explainable model of unemployment/inflation.</li>
+                                    <li><b>Insight:</b> Identified stability regions based on interest rate policy via phase-plane analysis.</li>
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Macroeconomy Dynamics Discovery using SINDyC (Computational Economics, 2025)
+                <div class="accordion-item parent-category">
+                    <div class="accordion-header">
+                        <span class="header-title"><i class="fas fa-robot"></i> LLM & Applied Machine Learning</span>
                         <span class="chevron">&#9660;</span>
                     </div>
                     <div class="accordion-body">
-                        <ul>
-                            <li>Objective: Build an explainable nonlinear dynamical model of key macroeconomic variables.</li>
-                            <li>Data: Quarterly FRED data from 1960–2022 for unemployment, inflation, GDP per capita, and interest rate.</li>
-                            <li>Variable selection: Use Transfer Entropy (TE) to select informative variables and couplings.</li>
-                            <li>Modeling: Apply Sparse Identification of Nonlinear Dynamics with control (SINDyC) to learn a sparse system of differential equations with the interest rate as a policy input.</li>
-                            <li>Interpretability: Reveal which interactions (e.g., inflation–GDP couplings) drive the evolution of each variable while maintaining good out-of-sample fit.</li>
-                            <li>Analysis: Use phase-plane analysis to identify stability regions across combinations of interest rate and GDP per capita.</li>
-                            <li>Insight: Provide a qualitative map of regimes where unemployment and inflation remain stable versus where they drift.</li>
-                            <li>Publication: Work appears in <a href="https://link.springer.com/article/10.1007/s10614-025-11012-0">Computational Economics</a>.</li>
-                        </ul>
+                        
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">Agentic RAG: LangGraph Orchestration</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Stack:</b> LangGraph, PostgreSQL, Llama 3.2.</li>
+                                    <li><b>Feature:</b> State-machine agent that routes queries between structured SQL data and unstructured PDFs with a self-correction loop.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">Quantized LoRA (QLoRA) Fine-Tuning</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Task:</b> Fine-tuned Mistral-7B on Apple Silicon using the MLX framework.</li>
+                                    <li><b>Efficiency:</b> Trained only 0.145% of parameters to gain 4.5% zero-shot accuracy improvement.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">GNN-based Fraud Detection</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li><b>Method:</b> Hybrid stacking (GNN embeddings + XGBoost) on Bitcoin transaction graphs.</li>
+                                    <li><b>Insight:</b> Successfully detected "Fraud Islands" and peeling chains.</li>
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Autotuning in MRC circuits (DCOSS, 2024)
-                        <span class="chevron">&#9660;</span>
-                    </div>
-                    <div class="accordion-body">
-                        <ul>
-                            <li>Problem: Efficient power transfer and data communication over MRC links require maintaining resonance between transmitter and receiver circuits.</li>
-                            <li>Approach: Design an adaptive controller that solves a quasiconvex optimization problem using a zeroth-order oracle.</li>
-                            <li>Control signal: Treat capacitance as the control variable and use zeroth-order gradient estimation to drive the system toward resonance.</li>
-                            <li>Result: Demonstrate simple, efficient autotuning behavior in MRC circuits, published in <a href="https://ieeexplore.ieee.org/document/10621507">DCOSS 2024</a>.</li>
-                            <li>Extension: Study network-wide retuning of multiple transmitters and receivers, where detuning can cause cascading failures due to energy redistribution.</li>
-                            <li>Fix: Change the retuning trigger from absolute change to a ReLU-based criterion to prevent benign redistribution from causing undesirable activations.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Bayesian-optimized Neural Net for Adsorption modeling (JTICE, 2023)
-                        <span class="chevron">&#9660;</span>
-                    </div>
-                    <div class="accordion-body">
-                        <ul>
-                            <li>Problem: Model adsorption process for tetracycline removal using multi-walled carbon nanotubes functionalized with aspartic acid and poly-pyrrole.</li>
-                            <li>Approach: Train a two-layer neural network with Huber loss as the objective function.</li>
-                            <li>Hyperparameter optimization: Use Bayesian Optimization with RMSE as the cost function.</li>
-                            <li>Decision variables: First/second layer neuron counts, Huber constant, learning rate, layer activation functions, batch size, dropout rate, and NADAM optimizer parameters (β₁ and β₂ decay rates).</li>
-                            <li>Publication: Results appear in <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876107023000731">Journal of the Taiwan Institute of Chemical Engineers (JTICE) 2023</a>.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" aria-expanded="false" role="button" tabindex="0">
-                        Multi-Library SINDy: Computationally Efficient Variant of SINDy (In Progress)
-                        <span class="chevron">&#9660;</span>
-                    </div>
-                    <div class="accordion-body">
-                        <ul>
-                            <li>Observation: Standard SINDy often uses a single fixed library of candidate functions for all state variables, which can be unnecessarily restrictive.</li>
-                            <li>Idea: Introduce Multi-Library SINDy, allowing different state variables to use different, tailored function libraries.</li>
-                            <li>Benefit: Reduce computational cost by avoiding large, monolithic libraries while improving flexibility in guiding the identification process.</li>
-                            <li>Goal: Maintain SINDy’s efficiency in discovering governing equations while giving practitioners more control over model structure and inductive biases.</li>
-                        </ul>
-                    </div>
-
-                </div>
-
             </section>
 
             <section id="publications" class="section">
-                <h2>Publications</h2>
+                <h2>Selected Publications</h2>
                 <div class="pub-list">
-                    
                     <div class="pub-item">
                         <span class="pub-year">2025</span>
                         <div class="pub-detail">
                             <strong>Energy transfer strategies in magnetic resonance based intrabody networks</strong><br>
-                            <em>World of Wireless, Mobile and Multimedia Networks (WoWMoM)</em><br>
-                            <a href="https://ieeexplore.ieee.org/abstract/document/11026998" target="_blank">DOI</a>
+                            <em>WoWMoM</em> | <a href="https://ieeexplore.ieee.org/abstract/document/11026998" target="_blank">DOI</a>
                         </div>
                     </div>
-
                     <div class="pub-item">
                         <span class="pub-year">2025</span>
                         <div class="pub-detail">
-                            <strong>Energy efficiency and communication accuracy tradeoff in intra-body networks</strong><br>
-                            <em>IEEE/ACM Conference on Connected Health (CHASE)</em><br>
-                            <a href="https://doi.org/10.1145/3721201.3721411" target="_blank">DOI</a>
+                            <strong>Energy efficiency and communication accuracy tradeoff</strong><br>
+                            <em>CHASE</em> | <a href="https://doi.org/10.1145/3721201.3721411" target="_blank">DOI</a>
                         </div>
                     </div>
-
-                    <div class="pub-item">
-                        <span class="pub-year">2025</span>
-                        <div class="pub-detail">
-                            <strong>Introducing a Nonlinear Macroeconomic Model Based on TE, SINDYC, and Phase Plane Analysis</strong><br>
-                            <em>Computational Economics</em><br>
-                            <a href="https://link.springer.com/article/10.1007/s10614-025-11012-0" target="_blank">DOI</a>
-                        </div>
-                    </div>
-
-                    <div class="pub-item">
-                        <span class="pub-year">2024</span>
-                        <div class="pub-detail">
-                            <strong>A study of magnetic resonance and ultrasound based through-the-body communications</strong><br>
-                            <em>IEEE Wireless and Mobile Computing, Networking and Communications (WiMob)</em><br>
-                            <a href="https://ieeexplore.ieee.org/abstract/document/10770313" target="_blank">DOI</a>
-                        </div>
-                    </div>
-                    
                     <div class="pub-item">
                         <span class="pub-year">2024</span>
                         <div class="pub-detail">
                             <strong>Autotuning of resonant magnetic induction communications</strong><br>
-                            <em>IEEE Distributed Computing in Sensor Systems (DCOSS-IoT)</em><br>
-                            <a href="https://ieeexplore.ieee.org/document/10621507" target="_blank">DOI</a>
+                            <em>DCOSS-IoT</em> | <a href="https://ieeexplore.ieee.org/document/10621507" target="_blank">DOI</a>
                         </div>
                     </div>
-
-                    <div class="pub-item">
-                        <span class="pub-year">2023</span>
-                        <div class="pub-detail">
-                            <strong>Adsorption modeling of tetracycline removal by multi-walled carbon nanotube 
-                                functionalized with aspartic acid and poly-pyrrole using Bayesian optimized artificial neural network</strong><br>
-                            <em>Journal of the Taiwan Institute of Chemical Engineers (JTICE)</em><br>
-                            <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876107023000731" target="_blank">DOI</a>
-                        </div>
-                    </div>
-
                 </div>
             </section>
-
         </div>
     </div>
 
     <footer>
-        &copy; <span id="copyright-year"></span> Hirsa Kia. All rights reserved.
+        &copy; <span id="year"></span> Hirsa Kia. Built with care.
     </footer>
 
     <script>
-        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        document.getElementById('year').textContent = new Date().getFullYear();
 
         document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    header.click();
-                }
-            });
-
-            header.addEventListener('click', () => {
+            header.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const body = header.nextElementSibling;
-                const isOpen = header.classList.toggle('open');
+                header.classList.toggle('open');
                 body.classList.toggle('open');
-                header.setAttribute('aria-expanded', isOpen);
             });
         });
     </script>
