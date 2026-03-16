@@ -133,14 +133,13 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>A single on-body node must distribute limited wireless power via Magnetic Resonance Communication (MRC) to multiple implanted hubs and sensors over long horizons.</li>
-                                    <li>We build a calibrated energy-centric simulation of Chronic Disease Management Networks (CDMNs) and compare centralized, decentralized, and hybrid allocation strategies, revealing how each trades off efficiency, robustness, and control overhead.</li>
-                                    <li>Results appear in <a href="https://ieeexplore.ieee.org/abstract/document/11026998">WoWMoM 2025</a>.</li>
-                                    <li>Ongoing work formulates subset selection as a contextual bandit (Linear Thompson Sampling), which adapts to non-stationary channels and outperforms all three baselines while keeping computation tractable.</li>
+                                    <li>A battery-operated on-body node (OBN) wirelessly powers multiple implanted sensors and hubs in a Chronic Disease Management Network (CDMN) using Magnetic Resonance Communication (MRC), where adding receivers increases path loss for all (~1 dB per node).</li>
+                                    <li>We design centralized (greedy subset optimization), decentralized (probabilistic, autonomous harvesting), and hybrid strategies, evaluated in a calibrated simulation over 5,000–10,000 hours with supercapacitor-powered nodes and realistic physiological signals.</li>
+                                    <li>The centralized scheme sustains higher hub energy but is brittle to receiver-set sizing; the decentralized scheme is more robust and lower-overhead; the hybrid combines both advantages and remains stable across more network sizes. Published at <a href="https://ieeexplore.ieee.org/abstract/document/11026998">WoWMoM 2025</a>.</li>
+                                    <li>Ongoing work formulates receiver-subset selection as a contextual bandit (Linear Thompson Sampling) that adapts to non-stationary channels and outperforms all three baselines while remaining computationally tractable.</li>
                                 </ul>
                             </div>
                         </div>
-
                         <div class="accordion-item child-project">
                             <div class="accordion-header">
                                 <span class="header-title">Energy–Accuracy Tradeoff (CHASE, 2025)</span>
@@ -148,10 +147,10 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>CDMNs must minimize communication energy over MRC links while preserving physiological signal fidelity at the hub.</li>
-                                    <li>We design a closed-loop Kalman-filter controller where sensors transmit only when the hub's prediction error exceeds a dynamic threshold, achieving 30–67% fewer transmissions with 88–94% reconstruction accuracy (<a href="https://doi.org/10.1145/3721201.3721411">CHASE 2025</a>).</li>
-                                    <li>I am generalizing this into a selective communication framework with a sensor-side classifier, a hub-side predictor, and a manager that updates thresholds.</li>
-                                    <li>The manager uses two strategies: an instantaneous-error scheme based on innovation-energy statistics and a cumulative-error scheme based on CUSUM-style drift detection.</li>
+                                    <li>Implanted CDMN sensors must minimize communication energy over MRC links while preserving physiological signal fidelity at the hub—a direct energy-vs-accuracy tradeoff.</li>
+                                    <li>We design a closed-loop controller where a hub-side Kalman filter predicts incoming samples and a dynamically tuned threshold at the sensor suppresses redundant transmissions, achieving 30–67% fewer transmissions with 88–94% reconstruction accuracy across BVP, IBI, and glucose signals. Published at <a href="https://doi.org/10.1145/3721201.3721411">CHASE 2025</a>.</li>
+                                    <li>The simple Kalman filter outperforms the adaptive variant on resource-constrained nodes, and the controller converges rapidly even under abrupt signal perturbations (doubled/halved magnitude).</li>
+                                    <li>Ongoing work generalizes this into a selective communication framework with a sensor-side classifier, a hub-side predictor, and a manager that updates thresholds via instantaneous innovation-energy statistics or CUSUM-style cumulative drift detection.</li>
                                 </ul>
                             </div>
                         </div>
@@ -163,10 +162,10 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Efficient power transfer over MRC links requires maintaining resonance between transmitter and receiver circuits.</li>
-                                    <li>We design an adaptive controller that treats capacitance as the control variable and uses zeroth-order gradient estimation to solve a quasiconvex optimization problem, published in <a href="https://ieeexplore.ieee.org/document/10621507">DCOSS 2024</a>.</li>
-                                    <li>Ongoing work studies network-wide retuning, where detuning can cause cascading failures due to energy redistribution.</li>
-                                    <li>Switching the retuning trigger from absolute change to a ReLU-based criterion prevents benign redistribution from causing undesirable activations.</li>
+                                    <li>Efficient MRC power transfer requires maintaining resonance between transmitter and receiver LC circuits, but parameter drifts and body-medium changes detune the link and can drop efficiency from 50% to below 30%.</li>
+                                    <li>We design an adaptive capacitive controller that uses zeroth-order gradient estimation (sign of current change vs. sign of capacitance change) to climb back toward peak power transfer, with both fixed-step and adaptive-step variants. Published at <a href="https://ieeexplore.ieee.org/document/10621507">DCOSS 2024</a>.</li>
+                                    <li>The adaptive-step controller recovers over 99% of maximum power and settles within 0.7% of the optimal capacitance under both step and ramp perturbations, outperforming the fixed-step variant which exhibits tail-chasing oscillations between the two sides.</li>
+                                    <li>Ongoing work addresses network-wide retuning, where detuning at one link can trigger cascading failures via energy redistribution; a ReLU-based activation criterion replaces absolute-change triggers to suppress benign redistribution from causing unnecessary controller activations.</li>
                                 </ul>
                             </div>
                         </div>
@@ -178,10 +177,10 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>A comparative study of Magnetic Resonance vs. Ultrasound-based communication for deep-tissue medical implants.</li>
-                                    <li>Evaluates both modalities across key metrics including path loss, tissue absorption, data rate, and implant form factor.</li>
-                                    <li>Identifies operating regimes where each modality is preferable, providing design guidance for next-generation intrabody networks.</li>
-                                    <li>Published in <a href="https://ieeexplore.ieee.org/abstract/document/10770313">IEEE WiMob 2024</a>.</li>
+                                    <li>A systematic comparison of Magnetic Resonance Coupling (MRC) and Ultrasonic Coupling (USC) for through-the-body wireless communication, combining on-body experiments with full-wave Sim4Life FDTD simulations on a 75-tissue anatomical model (Duke).</li>
+                                    <li>USC shows slightly lower attenuation at frequencies below ~10 MHz, but MRC delivers more consistent performance across frequencies, smaller in-body vs. on-body path-loss differences, and a sweet spot around 25–30 MHz where USC transducers become impractical to fabricate.</li>
+                                    <li>Key finding: the human body behaves nothing like a homogeneous medium—path loss vs. frequency is unimodal and depends on coil size and turns, invalidating standard analytical models derived from air propagation.</li>
+                                    <li>Results provide concrete design guidance (coil diameter, turn count, operating frequency) for next-generation intrabody networks. Published at <a href="https://ieeexplore.ieee.org/abstract/document/10770313">IEEE WiMob 2024</a>.</li>
                                 </ul>
                             </div>
                         </div>
@@ -204,10 +203,25 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Combines Sparse Identification of Nonlinear Dynamics (SINDy) with model-based RL to control nonlinear, possibly nonstationary systems (pendulum swing-up, time-varying oscillator).</li>
-                                    <li>Compact SINDy surrogate models are learned from limited data and embedded in a receding-horizon planner that optimizes action sequences.</li>
-                                    <li>Online (adaptive) SINDy-RL matches a neural controller's tracking error (MSE ≈ 0.18 vs. 0.17) while keeping interpretable coefficients.</li>
-                                    <li>SINDy-RL outperforms model-free DQN by roughly two orders of magnitude (MSE ≈ 11.15), illustrating robustness to drifting dynamics and data efficiency.</li>
+                                    <li>Learns compact surrogate dynamics via Sparse Identification of Nonlinear Dynamics (SINDy) from limited interaction data and embeds them in a receding-horizon planner that optimizes action sequences over a rolling horizon.</li>
+                                    <li>Tested on two benchmarks: a swing-up pendulum (stationary dynamics, noisy observations) and a second-order oscillator with time-varying stiffness and damping across three distinct drift phases.</li>
+                                    <li>Online SINDy-RL adapts its sparse coefficients in real time, matching a neural-network model-based controller on tracking error (MSE 0.18 vs. 0.17) while remaining interpretable; the offline variant, fit once from limited data, converges to the wrong equilibrium on the pendulum, demonstrating the necessity of continual model updates.</li>
+                                    <li>Model-free DQN scores roughly two orders of magnitude worse (MSE 11.15) under the same nonstationary schedule, highlighting SINDy-RL's data efficiency and robustness to drifting dynamics.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">Physics-Informed Neural Network for Cardiac Electrophysiology</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Implements a PINN in PyTorch that solves the FitzHugh-Nagumo reaction-diffusion system — modeling action potential propagation across a 2D cardiac tissue patch — trained purely from the governing PDEs with no simulation data (PDE residual + initial/boundary condition losses via automatic differentiation).</li>
+                                    <li>Forward solver (4×128 tanh network, 50K params) captures wave propagation with ~2% MAE against a finite-difference reference; inverse mode recovers the unknown diffusion coefficient D from 500 sparse "sensor" measurements, reaching the correct order of magnitude (15.6% error) from a 10× wrong initial guess.</li>
+                                    <li>Lottery ticket pruning reveals the network is heavily overparameterized: an 80%-pruned subnetwork (10K params) <em>outperforms</em> the full model by 8.2%, and 90% pruning (10× compression) stays within 3% of baseline — directly relevant to real-time clinical deployment.</li>
+                                    <li>Honest limitations documented: inverse problem parameter drift under extended training, and forward model wave attenuation at low collocation density. <a href="https://github.com/hirsakia/PINN">Full notebook</a>.</li>
                                 </ul>
                             </div>
                         </div>
@@ -219,10 +233,10 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Standard SINDy uses a single fixed library of candidate functions for all state variables, which can be unnecessarily restrictive.</li>
-                                    <li>Multi-Library SINDy allows different state variables to use different, tailored function libraries.</li>
-                                    <li>This reduces computational cost by avoiding large, monolithic libraries while improving flexibility in guiding the identification process.</li>
-                                    <li>The goal is to maintain SINDy's efficiency while giving practitioners more control over model structure and inductive biases.</li>
+                                    <li>Standard SINDy fits all state derivatives against a single monolithic candidate library, which wastes computation on irrelevant terms and limits the ability to encode per-variable prior knowledge.</li>
+                                    <li>Multi-Library SINDy assigns each state variable its own tailored function library, enabling variable-specific inductive biases (e.g., trigonometric terms for angular states, polynomial terms for translational states).</li>
+                                    <li>This reduces the effective search space per variable, lowering computational cost and improving identifiability without sacrificing SINDy's core sparse-regression machinery.</li>
+                                    <li>The goal is a drop-in extension that gives practitioners explicit control over model structure while preserving the interpretability and data efficiency of standard SINDy.</li>
                                 </ul>
                             </div>
                         </div>
@@ -234,10 +248,10 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Builds an explainable nonlinear dynamical model from quarterly FRED data (1960–2022) for unemployment, inflation, GDP per capita, and interest rate.</li>
-                                    <li>Transfer Entropy selects informative couplings, then SINDyC learns a sparse system of differential equations with the interest rate as a policy input.</li>
-                                    <li>Phase-plane analysis identifies stability regions, providing a qualitative map of regimes where unemployment and inflation remain stable versus where they drift.</li>
-                                    <li>Work appears in <a href="https://link.springer.com/article/10.1007/s10614-025-11012-0">Computational Economics</a>.</li>
+                                    <li>Builds an interpretable nonlinear dynamical model of four U.S. macroeconomic variables (unemployment, inflation, GDP per capita, interest rate) from quarterly FRED data spanning 1960–2022, interpolated to weekly frequency via cubic spline.</li>
+                                    <li>Transfer Entropy selects the interest rate as the dominant policy input over taxes, then SINDyC discovers a sparse 3D system of coupled nonlinear ODEs with only 6 nonzero terms, trained on 1960–2010 and validated on 2011–2022 with consistent error across 60/40, 70/30, and 80/20 splits.</li>
+                                    <li>Phase-plane analysis across three variable pairs maps out stability regions: e.g., higher interest rates expand the stable inflation band, and inflation below ~3% triggers a Phillips-curve reversal where falling inflation drives rising unemployment.</li>
+                                    <li>Published in <a href="https://link.springer.com/article/10.1007/s10614-025-11012-0">Computational Economics (2025)</a>. Two case studies demonstrate model application to current economic conditions and the projected impact of a Fed rate cut to 1%.</li>
                                 </ul>
                             </div>
                         </div>
@@ -249,10 +263,10 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Temporal Difference (TD) learning is central to many RL methods but can diverge under function approximation.</li>
-                                    <li>Studies how TD convergence depends on state representation in a simplified setting with linear function approximation and state aggregation.</li>
-                                    <li>Clarifies when particular aggregations preserve or break TD's convergence guarantees in practice.</li>
-                                    <li>The analysis and examples are written up as a blog <a href="blog_post_1.html">post</a>.</li>
+                                    <li>Analyzes TD(0) convergence under linear function approximation by decomposing the update into optimization and target forces via the matrices M<sub>w</sub> = Φ<sup>⊤</sup>DΦ and M<sub>θ</sub> = Φ<sup>⊤</sup>DPΦ, where state aggregation groups states sharing the same feature direction into clusters.</li>
+                                    <li>Proves that (M<sub>w</sub>)<sup>−1</sup>M<sub>θ</sub> is a stochastic matrix across three scenarios — standard unit directions, 1-D (scalar), and n-D (tabular) feature spaces — guaranteeing the spectral radius of γ(M<sub>w</sub>)<sup>−1</sup>M<sub>θ</sub> is exactly γ, which ensures convergence.</li>
+                                    <li>Key result: convergence depends neither on feature-space dimensionality nor on the specific update distribution D — only the existence of such a distribution matters. The unit-norm assumption can be relaxed to γ𝔼[‖ϕ(s′)‖] ≤ ‖ϕ(s)‖.</li>
+                                    <li>Written up as a <a href="https://hirsakia.github.io/blog_post_1.html">blog post</a>, inspired by Asadi et al.</li>
                                 </ul>
                             </div>
                         </div>
@@ -275,10 +289,10 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Uses the Non-Axiomatic Reasoning System (NARS) as a learning-rate scheduler that reasons explicitly about training signals instead of relying on fixed heuristics.</li>
-                                    <li>Loss trajectories, gradient norms, and validation performance are encoded as NARS beliefs; syllogistic reasoning selects phase-specific update strategies at each step.</li>
-                                    <li>Achieves roughly 75% lower final loss on Rosenbrock and accuracy gains of about 3.2% on Fashion-MNIST and 1.1% on CIFAR-10 over fixed-rate and OneCycle schedulers.</li>
-                                    <li>The scheduler provides interpretable explanations for each adjustment, illustrating how symbolic reasoning can act as a meta-optimizer for deep learning.</li>
+                                    <li>Introduces a learning-rate scheduler built on the Non-Axiomatic Reasoning System (NARS): loss trajectories, gradient norms, and validation accuracy are encoded as NAL beliefs with frequency-confidence truth values, and syllogistic inference (deduction, abduction, induction, revision) selects phase-specific update strategies at each step.</li>
+                                    <li>The scheduler autonomously transitions between exploration (early epochs, aggressive rate adjustments), exploitation (mid-training, stable elevated rates), and fine-tuning (late epochs, minor adjustments) — driven by detected plateaus, oscillations, and gradient trends rather than a fixed schedule.</li>
+                                    <li>Outperforms OneCycle and fixed-rate baselines across all three benchmarks: ~75% lower final loss on Rosenbrock (using plain SGD vs. Adam), +3.17% accuracy on Fashion-MNIST (85.96%), and +1.12% on CIFAR-10 (79.55%), with notably better generalization (lower validation loss) than OneCycle, which overfits.</li>
+                                    <li>A context-memory system records successful and failed actions with training-state vectors, enabling experience-based retrieval of historically effective learning rates — conceptually paralleling experience replay in RL, but with interpretable symbolic reasoning.</li>
                                 </ul>
                             </div>
                         </div>
@@ -290,25 +304,25 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Fine-tuned Mistral-7B-v0.3 on the IMDB dataset for sentiment classification using QLoRA with the MLX framework, optimized for Apple Silicon.</li>
-                                    <li>Trained only 10.48M parameters (0.145% of the model) with 4-bit quantization, producing a ~2.1 GB adapter against a ~3.5 GB base model.</li>
-                                    <li>Achieved 90.0% test accuracy, outperforming the base Mistral model (85.5%) by 4.5% on zero-shot classification.</li>
-                                    <li>Stack: Python, MLX, HuggingFace transformers, peft, and YAML-based hyperparameter configuration.</li>
+                                    <li>Fine-tuned Mistral-7B-v0.3 (4-bit quantized) on the IMDB dataset for sentiment classification using QLoRA via the MLX framework, optimized for Apple Silicon — training on 5K examples with rank-16 adapters, dropout 0.05, and max sequence length 512.</li>
+                                    <li>Trained only ~10.48M parameters (0.145% of the model) producing a ~2.1 GB adapter against a ~3.5 GB base model, with the entire pipeline running locally on-device.</li>
+                                    <li>Achieved 90.0% test accuracy on 200 held-out reviews, a 4.5% absolute gain over base Mistral zero-shot (85.5%), demonstrating that lightweight adaptation on a small labeled set substantially closes the gap to supervised baselines.</li>
+                                    <li>Stack: Python, MLX, mlx_lm, HuggingFace Datasets, PEFT, and YAML-based hyperparameter configuration.</li>
                                 </ul>
                             </div>
                         </div>
 
                         <div class="accordion-item child-project">
                             <div class="accordion-header">
-                                <span class="header-title">Relational-Discriminative Fraud Detection (3 Datasets, GNN+ML)</span>
+                                <span class="header-title">Multi-Domain Fraud Detection (GNN + ML)</span>
                                 <span class="chevron">&#9660;</span>
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Credit Card (284K txns): XGBoost with scale_pos_weight beats SMOTE-RF (AUPRC 0.8779 vs 0.8293).</li>
-                                    <li>BAF (1M accounts): Temporal split with dummies and an age-FPR fairness audit (0.03–0.24).</li>
-                                    <li>Bitcoin Graph (200K nodes): GCN → SAGE → hybrid pipeline (AUPRC 0.545 → 0.665 → 0.7539); t-SNE reveals "Fraud Islands" with peeling-chain detection.</li>
-                                    <li>Hybrid stacking (GNN embeddings + raw features) resolves core ambiguities and scales for blockchain forensics. <a href="https://github.com/hirsakia/Fraud-Detection.git">Full notebook</a></li>
+                                    <li>Credit Card Fraud (284K transactions): XGBoost with scale_pos_weight outperforms SMOTE-RF on AUPRC (0.8779 vs. 0.8293); additional baselines include Isolation Forest and autoencoder-based anomaly detection, with cost-sensitive threshold optimization.</li>
+                                    <li>Bank Account Fraud (BAF, 1M accounts, NeurIPS 2022 benchmark): temporal train/test split with dummy encoding; includes an age-group fairness audit measuring false-positive rate disparity (0.03–0.24 across bins).</li>
+                                    <li>Elliptic Bitcoin (200K nodes, 234K edges): progressive architecture — GCN (AUPRC 0.545) → GraphSAGE (0.665) → hybrid pipeline stacking SAGE embeddings with raw features into XGBoost (0.754); t-SNE of the latent space reveals distinct "Fraud Islands" with peeling-chain topology.</li>
+                                    <li>The hybrid stacking approach — GNN embeddings as features for a gradient-boosted classifier — resolves ambiguous nodes that neither relational nor tabular models handle alone. <a href="https://github.com/hirsakia/Fraud-Detection.git">Full notebooks</a>.</li>
                                 </ul>
                             </div>
                         </div>
@@ -320,10 +334,10 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Built a local-first RAG pipeline for private document querying using Ollama (Llama 3.2) and LangChain.</li>
-                                    <li>Multi-format ingestion (PDF/TXT) with RecursiveCharacterTextSplitter for semantic chunking, stored in ChromaDB with HuggingFace embeddings (all-MiniLM-L6-v2).</li>
-                                    <li>Chat history buffer enables context-aware multi-turn conversations with strict grounding via metadata-based source citations.</li>
-                                    <li>Fully offline pipeline with no data leaving the local machine.</li>
+                                    <li>Built a local-first RAG pipeline for private document querying using Ollama (Llama 3.2) and LangChain, with zero data leaving the machine.</li>
+                                    <li>Multi-format ingestion (PDF via PyPDFLoader + TXT) with RecursiveCharacterTextSplitter (1000-char chunks, 200 overlap) preserving semantic boundaries, stored in ChromaDB with HuggingFace embeddings (all-MiniLM-L6-v2).</li>
+                                    <li>Chat history buffer enables context-aware multi-turn conversations; answers are grounded via metadata-based source citations so users can trace every claim back to its chunk and document.</li>
+                                    <li>Designed as the baseline for a three-stage RAG evolution: V1 (basic retrieval) → V2 (hybrid + reranking) → V3 (agentic routing + SQL).</li>
                                 </ul>
                             </div>
                         </div>
@@ -335,14 +349,13 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Enhanced retrieval precision by combining semantic vectors (ChromaDB) with keyword-based BM25 retrieval in a hybrid search pipeline.</li>
-                                    <li>Integrated FlashRank (cross-encoder) to re-score and filter top chunks, significantly reducing noise in the context window.</li>
-                                    <li>Added a contextualization layer that reformulates follow-up questions into standalone queries for improved retrieval accuracy.</li>
-                                    <li>Together these stages yield consistently higher answer quality than single-mode retrieval alone.</li>
+                                    <li>Extends V1 by combining semantic retrieval (ChromaDB) with keyword-based BM25 retrieval in a hybrid search pipeline, reducing failure modes where either modality alone misses relevant chunks.</li>
+                                    <li>Integrates FlashRank (cross-encoder reranker) to re-score and filter the merged candidate set, significantly reducing noise in the context window before generation.</li>
+                                    <li>Adds a contextualization layer that rewrites follow-up questions into standalone queries using conversation history, improving retrieval accuracy in multi-turn settings.</li>
+                                    <li>Together these stages yield consistently higher answer quality than single-mode retrieval, forming the retrieval backbone reused in V3's agentic architecture.</li>
                                 </ul>
                             </div>
                         </div>
-
                         <div class="accordion-item child-project">
                             <div class="accordion-header">
                                 <span class="header-title">Agentic RAG: LangGraph Orchestration & SQL Integration</span>
@@ -350,10 +363,10 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Used LangGraph to build a state-machine agent that routes queries between unstructured documents and structured PostgreSQL data.</li>
-                                    <li>A "Quality Check" retry loop assesses context sufficiency and triggers query expansion and re-retrieval (up to 2×) when data is missing.</li>
-                                    <li>A dynamic text-to-SQL path lets the LLM query student records and grades directly from a relational database when appropriate.</li>
-                                    <li>Supports automated routing decisions based on database schema metadata and generates 3 related sub-queries for expansion.</li>
+                                    <li>Uses LangGraph to build a state-machine agent that auto-routes queries between unstructured documents (hybrid retrieval from V2) and structured PostgreSQL data via dynamic text-to-SQL generation.</li>
+                                    <li>Routing is LLM-driven: the model inspects the query and database schema metadata to decide the path, with no hard-coded keyword rules.</li>
+                                    <li>A quality-check retry loop assesses context sufficiency and triggers query expansion (3 related sub-queries) plus re-retrieval up to 2× when the initial context is inadequate.</li>
+                                    <li>Full pipeline: contextualize → route → [SQL path | docs path with expand → retrieve → rerank → quality check ↻] → generate, with chat history trimmed to the last 5 turns.</li>
                                 </ul>
                             </div>
                         </div>
@@ -365,10 +378,10 @@
                             </div>
                             <div class="accordion-body">
                                 <ul>
-                                    <li>Models tetracycline adsorption removal using multi-walled carbon nanotubes functionalized with aspartic acid and poly-pyrrole.</li>
-                                    <li>Trains a two-layer neural network with Huber loss, tuned via Bayesian Optimization over neuron counts, learning rate, activations, dropout, and NADAM parameters.</li>
-                                    <li>Bayesian Optimization uses RMSE as the cost function to efficiently navigate the high-dimensional hyperparameter space.</li>
-                                    <li>Results appear in <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876107023000731">Journal of the Taiwan Institute of Chemical Engineers (JTICE) 2023</a>.</li>
+                                    <li>Models tetracycline adsorption removal using multi-walled carbon nanotubes functionalized with aspartic acid and polypyrrole (MWCNT-Asp-PPy), achieving a maximum adsorption capacity of 34.5 mg/g at pH 5, with >80% removal efficiency through four reuse cycles.</li>
+                                    <li>A two-layer MLP (19 Tanh → 10 ELU → linear output) with Huber loss and NADAM optimizer maps five process variables (pH, temperature, time, adsorbent dose, pollutant concentration) to adsorption capacity; Bayesian Optimization tunes 11 hyperparameters — neuron counts, activations, learning rate, dropout, batch size, and NADAM decay rates — using RMSE as the acquisition cost over 400 evaluations.</li>
+                                    <li>The optimized ANN achieves testing RMSE of 0.33 and R² of 0.9996 on 136 data points, with mean absolute percentage error of ~1.2% and successful learning of time-dependent adsorption trajectories via early stopping at ~4000 epochs.</li>
+                                    <li>Published in the <a href="https://www.sciencedirect.com/science/article/abs/pii/S1876107023000731">Journal of the Taiwan Institute of Chemical Engineers (2023)</a>.</li>
                                 </ul>
                             </div>
                         </div>
