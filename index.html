@@ -271,6 +271,20 @@
                             </div>
                         </div>
 
+                        <div class="accordion-item child-project">
+                            <div class="accordion-header">
+                                <span class="header-title">ANTSMC for 6-DOF Manipulator (GA-Tuned)</span>
+                                <span class="chevron">&#9660;</span>
+                            </div>
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Derives the full closed-form dynamics of a 6-revolute-joint manipulator using the Product of Exponentials formulation; screw axes, adjoint representations, and spatial inertia matrices in the Lie group SE(3) framework.</li>
+                                    <li>Implements an Adaptive Nonsingular Terminal Sliding Mode Controller (ANTSMC) in Simulink, whose sliding surface combines four weighted error terms with fractional-power nonlinearities (γ, β) to guarantee finite-time convergence without the singularity issues of standard TSMC.</li>
+                                    <li>Tunes all 11 controller parameters (λ, ν, γ, g0–g3, ε*, S0, κ, vu) simultaneously via MATLAB's genetic algorithm, minimizing log(Σe²) over 20-second simulation horizons, replacing manual trial-and-error with a principled global search over a high-dimensional gain space.</li>
+                                    <li>A linear state-feedback controller is included as a baseline for comparison.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
